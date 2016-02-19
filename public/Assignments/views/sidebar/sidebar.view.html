@@ -1,10 +1,19 @@
 <sidebar>
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController">
             <ul class="nav nav-sidebar">
-                <li ng-class="{active: $location.path() == '/home'}"><a href="#/home">Home </a></li>
-                <li ng-class="{active: $location.path() == '/profile'}"><a href="#/profile">Profile</a></li>
-                <li ng-class="{active: $location.path() == '/admin'}"><a href="#/admin">Admin</a></li>
-                <li ng-class="{active: $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
+                {{UID}}
+                <br>
+                {{$location.path()}}
+                <li ng-class="{active: $location.path() == '/home/{{UID}}'}"><a href="#/home/{{UID}}">Home </a></li>
+                <li ng-class="{active: $location.path() == '/profile/{{UID}}'}"><a href="#/profile/{{UID}}">Profile</a></li>
+                <li ng-class="{active: $location.path() == '/admin/{{UID}}'}"><a href="#/admin/{{UID}}">Admin</a></li>
+                <li ng-class="{active: $location.path() == '/forms/{{UID}}'}"><a href="#/forms/{{UID}}">Forms</a></li>
             </ul>
+   <!-- <ul class="nav nav-sidebar" ng-if="user === undefined">
+        <li ng-class="{active: $location.path() == '/home'}"><a href="#/home">Home </a></li>
+        <li ng-class="{active: $location.path() == '/profile'}"><a href="#/profile">Profile</a></li>
+        <li ng-class="{active: $location.path() == '/admin'}"><a href="#/admin">Admin</a></li>
+        <li ng-class="{active: $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
+    </ul>-->
         </div>
 </sidebar>

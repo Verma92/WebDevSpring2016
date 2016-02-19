@@ -1,12 +1,14 @@
 
+
     <div class="col-sm-offset-3 main">
         <br>
         <div class="well well-lg col-md-9">
             <div class="header col-xs-offset-5 ">
                 <h3>Profile</h3>
             </div>
+            <h2 ng-if="UID ==='garbage'">Please <a href="#/login">Login</a>/<a href="#/register">Register</a> to view profile</h2>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" ng-if="UID !=='garbage'">
 
                 <div class="form-group">
                     <label for="user1" class="col-md-3 col-sm-4 control-label">Username</label>

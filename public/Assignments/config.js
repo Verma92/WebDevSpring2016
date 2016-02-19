@@ -5,15 +5,15 @@
 
     function Configure($routeProvider) {
         $routeProvider
-            .when("/home",{
+            .when("/home/:userId",{
                 templateUrl:"views/home/home.view.html"
             })
             .when("/register",{
                 templateUrl:"views/users/register.view.html"
             })
-            .when("/profile",{
-                templateUrl:"views/users/profile.view.html"
-
+            .when("/profile/:userId",{
+                templateUrl:"views/users/profile.view.html",
+                controller:"ProfileController"
             })
 
             .when("/login",{
@@ -21,14 +21,14 @@
                 controller:"LoginController"
             })
 
-            .when("/admin",{
+            .when("/admin/:userId",{
                 templateUrl:"views/admin/admin.view.html"
             })
-            .when("/forms",{
+            .when("/forms/:userId",{
                 templateUrl:"views/forms/forms.view.html"
             })
             .otherwise({
-            redirectTo: "/home"
+                templateUrl:"views/home/home.view.html"
         });
 
     }

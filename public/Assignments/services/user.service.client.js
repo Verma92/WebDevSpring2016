@@ -16,7 +16,7 @@
 
 
         var service = {
-            findUserByUsernameAndPassword:findUserByUsernameAndPassword,
+            findUserByCredentials:findUserByCredentials,
             findAllUsers:findAllUsers,
             getUserById:getUserById,
             addUser:addUser,
@@ -28,30 +28,50 @@
 
         return service;
 
-        function findUserByUsernameAndPassword(username,password)
+        function findUserByCredentials(username,password,callback)
         {
-            angular.forEach(users,function(value){
-            if ((value.username==username)&&(value.password==password))
-               bhai1=value;
-            })
-            return bhai1;
+            for (i = 0; i < users.length; i++) {
+                if ((users[i].username == username) && (users[i].password == password))
+                {
+                    v1=(users[i]);
+                    break;
+                }
+                v1=undefined;
+
+            }
+            callback(v1);
+
         }
 
         function findAllUsers()
         {
             return users;
         }
-        function getUserById()
+        function getUserById(ID)
         {
+            for (i = 0; i < users.length; i++) {
+                if (users[i]._id == id)
+                {
+                    v1=(users[i]);
+                    break;
+                }
+                v1=undefined;
 
+            }
+            callback(v1);
         }
-        function addUser()
+        function addUser(user)
         {
-
+           users.push(user)
         }
         function deleteUserById()
         {
-
+            for (i = 0; i < users.length; i++) {
+                if (users[i]._id == id)
+                {
+                   users.splice(i,1)
+                }
+            }
         }
         function updateUser()
         {
