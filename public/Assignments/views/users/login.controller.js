@@ -11,7 +11,7 @@
                     {
                         $rootScope.user = user;
                         $rootScope.UID=user._id;
-                    $location.path("/profile/UID");
+                    $location.path("/profile/"+user._id);
                     }
                     else
                    alert("Wrong Credentials. Please Try Again...")
