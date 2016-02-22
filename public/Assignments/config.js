@@ -9,7 +9,8 @@
                 templateUrl:"views/home/home.view.html"
             })
             .when("/register",{
-                templateUrl:"views/users/register.view.html"
+                templateUrl:"views/users/register.view.html",
+                controller:"RegisterController"
             })
             .when("/profile/:userId",{
                 templateUrl:"views/users/profile.view.html",
@@ -25,7 +26,8 @@
                 templateUrl:"views/admin/admin.view.html"
             })
             .when("/forms/:userId",{
-                templateUrl:"views/forms/forms.view.html"
+                templateUrl:"views/forms/forms.view.html",
+                controller:"FormController"
             })
             .otherwise({
                 templateUrl:"views/home/home.view.html"

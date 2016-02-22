@@ -60,11 +60,14 @@
             }
             callback(v1);
         }
-        function addUser(user)
+        function addUser(user,callback)
         {
-           users.push(user)
+            var newuser ={"_id":(new Date).getTime(), "firstName":"",  "lastName":"",
+                           "username":user.username,  "password":user.password};
+           users.push(newuser);
+            callback(newuser);
         }
-        function deleteUserById()
+        function deleteUserById(id,callback)
         {
             for (i = 0; i < users.length; i++) {
                 if (users[i]._id == id)
@@ -72,11 +75,23 @@
                    users.splice(i,1)
                 }
             }
+            callback(users);
         }
-        function updateUser()
+        function updateUser(newuser,uid,callback)
         {
-
+            for (i = 0; i < users.length; i++) {
+                if (users[i]._id == uid)
+                {
+                    users[i].firstName=newuser.firstName;
+                    users[i].lastName=newuser.lastName;
+                    users[i].username=newuser.username;
+                    users[i].password=newuser.password;
+                    break;
+                }
+            }
+           callback(users[i]);
         }
+
     }
 })();
 
