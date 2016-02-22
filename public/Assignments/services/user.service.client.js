@@ -73,10 +73,21 @@
                 }
             }
         }
-        function updateUser()
+        function updateUser(newuser,uid,callback)
         {
-
+            for (i = 0; i < users.length; i++) {
+                if (users[i]._id == uid)
+                {
+                    users[i].firstName=newuser.firstName;
+                    users[i].lastName=newuser.lastName;
+                    users[i].username=newuser.username;
+                    users[i].password=newuser.password;
+                    break;
+                }
+            }
+           callback(users[i]);
         }
+
     }
 })();
 
