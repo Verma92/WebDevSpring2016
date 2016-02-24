@@ -12,7 +12,7 @@
                 templateUrl:"views/users/register.view.html",
                 controller:"RegisterController"
             })
-            .when("/profile/:userId",{
+            .when("/profile",{
                 templateUrl:"views/users/profile.view.html",
                 controller:"ProfileController"
             })
@@ -22,10 +22,11 @@
                 controller:"LoginController"
             })
 
-            .when("/admin/:userId",{
-                templateUrl:"views/admin/admin.view.html"
+            .when("/admin",{
+                templateUrl:"views/admin/admin.view.html",
+                controller:"AdminController"
             })
-            .when("/forms/:userId",{
+            .when("/forms",{
                 templateUrl:"views/forms/forms.view.html",
                 controller:"FormController"
             })

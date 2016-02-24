@@ -12,9 +12,8 @@
             {
                 UserService.addUser(user, function (adduser) {
                     $rootScope.user = adduser;
-                    $rootScope.UID = adduser._id;
                     console.log(adduser)
-                    $location.path("/profile/" + adduser._id);
+                    $location.path("/profile");
 
                 })
             }

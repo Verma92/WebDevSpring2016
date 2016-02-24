@@ -7,7 +7,6 @@
 
         $scope.logout = function(){
             $rootScope.user = undefined;
-            $rootScope.UID = "garbage";
             $location.path("/home");
         };
     }

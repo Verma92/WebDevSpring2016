@@ -1,3 +1,10 @@
-/**
- * Created by verma on 2/17/2016.
- */
+(function() {
+    angular.module("FormBuilderApp")
+        .controller("AdminController", AdminController);
+
+    function AdminController($scope, UserService) {
+
+       $scope.users= UserService.findAllUsers();
+        }
+    }
+)();

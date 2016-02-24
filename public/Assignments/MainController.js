@@ -5,6 +5,5 @@
 
     function MainController($scope, $location,$rootScope) {
         $scope.$location = $location;
-        $rootScope.UID = "garbage";
     }
 })();

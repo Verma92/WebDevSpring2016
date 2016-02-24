@@ -11,13 +11,13 @@
             <a class="navbar-brand" href="#/home">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right" ng-if="UID ==='garbage'">
+            <ul class="nav navbar-nav navbar-right" ng-hide="user">
                 <li ng-class="{active: $location.path() == '/login'}"><a href="#/login">Login</a></li>
                 <li ng-class="{active: $location.path() == '/register'}"><a href="#/register">Register</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="UID !=='garbage'">
-                <li ng-class="{active: $location.path() == '/profile/{{user._id}}'}">
-                    <a href="#/profile/{{user._id}}">{{user.username}}</a>
+            <ul class="nav navbar-nav navbar-right" ng-show="user">
+                <li  ng-class="{'active': $location.url().indexOf('profile')!=-1}">
+                    <a href="#/profile">{{user.username}}</a>
                 </li>
                 <li>
                 <a href="#/home" ng-click="logout()">Logout</a>
@@ -26,10 +26,10 @@
         </div>
         <div id="navbar1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right visible-xs">
-                <li  ng-class="{'active': $location.url().indexOf('home')!=-1}"><a href="#/home/{{UID}}">Home </a></li>
-                <li  ng-class="{'active': $location.url().indexOf('profile')!=-1}"><a href="#/profile/{{UID}}">Profile</a></li>
-                <li  ng-class="{'active': $location.url().indexOf('admin')!=-1}"><a href="#/admin/{{UID}}">Admin</a></li>
-                <li  ng-class="{'active': $location.url().indexOf('forms')!=-1}"><a href="#/forms/{{UID}}">Forms</a></li>
+                <li  ng-class="{'active': $location.url().indexOf('home')!=-1}"><a href="#/home">Home </a></li>
+                <li  ng-class="{'active': $location.url().indexOf('profile')!=-1}"><a href="#/profile">Profile</a></li>
+                <li  ng-class="{'active': $location.url().indexOf('admin')!=-1}"><a href="#/admin">Admin</a></li>
+                <li  ng-class="{'active': $location.url().indexOf('forms')!=-1}"><a href="#/forms">Forms</a></li>
             </ul>
         </div>
     </div>

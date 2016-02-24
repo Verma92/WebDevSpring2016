@@ -7,11 +7,10 @@
         $scope.login = function (username, password) {
             UserService.findUserByCredentials(username, password,
                 function (user) {
+                    $rootScope.user = user;
                     if(angular.isDefined(user))
                     {
-                        $rootScope.user = user;
-                        $rootScope.UID=user._id;
-                    $location.path("/profile/"+user._id);
+                    $location.path("/profile");
                     }
                     else
                    alert("Wrong Credentials. Please Try Again...")
