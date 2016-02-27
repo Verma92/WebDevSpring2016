@@ -13,10 +13,6 @@
         $scope.deleteForm = deleteForm
         $scope.addForm = addForm
 
-
-
-
-
         function editForm(index)
         {
             $scope.selectformindex = index;
@@ -27,46 +23,32 @@
 
             }}
 
-
         function updateForm(form)
         {
-           /* FormService.updateFormById($scope.selectformindex,form,
-                function(forms)
+           FormService.updateFormById(form._id,form,
+                function(Newform)
                 {
 
-                        $scope.forms=forms
+                    $scope.forms[$scope.selectformindex]=Newform
+                    $scope.selectformindex=-1;
 
                 })
-*/
-            $scope.forms[$scope.selectformindex] = {
-                _id: form._id,
-                title: form.title,
-                userId: form.userId
-            };
-            $scope.selectformindex=-1;
+
         }
-
-
-        function deleteForm(form,index)
+        function deleteForm(form)
         {
-            //FormService.deleteFormById()
-            $scope.forms.splice(index,1)
+            FormService.deleteFormById(form._id,function(newforms)
+            {
+                $scope.forms=newforms
+             })
 
         }
         function addForm(title)
         {
-            //FormService.createFormForUser()
-
-            form= {
-                _id: (new Date).getTime(),
-                title: title,
-                userId: $rootScope.user._id
-            };
-
-            $scope.forms.push(form)
+            FormService.createFormForUser($rootScope.user._id,title,function(form)
+            {
+            $scope.forms.push(form)})
 
         }
-
-
     }
 })();
