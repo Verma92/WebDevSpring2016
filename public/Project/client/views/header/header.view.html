@@ -1,0 +1,28 @@
+<!--
+<link href="../../../../css/bootstrap.css" rel="stylesheet">-->
+
+<div ng-controller="HeaderController as model">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="model.value">
+                </div>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search" ng-click="model.search(model.value)"></span>
+                </button>
+            </form>
+        </div>
+    </nav>
+    <div>
+        <!--<h1>{{results.data.events}}</h1>-->
+       <!-- <h1>{{$scope.results.$$state}}</h1>
+        <h1>{{$scope.results.$$state.value.data}}</h1>
+        <h1>{{$scope.results}}</h1>
+        <h1>{{$scope.results}}</h1>-->
+
+
+    </div>
+</div>
+
+
