@@ -20,7 +20,7 @@
     </thead>
     <tbody>
 
-    <tr ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
+    <tr ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}" ng-click="vm.details(event.description.html)">
         <td class="thumbnail">
             <img ng-src="{{event.logo.url}}"></td>
         <td>{{event.name.text}}</td>

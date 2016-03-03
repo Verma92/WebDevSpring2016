@@ -1,10 +1,11 @@
 (function() {
     angular.module("FinalProject")
-        .factory("SeacrhService", SeacrhService);
+        .factory("SearchService", SearchService);
 
-    function SeacrhService($http){
+    function SearchService($http){
         var service= {
-            searchbytitle: searchbytitle
+            searchbytitle: searchbytitle,
+            defaultsearch:defaultsearch
         }
         return service;
 
@@ -20,7 +21,23 @@
                 }
             }));
         }
+        function  defaultsearch(lat,long)
+        {
 
+            return ( $http({
+                method: 'GET',
+                url: 'https://www.eventbriteapi.com/v3/events/search/',
+                params: {
+                    location:
+                    {latitude: lat,
+                     longitude: long
+                    },
+                    token:'AP4W7O3MQCLNJSL2NTHV'
+                }
+            }));
+
+
+        }
 
 
     }
