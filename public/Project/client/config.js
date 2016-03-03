@@ -12,7 +12,13 @@
                 templateUrl:"views/search/search.view.html",
                 controller:"SearchControler",
                 controllerAs:"vm"
-            })            .otherwise({
+            })
+            .when("/details",{
+                templateUrl:"views/details/details.view.html",
+                controller:"DetailsControler",
+                controllerAs:"vm"
+            })
+            .otherwise({
                 templateUrl:"views/home/home.view.html"
 
         });
