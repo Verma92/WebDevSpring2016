@@ -11,7 +11,7 @@
         function search(value)
         {
             $rootScope.loading=1;
-            console.log("INN")
+            $rootScope.events=null;
             SearchService.searchbytitle(value).then(renderresults,rendererror);
 
         }
@@ -19,10 +19,15 @@
 
             $rootScope.loading=null;
             $rootScope.events=response.data.events;
-            $rootScope.length=$rootScope.events.length;
+
+            if($rootScope.events.length=0)
+            $rootScope.noresult=null
+            else
+                $rootScope.noresult=1
+
 
             console.log($rootScope.events);
-            console.log($rootScope.length);
+            console.log($rootScope.noresult);
 
 
             $location.path("/search");
