@@ -27,6 +27,3 @@
 
     }
 })();
-
-/*
-derbertbgvrevb*/
