@@ -19,16 +19,12 @@
 
             $rootScope.loading=null;
             $rootScope.events=response.data.events;
-
-            if($rootScope.events.length=0)
-            $rootScope.noresult=null
-            else
-                $rootScope.noresult=1
-
-
             console.log($rootScope.events);
-            console.log($rootScope.noresult);
 
+            if($rootScope.events.length==0)
+                $rootScope.noresult=1
+            else
+                $rootScope.noresult=null
 
             $location.path("/search");
         }
