@@ -1,0 +1,36 @@
+<div class="container-fluid">
+
+    <h2 ng-show="!events || length==='0'">No Results Found</h2>
+
+
+    <div ng-show="events && length > '0'">
+
+        <table class="table table-hover" >
+            <br>
+            <br>
+            <br>
+            <caption>Search Results</caption>
+            <thead>
+            <tr>
+                <th> &nbsp;</th>
+                <th> Event Title</th>
+                <th> OrganizerID</th>
+                <th> Time</th>
+                <th> Venue ID</th>
+                <th> Link</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}" ng-click="vm.details(event.description.html)">
+                <td class="thumbnail">
+                    <img ng-src="{{event.logo.url}}"></td>
+                <td>{{event.name.text}}</td>
+                <td>{{event.organizer_id}}</td>
+                <td>{{event.start.local|date}}</td>
+                <td>{{event.venue_id}}</td>
+                <td><a href="{{event.url}}">LINK</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
