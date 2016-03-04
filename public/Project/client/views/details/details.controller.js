@@ -6,7 +6,9 @@
     function DetailsControler($scope, $rootScope, $location) {
 
         var vm=this;
-        document.write($rootScope.description)
+
+       // document.write($rootScope.description)
+
 
 
     }

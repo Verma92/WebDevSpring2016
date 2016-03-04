@@ -3,7 +3,7 @@
     angular.module("FinalProject")
         .controller("HomeControler",HomeControler);
 
-    function HomeControler($scope, $rootScope, $location,SearchService) {
+    function HomeControler($scope, $rootScope, $location,SearchService,$sce) {
 
         var vm=this;
         $scope.$location = $location;
@@ -13,7 +13,7 @@
         function details(desc)
         {
             console.log(desc)
-            $rootScope.description=desc;
+            $rootScope.description=$sce.trustAsHtml(desc);
             $location.path("/details");
         }
 

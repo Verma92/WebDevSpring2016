@@ -2,7 +2,7 @@
     angular.module("FinalProject")
         .controller("SearchControler",SearchControler);
 
-    function SearchControler($scope, $rootScope, $location) {
+    function SearchControler($scope, $rootScope, $location,$sce) {
 
         var vm=this;
         vm.details=details;
@@ -12,7 +12,7 @@
         function details(desc)
         {
            console.log(desc)
-            $rootScope.description=desc;
+            $rootScope.description=$sce.trustAsHtml(desc);
             $location.path("/details");
         }
 
