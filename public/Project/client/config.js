@@ -10,7 +10,7 @@
                 controller:"HomeControler",
                 controllerAs:"vm"
             })
-            .when("/search",{
+            .when("/search/:title",{
                 templateUrl:"views/search/search.view.html",
                 controller:"SearchControler",
                 controllerAs:"vm"

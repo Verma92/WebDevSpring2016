@@ -2,55 +2,20 @@
     angular.module("FinalProject")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($scope, $rootScope, $location,$http,SearchService,$q) {
+    function HeaderController($scope, $rootScope, $location,$http,SearchService,$routeParams) {
         $scope.$location = $location;
         var vm=this;
-        $scope.search=search;
+
+        vm.search=search;
 
 
         function search(value)
         {
-            $rootScope.loading=1;
-            $rootScope.events=null;
-            SearchService.searchbytitle(value).then(renderresults,rendererror);
-
+            $rootScope.events=null
+            $location.path("/search/"+vm.value);
         }
-        function renderresults(response){
 
-            $rootScope.loading=null;
-            $rootScope.events=response.data.events;
-            console.log($rootScope.events);
-
-            if($rootScope.events.length==0)
-                $rootScope.noresult=1
-            else
-                $rootScope.noresult=null
-
-            $location.path("/search");
-        }
-        function rendererror()
-        {
-            console.log("error");
-        }
     }
 
 })();
 
-
-
-
-/*
-
-
- $http({
- method: 'GET',
- url: '/some/url.py',
- params: {
- search: 'something' // will result in url /some/url.py?search=something
- }
-
- ?q="+value+"&token=AP4W7O3MQCLNJSL2NTHV"
-,config.headers={
-    "q":value,
-    "Authorization":"AP4W7O3MQCLNJSL2NTHV"
-});*/
