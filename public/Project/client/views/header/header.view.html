@@ -20,12 +20,17 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search" ng-model="model.value">
                     </div>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search" ng-click="model.search(model.value)"></span>
+                    <button type="button" class="btn btn-default" ng-click="search(model.value)">
+                        <span class="glyphicon glyphicon-search" ></span>
                     </button>
+
                 </form>
+
             </div>
+
         </div>
     </nav>
+
+    <img ng-show="loading" class="img-responsive" src="http://sierrafire.cr.usgs.gov/images/loading.gif">
 </div>
 

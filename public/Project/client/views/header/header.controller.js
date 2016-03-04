@@ -5,17 +5,19 @@
     function HeaderController($scope, $rootScope, $location,$http,SearchService,$q) {
         $scope.$location = $location;
         var vm=this;
-        vm.search=search;
+        $scope.search=search;
 
 
         function search(value)
         {
+            $rootScope.loading=1;
             console.log("INN")
             SearchService.searchbytitle(value).then(renderresults,rendererror);
 
         }
         function renderresults(response){
 
+            $rootScope.loading=null;
             $rootScope.events=response.data.events;
             $rootScope.length=$rootScope.events.length;
 

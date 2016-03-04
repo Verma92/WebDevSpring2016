@@ -28,6 +28,7 @@
                     console.log(position.coords.longitude)
                     lat=position.coords.latitude
                     long=position.coords.longitude
+                    $rootScope.loading=1;
                     SearchService.defaultsearch(lat,long).then(renderresults,rendererror);
                 })
 
@@ -40,6 +41,7 @@
         init();
         function renderresults(response)
         {
+            $rootScope.loading=null;
             $rootScope.events=response.data.events;
             console.log($rootScope.events);
         }
