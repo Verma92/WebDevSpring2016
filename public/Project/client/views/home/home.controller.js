@@ -7,6 +7,16 @@
 
         var vm=this;
         $scope.$location = $location;
+        vm.details=details;
+
+
+        function details(desc)
+        {
+            console.log(desc)
+            $rootScope.description=desc;
+            $location.path("/details");
+        }
+
 
         function init()
         {
