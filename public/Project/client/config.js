@@ -28,9 +28,3 @@
     }
 })();
 
-
-
-/*
-yuhngthntg ntdhn dxt
-*/
-
