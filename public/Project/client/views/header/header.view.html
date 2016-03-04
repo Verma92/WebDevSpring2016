@@ -1,28 +1,30 @@
 
-
-
 <div ng-controller="HeaderController as model">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#DATA" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
+
+                    <span class="glyphicon glyphicon-option-horizontal" ></span>
+                   <!-- <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>-->
                 </button>
                 <a class="navbar-brand" href="#">TaFree</a>
             </div>
             <div class="collapse navbar-collapse" id="DATA">
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
+                    <div class="row">
+                    <!--<div class="form-group">-->
                         <input type="text" class="form-control" placeholder="Search" ng-model="model.value">
-                    </div>
+                    <!--</div>-->
                     <button type="button" class="btn btn-default" ng-click="model.search(model.value)">
                         <span class="glyphicon glyphicon-search" ></span>
                     </button>
+                        </div>
 
                 </form>
 
@@ -33,4 +35,3 @@
 
     <img ng-show="loading" class="img-responsive" src="http://sierrafire.cr.usgs.gov/images/loading.gif">
 </div>
-
