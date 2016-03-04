@@ -28,12 +28,3 @@
     }
 })();
 
-/*
- ng-class="{'active' : $location.url().indexOf('home') != -1}"
- /register.view.html
- /login.view.html
- /home.view.html
- /profile.view.html
- /admin.view.html
- /forms.view.html
- */
