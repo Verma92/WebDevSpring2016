@@ -10,6 +10,7 @@
 
         function search(value)
         {
+            console.log("INN")
             SearchService.searchbytitle(value).then(renderresults,rendererror);
 
         }
