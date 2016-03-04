@@ -28,7 +28,7 @@
             }
         }
         init();
-        function renderresults()
+        function renderresults(response)
         {
             $rootScope.events=response.data.events;
             console.log($rootScope.events);
