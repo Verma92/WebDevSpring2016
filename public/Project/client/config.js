@@ -20,6 +20,19 @@
                 controller:"DetailsControler",
                 controllerAs:"vm"
             })
+            .when("/register",{
+                templateUrl:"views/users/register.view.html",
+                controller:"RegisterController"
+            })
+            .when("/profile",{
+                templateUrl:"views/users/profile.view.html",
+                controller:"ProfileController"
+            })
+
+            .when("/login",{
+                templateUrl:"views/users/login.view.html",
+                controller:"LoginController"
+            })
             .otherwise({
                 redirectTo: '/home'
 

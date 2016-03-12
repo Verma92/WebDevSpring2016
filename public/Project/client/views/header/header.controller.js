@@ -8,6 +8,10 @@
 
         vm.search=search;
 
+        $scope.logout = function(){
+            $rootScope.user = undefined;
+            $location.path("/home");
+        };
 
         function search(value)
         {

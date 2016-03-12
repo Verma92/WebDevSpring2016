@@ -1,14 +1,98 @@
 
 
     <div class="col-sm-offset-3 main" ng-controller="ProfileController">
+        <h2 ng-hide="user">Please <a href="#/login">Login</a>/<a href="#/register">Register</a> to view profile</h2>
         <br>
-        <div class="well well-lg col-md-9">
-            <div class="header col-xs-offset-5 ">
-                <h3>Profile</h3>
-            </div>
-            <h2 ng-hide="user">Please <a href="#/login">Login</a>/<a href="#/register">Register</a> to view profile</h2>
-            <br>
-            <form class="form-horizontal" ng-show="user">
+
+<div  ng-show="user">
+    <div class="header col-xs-offset-5 ">
+        <h3>Profile</h3>
+    </div>
+        <div class="table-responsive" ng-hide="updateprofile">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Personal details</th>
+                    <th> Events Interested (ID)</th>
+                    <th> Events Going (ID)</th>
+                    <th> Events Hosted (ID)</th>
+                    <th> Tickets Purchased (ID)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        firstName:  {{user.firstName}}<br>
+                        lastName: {{ user.lastName}}<br>
+                        username: {{ user.username}}<br>
+                        password: {{user.password}}<br>
+                        <a class="btn btn-default" role="button" ng-click="changeprofile()" >Update</a>
+                    </td>
+
+                    <td>
+                    <input type="text" placeholder="Events Interested (ID)" ng-model="interested">
+                        <a class="btn btn-primary btn-md" ng-click="addevent(interested,'interested')" role="button">
+                        <span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="btn btn-success btn-md" ng-click="updatevent(interested,'interested')" role="button">
+                            <span class="glyphicon glyphicon-ok"></span></a>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Events Going (ID)" ng-model="going">
+                        <a class="btn btn-primary btn-md" ng-click="addevent(going,'going')" role="button">
+                            <span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="btn btn-success btn-md" ng-click="updatevent(going,'going')" role="button">
+                            <span class="glyphicon glyphicon-ok"></span></a>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Events Hosted (ID)" ng-model="hosted">
+                        <a class="btn btn-primary btn-md" ng-click="addevent(hosted,'hosted')" role="button">
+                            <span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="btn btn-success btn-md" ng-click="updatevent(hosted,'hosted')" role="button">
+                            <span class="glyphicon glyphicon-ok"></span></a>
+                    </td>
+                    <td>
+                        <input type="text" placeholder=" Tickets Purchased (ID)" ng-model="tickets">
+                        <a class="btn btn-primary btn-md" ng-click="addevent(tickets,'tickets')" role="button">
+                            <span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="btn btn-success btn-md" ng-click="updatevent(tickets,'tickets')" role="button">
+                            <span class="glyphicon glyphicon-ok"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                  <td>
+                      <p ng-repeat="int in user.interested">
+                      {{user.interested[$index]}}  </p>
+                      <a class="btn btn-warning btn-md" ng-click="editevent('interested')" role="button">
+                          <span class="glyphicon glyphicon-pencil"></span></a>
+                  </td>
+                    <td>
+                        <p ng-repeat="int in user.going">
+                            {{user.going[$index]}}  </p>
+                        <a class="btn btn-warning btn-md" ng-click="editevent('going')" role="button">
+                            <span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                    <td>
+                        <p ng-repeat="int in user.hosted">
+                            {{user.hosted[$index]}}  </p>
+                        <a class="btn btn-warning btn-md" ng-click="editevent('hosted')" role="button">
+                            <span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                    <td>
+                        <p ng-repeat="int in user.tickets">
+                            {{user.tickets[$index]}}  </p>
+                        <a class="btn btn-warning btn-md" ng-click="editevent('tickets')" role="button">
+                            <span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-show="updateprofile" class="well well-lg col-md-9">
+
+            <form class="form-horizontal">
                 <div class="form-group">
                     <label for="user1" class="col-md-3 col-sm-4 control-label">Username</label>
                     <div class="col-sm-6">
@@ -53,5 +137,6 @@
 
             </form>
         </div>
+</div>
     </div>
-    <!---->
+

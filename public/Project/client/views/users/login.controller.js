@@ -1,9 +1,8 @@
 (function() {
-    angular.module("FormBuilderApp")
+    angular.module("FinalProject")
         .controller("LoginController", LoginController);
 
     function LoginController($scope, $location, $rootScope, UserService) {
-
         $scope.login = function (username, password) {
             UserService.findUserByCredentials(username, password,
                 function (user) {
