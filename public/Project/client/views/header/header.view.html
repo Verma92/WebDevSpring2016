@@ -18,12 +18,12 @@
             <div class="collapse navbar-collapse" id="DATA">
                 <form class="navbar-form navbar-left" role="search">
                     <div class="row">
-                    <!--<div class="form-group">-->
-                        <input type="text" class="form-control" placeholder="Search" ng-model="model.value">
-                    <!--</div>-->
-                    <button type="button" class="btn btn-default" ng-click="model.search(model.value)">
-                        <span class="glyphicon glyphicon-search" ></span>
-                    </button>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="model.value"
+                                   aria-describedby="search">
+                                   <span class="glyphicon glyphicon-search input-group-addon" id="search"
+                                         ng-click="model.search(model.value)"></span>
+                        </div>
                         </div>
 
                 </form>
