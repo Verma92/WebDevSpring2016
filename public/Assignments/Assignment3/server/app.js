@@ -1,3 +1,4 @@
+/*
 module.exports = function(app) {
     var modeluser = require("./models/user.model.js")();
     require("./services/user.service.js")(app, modeluser);
@@ -7,4 +8,4 @@ module.exports = function(app) {
 
 
     require("./services/field.service.js")(app, modelforms);
-};
+};*/
