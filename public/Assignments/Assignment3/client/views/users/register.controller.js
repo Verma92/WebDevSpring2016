@@ -10,12 +10,13 @@
                 && user.verifypassword !== undefined && user.password == user.verifypassword
                 && user.email !== undefined)
             {
-                UserService.addUser(user, function (adduser) {
-                    $rootScope.user = adduser;
-                    console.log(adduser)
-                    $location.path("/profile");
+                UserService.addUser(user)
+                    .then(function (users) {
+                        $rootScope.user = users[users.length-1];
+                        console.log($rootScope.user)
+                        $location.path("/profile");
 
-                })
+                    } )
             }
             else
             {

@@ -1,3 +1,4 @@
+/*
 module.exports = function(app, model) {
 
     app.get("/api/assignment/user/:userId/form", getFormsForUser);
@@ -92,4 +93,4 @@ module.exports = function(app, model) {
             });
 
     }
-}
+}*/

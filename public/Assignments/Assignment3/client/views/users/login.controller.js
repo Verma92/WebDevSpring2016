@@ -5,10 +5,11 @@
     function LoginController($scope, $location, $rootScope, UserService) {
 
         $scope.login = function (username, password) {
-            UserService.findUserByCredentials(username, password,
-                function (user) {
-                    $rootScope.user = user;
-                    if(angular.isDefined(user))
+            UserService.findUserByCredentials(username, password)
+                .then(function (user) {
+                    console.log(user)
+                    $rootScope.user =user;
+                    if(user)
                     {
                     $location.path("/profile");
                     }

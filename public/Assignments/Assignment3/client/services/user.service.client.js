@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", userService);
 
-    function userService()
+    function userService($q,$http)
     {
         var users = [
             {"_id":123, "firstName":"Alice",  "lastName":"Wonderland","username":"alice",
@@ -31,68 +31,65 @@
 
         return service;
 
-        function findUserByCredentials(username,password,callback)
+        function findUserByCredentials(username,password)
         {
-            for (i = 0; i < users.length; i++) {
-                if ((users[i].username == username) && (users[i].password == password))
-                {
-                    v1=(users[i]);
-                    break;
-                }
-                v1=undefined;
-
-            }
-            callback(v1);
-
+               var deferred = $q.defer();
+               $http.get("/api/assignment/user?username=" + username + "&password=" + password)
+                   .success(function(response){
+                   deferred.resolve(response);
+               });
+               return deferred.promise;
         }
 
         function findAllUsers()
         {
-            return users;
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user").success(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
         }
-        function getUserById(ID)
+        function getUserById(id)
         {
-            for (i = 0; i < users.length; i++) {
-                if (users[i]._id == id)
-                {
-                    v1=(users[i]);
-                    break;
-                }
-                v1=undefined;
+            var deferred=$q.defer();
+            $http.get("/api/assignment/user/"+id).success(function(response){
+                deferred.resolve(response);
+            });
 
-            }
-            callback(v1);
+            return deferred.promise;
         }
-        function addUser(user,callback)
+        function addUser(user)
         {
             var newuser ={"_id":(new Date).getTime(), "firstName":"",  "lastName":"",
                            "username":user.username,  "password":user.password};
-           users.push(newuser);
-            callback(newuser);
+
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user",newuser).success(function(response){
+                deferred.resolve(response);
+
+
+            });
+            return deferred.promise;
+
         }
-        function deleteUserById(id,callback)
+        function deleteUserById(id)
         {
-            for (i = 0; i < users.length; i++) {
-                if (users[i]._id == id)
-                {
-                   users.splice(i,1)
-                }
-            }
-            callback(users);
+            var deferred = $q.defer();
+            $http.delete("/api/assignment/user/" + id).success(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
         }
-        function updateUser(newuser,uid,callback)
+        function updateUser(user,id)
         {
-            for (i = 0; i < users.length; i++) {
-                if (users[i]._id == uid)
-                {
-                    users[i].firstName=newuser.firstName;
-                    users[i].lastName=newuser.lastName;
-                    users[i].username=newuser.username;
-                    users[i].password=newuser.password;
-                    break;
-                }
-            }
-           callback(users[i]);
+            var deferred = $q.defer();
+
+            $http.put("/api/assignment/user/" + id, user).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
 
     }
