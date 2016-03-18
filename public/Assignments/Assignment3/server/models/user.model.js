@@ -1,23 +1,18 @@
-var q = require("q");
-module.exports = function(mongoose, db) {
-    var UserSchema = require("./user.schema.js")(mongoose);
-
-    var UserModel = mongoose.model("UserModel", UserSchema);
+module.exports = function() {
 
     var api = {
-
-        create: create,
-        findAll: findAll,
-        findById: findById,
-        updateUser: updateUser,
-        deleteUser: deleteUser,
+        Create: Create,
+        FindAll: FindAll,
+        FindById: FindById,
+        Update: Update,
+        Delete: Delete,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
-
     };
+
     return api;
 
-    function deleteUser(id) {
+    function Delete(id) {
         var deferred = q.defer();
 
         UserModel.findByIdAndRemove(id, function(err, user) {
@@ -28,7 +23,7 @@ module.exports = function(mongoose, db) {
         return deferred.promise;
     }
 
-    function create(user) {
+    function Create(user) {
         var deferred = q.defer();
         var uname = user._id;
 
@@ -44,7 +39,7 @@ module.exports = function(mongoose, db) {
 
 
 
-    function findAll() {
+    function FindAll() {
         var deferred = q.defer();
         UserModel.find(function(err, users) {
             deferred.resolve(users);
@@ -54,7 +49,7 @@ module.exports = function(mongoose, db) {
 
     }
 
-    function findById(userId) {
+    function FindById(userId) {
 
 
         var deferred = q.defer();
@@ -72,7 +67,7 @@ module.exports = function(mongoose, db) {
 
     }
 
-    function updateUser(id, user) {
+    function Update(id, user) {
         //var _id = mongoose.Types.ObjectId.fromString(id1);
         var deferred = q.defer();
         var uname = user.username;

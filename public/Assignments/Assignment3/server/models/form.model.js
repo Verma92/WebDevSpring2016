@@ -1,6 +1,4 @@
-module.exports = function(mongoose, db) {
-    var FormSchema = require("./form.schema.js")(mongoose);
-    var FormModel = mongoose.model("FormModel", FormSchema);
+module.exports = function() {
 
     var api = {
 
@@ -14,8 +12,6 @@ module.exports = function(mongoose, db) {
         addFieldForForm: addFieldForForm,
         deleteField: deleteField,
         updateForm: updateForm
-
-
     };
     return api;
 
