@@ -13,7 +13,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-/*require("public/Assignments/Assignment3/server.js")(app);*/
+/*require("./public/Assignments/Assignment3/server.js")(app);*/
 
 app.get('/hello', function(req, res){
     res.send('hello world');
