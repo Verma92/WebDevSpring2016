@@ -1,6 +1,6 @@
 module.exports = function() {
-
-    var api = {
+console.log("module OK")
+   /* var api = {
         Create: Create,
         FindAll: FindAll,
         FindById: FindById,
@@ -126,6 +126,6 @@ module.exports = function() {
 
         return deferred.promise;
 
-    }
+    }*/
 
 };

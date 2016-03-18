@@ -1,6 +1,8 @@
 module.exports = function(app, model) {
 
     var user_model = model;
+    console.log("Service OK")
+/*
 
     app.get('/api/assignment/user', function(req, res) {
         if (req.query.username !== undefined) {
@@ -78,6 +80,7 @@ module.exports = function(app, model) {
             res.json(updated);
         });
     });
+*/
 
 
 };

@@ -12,7 +12,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static(__dirname + '/public'));
 
-require("./try.js")();
 
+require("./public/Assignments/Assignment3/server/app.js")(app);
 
 app.listen(port, ipaddress);
