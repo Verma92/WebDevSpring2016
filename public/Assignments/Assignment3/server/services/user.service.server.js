@@ -1,6 +1,7 @@
 module.exports = function(app, model) {
 
     var user_model = model;
+
     console.log("Service OK")
     app.get('/api/assignment/user',checkquery)
     app.post('/api/assignment/user',adduser)

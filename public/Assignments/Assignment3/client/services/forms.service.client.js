@@ -17,7 +17,27 @@
             updateFormById:updateFormById
         };
 
+
         return service;
+
+
+
+        function findAllFormsForUser(user)
+        {
+            var userId=user._id
+
+            var deferred = $q.defer();
+
+
+            $http.get("/api/assignment/user/" + userId + "/form").success(function(response) {
+                deferred.resolve(response);
+            });
+
+            console.log(deferred.promise);
+            return deferred.promise;
+
+        }
+
 
         function updateFormById(formId, newForm, callback) {
             for (i = 0; i < forms.length; i++) {
@@ -51,31 +71,6 @@
         }
 
 
-
-        function findAllFormsForUser(user)
-        {
-            var deferred = $q.defer();
-            $http.get("/api/assignment/user/" + uid + "/form").success(function(response) {
-                deferred.resolve(response);
-            });
-
-            console.log(deferred.promise)
-            return deferred.promise;
-
-           /* if (user)
-            {
-                var userforms=[];
-                for (i = 0; i < forms.length; i++) {
-
-                    if (forms[i].userId == user._id) {
-                        userforms.push(forms[i])
-                    }
-                }
-                callback(userforms)
-            }
-             else
-                callback(undefined)*/
-        }
 
 
         function createFormForUser(userId, form, callback)

@@ -8,6 +8,20 @@ module.exports = function(app, model) {
     app.delete("/api/assignment/form/:formId", deleteData);
     app.put("/api/assignment/form/:formId",updateForm);
 
+
+
+    function getFormsForUser(req, res)
+    {
+       var id=req.params.userId
+
+          var userId = req.params["userId"];
+
+        var form= model.getFormByUser(userId)
+
+         res.json(form);
+
+    }
+
     function updateForm(req,res){
 
         /*var form = req.body;
@@ -67,20 +81,7 @@ module.exports = function(app, model) {
             })*/
     }
 
-    function getFormsForUser(req, res) {
 
-
-        res.send(200)
-        /*  var userId = req.params["userId"];
-
-        model
-            .getFormByUser(userId)
-            .then(function(form) {
-                res.json(form);
-
-            });
-*/
-    }
 
     function addForm(req, res) {
 

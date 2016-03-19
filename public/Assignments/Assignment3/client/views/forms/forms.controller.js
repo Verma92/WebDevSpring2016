@@ -5,11 +5,17 @@
     function FormController($scope,$rootScope, $routeParams,$location,UserService,FormService) {
 
         function init(){
-
+           if($rootScope.user)
+           {
             FormService.findAllFormsForUser($rootScope.user).then(function(forms)
         {
-            $scope.forms=forms
+            console.log(forms)
+            console.log(forms.title)
+            $scope.forms= [];
+            $scope.forms= $scope.forms.push(forms)
+            console.log($scope.forms[0].title)
         });
+           }
 
         }
 

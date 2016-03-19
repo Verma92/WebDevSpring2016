@@ -8,7 +8,8 @@ module.exports = function() {
 
     var api = {
 
-       /* getFormByUser: getFormByUser,
+        getFormByUser: getFormByUser,
+        /*
         findFormByTitle:findFormByTitle,
         FindById: FindById,
         FindAll: FindAll,
@@ -22,6 +23,18 @@ module.exports = function() {
     };
     return api;
 
+    function getFormByUser(uid) {
+
+        for (i = 0; i < forms.length; i++) {
+
+            if (forms[i].userId == uid) {
+                var userforms=(forms[i])
+            }
+        }
+
+        return userforms
+
+    }
 
 /*
 

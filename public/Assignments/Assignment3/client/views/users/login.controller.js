@@ -11,12 +11,12 @@
 
                     if(user!='undefined')
                     {
-                        console.log("wrong")
+
                     $rootScope.user =user;
                     $location.path("/profile");
                     }
                     else
-                    { console.log("right")
+                    {
                    alert("Wrong Credentials. Please Try Again...")
                     }
                 })
