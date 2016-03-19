@@ -4,10 +4,18 @@
 
     function FormController($scope,$rootScope, $routeParams,$location,UserService,FormService) {
 
-            FormService.findAllFormsForUser($rootScope.user,function(forms)
+        function init(){
+
+            FormService.findAllFormsForUser($rootScope.user).then(function(forms)
         {
             $scope.forms=forms
-        })
+        });
+
+        }
+
+        init();
+
+
         $scope.editForm = editForm
         $scope.updateForm = updateForm
         $scope.deleteForm = deleteForm

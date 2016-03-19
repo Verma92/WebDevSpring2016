@@ -8,13 +8,17 @@
             UserService.findUserByCredentials(username, password)
                 .then(function (user) {
                     console.log(user)
-                    $rootScope.user =user;
-                    if(user)
+
+                    if(user!='undefined')
                     {
+                        console.log("wrong")
+                    $rootScope.user =user;
                     $location.path("/profile");
                     }
                     else
+                    { console.log("right")
                    alert("Wrong Credentials. Please Try Again...")
+                    }
                 })
 
 

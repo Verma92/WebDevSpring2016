@@ -27,7 +27,7 @@ console.log("module OK")
                 v1=(users[i]);
                 break;
             }
-            v1="undefined";
+            v1=null;
 
         }
 

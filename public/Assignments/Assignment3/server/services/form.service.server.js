@@ -1,4 +1,3 @@
-/*
 module.exports = function(app, model) {
 
     app.get("/api/assignment/user/:userId/form", getFormsForUser);
@@ -11,7 +10,7 @@ module.exports = function(app, model) {
 
     function updateForm(req,res){
 
-        var form = req.body;
+        /*var form = req.body;
         var fid = req.params.formId;
 
 
@@ -19,45 +18,45 @@ module.exports = function(app, model) {
         model.updateForm(fid, form).then(function(updated){
 
             res.json(updated);
-        });
+        });*/
 
     }
 
     function deleteData(req, res) {
 
-        var fid = req.params["formId"];
+       /* var fid = req.params["formId"];
         model
             .del(fid)
             .then(function(form) {
                 res.json(form);
 
-            })
+            })*/
 
     }
 
 
 
     function get(req, res) {
-        var fid = req.params["formId"];
+      /*  var fid = req.params["formId"];
         model
             .get(fid)
             .then(function(form) {
                 res.json(form);
 
-            })
+            })*/
     }
 
     function getAllForms(req, res) {
-        model
+      /*  model
             .findAllForms()
             .then(function(form) {
                 res.json(form);
-            })
+            })*/
 
     }
 
     function deleteForm(req, res) {
-        var fid = req.params["formId"];
+     /*   var fid = req.params["formId"];
         var uid = req.params["userId"];
 
         model
@@ -65,11 +64,14 @@ module.exports = function(app, model) {
             .then(function(form) {
                 res.json(form);
 
-            })
+            })*/
     }
 
     function getFormsForUser(req, res) {
-        var userId = req.params["userId"];
+
+
+        res.send(200)
+        /*  var userId = req.params["userId"];
 
         model
             .getFormByUser(userId)
@@ -77,12 +79,12 @@ module.exports = function(app, model) {
                 res.json(form);
 
             });
-
+*/
     }
 
     function addForm(req, res) {
 
-        var form = req.body;
+       /* var form = req.body;
 
         //console.log("Server32342");
         //console.log(form);
@@ -90,7 +92,7 @@ module.exports = function(app, model) {
             .addForm(form)
             .then(function(forms) {
                 res.json(forms);
-            });
+            });*/
 
     }
-}*/
+}
