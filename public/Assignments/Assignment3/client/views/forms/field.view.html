@@ -23,7 +23,7 @@
                         <!--TEXTAREA-->
                         <div class="form-group" ng-if="field.type=='TEXTAREA'">
                             <label for="TEXTAREA">{{field.label}}:</label>
-                            <textarea cols="40" name="name" class="form-control input-sm" id="TEXTAREA"
+                            <textarea cols="40"  class="form-control input-sm" id="TEXTAREA"
                                       placeholder="{{field.placeholder}}" rows="8"></textarea>
                         </div>
                         <!--DATE-->
@@ -40,7 +40,7 @@
                         <!--OPTIONS-->
                         <div class="form-group" ng-if="field.type=='OPTIONS'">
                             <label for="OPTIONS">{{field.label}}:</label>
-                            <select class="form-control" name="sel" id="OPTIONS">
+                            <select class="form-control"  id="OPTIONS">
                                 <option ng-repeat="option in field.options" value="{{option.value}}" label="{{option.value}}">
                                 </option>
                             </select>
@@ -58,7 +58,7 @@
                     <div class="form-group" ng-if="field.type=='RADIOS'">
                         <label for="RADIOS">{{field.label}}:</label>
                         <div class="radio" ng-repeat="option in field.options" id="RADIOS">
-                            <label><input name="optradio" type="radio" value="{{option.value}}">{{option.label}}</label>
+                            <label><input type="radio" value="{{option.value}}">{{option.label}}</label>
                         </div>
                     </div>
 
@@ -73,20 +73,41 @@
                     </td>
 
                 </tr>
-                </tbody>
 
+                </tbody>
             </table>
+
+            <div class="table-responsive table-no-border th table-no-border td">
+                <table class="table ">
+                    <tbody>
+            <tr>
+                <hr>
+
+                <td>
+                    <label for="DROPDOWN">Add New Field</label>
+                    <div class="form-group" id="DROPDOWN">
+                        <select class="form-control" ng-model="vm.field.type">
+                            <option ng-value="TEXT" selected="selected">TEXT</option>
+                            <option ng-value="TEXTAREA">TEXTAREA</option>
+                            <option ng-value="RADIOS">RADIOS</option>
+                            <option ng-value="CHECKBOXES">CHECKBOXES</option>
+                            <option ng-value="OPTIONS">OPTIONS</option>
+                            <option ng-value="DATE">DATE</option>
+                        </select>
+                    </div>
+                </td>
+
+                <td class="text-nowrap text-right">
+                    <a class="btn btn-primary btn-sm" href="" role="button" ng-click="vm.addField(vm.field)">
+                        <span class="glyphicon glyphicon-plus"></span></a>
+                </td>
+            </tr>
+                    </tbody>
+                    </table>
+
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 

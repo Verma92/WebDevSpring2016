@@ -21,14 +21,12 @@ module.exports = function(app, model) {
     }
 
     function addFieldForForm(req,res){
-       /* var formId=req.params["formId"];
+        var formId=req.params["formId"];
         var field=req.body;
+        var form=model.addFieldForForm(formId,field)
+        var fields=form.fields
+        res.json(fields);
 
-        model
-            .addFieldForForm(formId,field)
-            .then(function(form){
-                res.json(form);
-            });*/
     }
 
 
