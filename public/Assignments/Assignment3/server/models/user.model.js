@@ -1,8 +1,7 @@
 module.exports = function() {
-console.log("module OK")
+
 
     var users=require('./user.mock.json');
-    console.log(users)
 
    var api = {
 

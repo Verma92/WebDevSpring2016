@@ -1,165 +1,112 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-3 col-lg-7 col-lg-offset-3">
+    <div class="tab-pane fade in active">
+    <h1 class="page-header">Fields</h1>
+        <br>
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active: $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
+        <li role="presentation" ng-class="{active: vm.formId }">
+            <a href="">Fields</a></li>
+    </ul>
+        <div class="table-responsive table-no-border th table-no-border td">
+            <table class="table ">
+                <tbody>
+                <tr ng-repeat="field in vm.fields">
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-3 col-lg-7 col-lg-offset-3">
-            <h1 class="page-header">Forms : Registration Form</h1>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="forms.html">Forms</a></li>
-                <li role="presentation"  class="active"><a href="form-fields.html">Fields</a></li>
-            </ul>
-            <div class="table-responsive table-no-border th table-no-border td">
-                <table class="table ">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label for="FIRST">First Name:</label>
-                                <input type="email" class="form-control input-sm" id="FIRST" placeholder="First Name">
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label for="Last Name">Last Name:</label>
-                                <input type="email" class="form-control input-sm" id="Last Name" placeholder="Last Name">
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label for="Date">Date:</label>
-                                <input type="date" class="form-control input-sm" id="Date" placeholder="Select Date">
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown">
-                                <br>
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Gender
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Male</a></li>
-                                    <li><a href="#">Female</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>
-                                <br>
-                                Roles:
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">
-                                        Admin
-                                    </label>
-                                </div>
+                    <td>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">
-                                        Student
-                                    </label>
-                                </div>
+                        <!--TEXT-->
+                        <div class="form-group" ng-if="field.type=='TEXT'">
+                            <label for="TEXT">{{field.label}}:</label>
+                            <input id="TEXT" class="form-control input-sm"  placeholder="{{field.placeholder}}" type="text">
+                        </div>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">
-                                        User
-                                    </label>
-                                </div>
-                            </label>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <br>
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <br>
-                            <label>License of Agreement:</label>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                                    Yes
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                    No
-                                </label>
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right ">
-                            <br>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-danger btn-sm" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
+                        <!--TEXTAREA-->
+                        <div class="form-group" ng-if="field.type=='TEXTAREA'">
+                            <label for="TEXTAREA">{{field.label}}:</label>
+                            <textarea cols="40" name="name" class="form-control input-sm" id="TEXTAREA"
+                                      placeholder="{{field.placeholder}}" rows="8"></textarea>
+                        </div>
+                        <!--DATE-->
+                        <div class="form-group" ng-if="field.type=='DATE'">
+                        <label for="DATE">{{field.label}}:</label>
+                        <input id="DATE" class="form-control input-sm"  placeholder="{{field.placeholder}}" type="date">
+                        </div>
+                        <!--EMAIL-->
+                        <div class="form-group" ng-if="field.type=='EMAIL'">
+                            <label for="EMAIL">{{field.label}}:</label>
+                            <input id="EMAIL" class="form-control input-sm"  placeholder="{{field.placeholder}}" type="email">
+                        </div>
 
-                    <tr>
-                        <td>
-                            <hr>
-                            <label for="dropdownMenu2" >Add New Field:</label>
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Single Line Text
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Single Line Text</a></li>
-                                    <li><a href="#">Date</a></li>
-                                    <li><a href="#">Dropdown</a></li>
-                                    <li><a href="#">Checkboxes</a></li>
-                                    <li><a href="#">Radio buttons</a></li>
-                                    <li><a href="#">Paragraph Text Field</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td class="text-nowrap text-right">
-                            <hr>
-                            <a class="btn btn-primary btn-sm" href="#" role="button"><span class="glyphicon glyphicon-plus"></span></a>
-                        </td>
-                    </tr>
+                        <!--OPTIONS-->
+                        <div class="form-group" ng-if="field.type=='OPTIONS'">
+                            <label for="OPTIONS">{{field.label}}:</label>
+                            <select class="form-control" name="sel" id="OPTIONS">
+                                <option ng-repeat="option in field.options" value="{{option.value}}" label="{{option.value}}">
+                                </option>
+                            </select>
+                        </div>
 
-                    </tbody>
-                </table>
-            </div>
+                        <!--CHECKBOXES-->
+                    <div class="form-group" ng-if="field.type=='CHECKBOXES'">
+                        <label for="CHECKBOXES">{{field.label}}:</label>
+                        <div class="checkbox" ng-repeat="option in field.options" id="CHECKBOXES">
+                            <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
+                        </div>
+                    </div>
+
+                    <!--RADIO-->
+                    <div class="form-group" ng-if="field.type=='RADIOS'">
+                        <label for="RADIOS">{{field.label}}:</label>
+                        <div class="radio" ng-repeat="option in field.options" id="RADIOS">
+                            <label><input name="optradio" type="radio" value="{{option.value}}">{{option.label}}</label>
+                        </div>
+                    </div>
+
+                    </td>
+                    <td class="text-nowrap text-right">
+                        <a class="btn btn-info btn-sm" href="" role="button">
+                            <span class="glyphicon glyphicon-align-justify"></span></a>
+                        <a class="btn btn-warning btn-sm" href="" role="button" >
+                            <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-danger btn-sm" href="" role="button" ng-click="vm.deleteField(field._id)">
+                            <span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+
+                </tr>
+                </tbody>
+
+            </table>
         </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<td>{{field.label}}</td>
+<td>{{field.type}}</td>
+<td>{{field._id}}</td>
+
+
+-->
+
 
 
 

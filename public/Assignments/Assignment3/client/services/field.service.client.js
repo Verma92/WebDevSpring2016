@@ -1,5 +1,5 @@
 (function() {
-    "use strict";
+
     angular.module("FormBuilderApp")
         .factory("FieldService", FieldService);
 
@@ -7,22 +7,39 @@
     function FieldService($http,$q){
 
         var api={
-            findFieldsForForm:findFieldsForForm,
-            addFieldForm:addFieldForm,
-            deleteFieldForm:deleteFieldForm
+            getFieldsForForm:getFieldsForForm,
+            deleteFieldFromForm:deleteFieldFromForm
+           /* createFieldForForm:createFieldForForm,
+            getFieldForForm:getFieldForForm
+            updateField:updateField*/
         };
 
-        return api;
-
-        function deleteFieldForm(fid,field)
+        function deleteFieldFromForm(fid,field)
         {
             var deferred=$q.defer();
-            var feid=field;
-            $http.delete("/api/assignment/form/"+fid+"/field/"+feid).success(function(response){
+            $http.delete("/api/assignment/form/"+fid+"/field/"+field).success(function(response){
                 deferred.resolve(response);
             });
+            console.log(deferred.promise)
             return deferred.promise;
         }
+
+        function getFieldsForForm(formId)
+        {
+            var deferred=$q.defer();
+
+            $http.get("/api/assignment/form/"+formId+"/field").success(function(response){
+
+                deferred.resolve(response);
+
+            });
+           console.log(deferred.promise)
+            return deferred.promise;
+        }
+
+        return api;
+        /*
+
 
         function addFieldForm(fid,field){
             var deferred=$q.defer();
@@ -35,19 +52,8 @@
             return deferred.promise;
         }
 
-        function findFieldsForForm(formId)
-        {
-            var deferred=$q.defer();
 
-            $http.get("/api/assignment/form/"+formId+"/field").success(function(response){
-
-                deferred.resolve(response);
-
-            });
-
-            return deferred.promise;
-        }
-
+*/
     }
 
 

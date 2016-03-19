@@ -7,7 +7,8 @@
     <div ng-show="user">
         <ul class="nav nav-tabs">
             <li role="presentation" ng-class="{active: $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
-            <li role="presentation"><a href="form-fields.html">Fields</a></li>
+            <li role="presentation" ng-class="{active: $location.path() == '/form/:formId/fields'}">
+            <a href="">Fields</a></li>
         </ul>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -28,7 +29,7 @@
 
                 </tr>
                 <tr ng-repeat="form in forms" ng-class="{'selected':$index == selectedRow}">
-                    <td><a href="">{{form.title}}</a></td>
+                    <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
                     <td class="text-nowrap">
                         <a class="btn btn-info btn-md" ng-click="editForm($index)" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a class="btn btn-danger btn-md"ng-click="deleteForm(form)" role="button"><span class="glyphicon glyphicon-remove"></span></a>

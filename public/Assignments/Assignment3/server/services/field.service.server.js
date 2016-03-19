@@ -4,37 +4,32 @@ module.exports = function(app, model) {
     app.post("/api/assignment/form/:formId/field", addFieldForForm);
     app.delete("/api/assignment/form/:formId/field/:fieldId",deleteField);
 
+    function getAllFieldsForForm(req, res) {
+        var formId = req.params["formId"];
+        var form= model.FindById(formId)
+        var fields=form.fields
+        res.json(fields);
+    }
+
     function deleteField(req,res){
         var formId=req.params["formId"];
         var fieldId=req.params["fieldId"];
-        model
-            .deleteField(formId,fieldId)
-            .then(function(form){
-                res.json(form);
-            });
+        var form=model.deleteField(formId,fieldId)
+        var fields=form.fields
+        res.json(fields);
+
     }
 
     function addFieldForForm(req,res){
-        var formId=req.params["formId"];
+       /* var formId=req.params["formId"];
         var field=req.body;
 
         model
             .addFieldForForm(formId,field)
             .then(function(form){
                 res.json(form);
-            });
+            });*/
     }
 
-    function getAllFieldsForForm(req, res) {
-
-        var formId = req.params["formId"];
-        model
-            .formById(formId)
-            .then(function(form) {
-                res.json(form);
-
-            });
-
-    }
 
 };

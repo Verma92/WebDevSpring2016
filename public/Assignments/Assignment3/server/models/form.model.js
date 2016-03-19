@@ -1,16 +1,13 @@
 module.exports = function() {
-
-    console.log("module OK")
-
     var forms= require('./form.mock.json');
-
-    console.log(forms)
-
     var api = {
 
+        deleteField: deleteField,
         getFormByUser: getFormByUser,
         Update: Update,
         Delete: Delete,
+        FindById: FindById,
+        findFormByTitle:findFormByTitle,
         Create: Create
         /*
         findFormByTitle:findFormByTitle,
@@ -19,11 +16,62 @@ module.exports = function() {
         Create: Create,
 
         addFieldForForm: addFieldForForm,
-        deleteField: deleteField,*/
+       */
 
     };
+
     return api;
 
+
+    function deleteField(formID, fieldID)
+    {
+        var form=null
+        for (i = 0; i < forms.length; i++) {
+
+            if (forms[i]._id == formID) {
+                console.log("form found")
+                console.log("field ID: "+fieldID)
+                for (j = 0; j < forms[i].fields.length; j++) {
+
+                    if (forms[i].fields[j]._id == fieldID)
+                    {
+                        console.log("field found")
+                        forms[i].fields.splice(j, 1)
+                        break
+                    }
+                }
+                break
+            }
+        }
+        console.log("i="+i,"j="+j)
+        console.log(forms[i])
+        return forms[i]
+
+    }
+
+    function FindById(fid) {
+        var form=null
+        for (i = 0; i < forms.length; i++) {
+
+            if (forms[i]._id == fid) {
+               form=forms[i]
+            }
+        }
+        return form
+
+    }
+
+    function findFormByTitle(title) {
+        var form=null
+        for (i = 0; i < forms.length; i++) {
+
+            if (forms[i].title == title) {
+                form=forms[i]
+            }
+        }
+        console.log(form)
+        return form
+    }
     function Create(form)
     {
 
@@ -93,10 +141,7 @@ module.exports = function() {
 
     }
 
-    function findFormByTitle()
-    {
 
-    }
     function Update(fid, form) {
 
       /!*  var deferred = q.defer();
@@ -127,20 +172,6 @@ module.exports = function() {
          *!/
 
     }
-    function FindById(fid) {
-        /!*   var deferred = q.defer();
-         FormModel.find({
-         _id: fid
-         }, function(err, form) {
-
-         if (err) console.log(err);
-         deferred.resolve(form);
-
-         })
-
-         return deferred.promise;*!/
-
-    }
 
 
     function getFormByUser(uid) {
@@ -159,20 +190,7 @@ module.exports = function() {
 
     }
 
-    function deleteField(form, field) {
 
-      /!*  var deferred = q.defer();
-
-        FormModel.findById(form, function(err, form) {
-            form.fields.splice(field, 1);
-            form.save(function(err, form) {
-                deferred.resolve(form);
-            });
-        });
-
-        return deferred.promise;*!/
-
-    }
 
     function addFieldForForm(fid, field) {
 
