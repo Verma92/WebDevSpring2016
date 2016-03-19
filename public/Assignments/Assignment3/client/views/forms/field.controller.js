@@ -4,9 +4,23 @@
         .controller("FieldController", FieldController);
     function FieldController($scope, $location, $rootScope, $routeParams,FieldService) {
         var vm = this;
-       vm.addField=addField;
-        vm.deleteField=deleteField;
         vm.formId = $routeParams["formId"];
+        vm.addField=addField;
+        vm.deleteField=deleteField;
+        vm.selectfield=selectfield;
+        vm.updatefield=updatefield;
+
+        function updatefield(field)
+        {
+            FieldService.updateField(vm.formId,field,field._id)
+                .then(function(fields){
+                    console.log(fields)
+                    vm.fields=fields
+                });
+
+        }
+
+
 
         function init()
         {
@@ -18,6 +32,11 @@
         }
         init();
 
+      function selectfield(field)
+        {
+           vm.field=field;
+
+        }
         function deleteField(field)
         {
             console.log(field)
@@ -45,7 +64,7 @@
             else if(field.type=== "DATE")
             {
                 field.label="New Date Field";
-                field.placeholder="New field";
+
             }
             else if(field.type=== "RADIOS")
             {

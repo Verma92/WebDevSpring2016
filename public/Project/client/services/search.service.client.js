@@ -23,10 +23,6 @@
         }
         function  defaultsearch(lat,long)
         {
-/*
-                return $http.get("https://www.eventbriteapi.com/v3/events/search/?location.latitude=" +
-                    lat+"&location.longitude="+long+"&token=AP4W7O3MQCLNJSL2NTHV")
-            */
 
                   return ( $http({
                  method: 'GET',
@@ -44,21 +40,3 @@
 
     }
 })();
-
-
-/*
-
-(function() {
-    angular.module("FormBuilderApp")
-        .factory("FormService", FormService);
-
-    function FormService(){
-
-
-
-
- (function(){
- angular.module("FinalProject")
- .controller("HeaderController",HeaderController);
-
- */

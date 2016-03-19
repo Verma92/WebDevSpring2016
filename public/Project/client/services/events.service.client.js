@@ -4,13 +4,6 @@
 
     function FormService(){
 
-        var forms=[
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo",     "userId": 123},
-            {"_id": "020", "title": "CDs",      "userId": 234},
-        ];
-
-
         var service={
             findAllFormsForUser:findAllFormsForUser,
             createFormForUser:createFormForUser,
@@ -20,68 +13,67 @@
         };
 
         return service;
-
-      /*  function updateFormById(formId, newForm, callback) {
-            for (i = 0; i < forms.length; i++) {
-
-                if (forms[i]._id == formId) {
-
-                    forms[i] = {
-                        _id: newForm._id,
-                        title: newForm.title,
-                        userId: newForm.userId
-                    };
-                    callback(forms[i])
-
-                }
-            }
-
-        }
-
-
-        function deleteFormById(formId, callback)
-        { for (i = 0; i < forms.length; i++) {
-            if (forms[i]._id == formId) {
-                var userID = forms[i].userId;
-            }}
-            var userforms=[];
-            for (i = 0; i < forms.length; i++) {
-                if ((forms[i]._id !== formId)&&(forms[i].userId == userID) ) {
-                    userforms.push(forms[i])
-                }}
-            callback(userforms)
-        }
-
-
-
-        function findAllFormsForUser(user,callback) {
-            if (user)
-            {
-                var userforms=[];
-                for (i = 0; i < forms.length; i++) {
-
-                    if (forms[i].userId == user._id) {
-                        userforms.push(forms[i])
-                    }
-                }
-                callback(userforms)
-            }
-             else
-                callback(undefined)
-        }
-
-
-        function createFormForUser(userId, form, callback)
+        function findUserByCredentials(username,password)
         {
-            var newform= {
-                _id: (new Date).getTime(),
-                title: form,
-                userId: userId
-            };
-            callback(newform);
-        }*/
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user?username=" + username + "&password=" + password)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+    /*    function findAllUsers()
+        {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user").success(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+        function getUserById(id)
+        {
+            var deferred=$q.defer();
+            $http.get("/api/assignment/user/"+id).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+        function addUser(user)
+        {
+            var newuser ={"_id":(new Date).getTime(), "firstName":"",  "lastName":"",
+                "username":user.username,  "password":user.password};
+
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user",newuser).success(function(response){
+                deferred.resolve(response);
 
 
+            });
+            return deferred.promise;
+
+        }
+        function deleteUserById(id)
+        {
+            var deferred = $q.defer();
+            $http.delete("/api/assignment/user/" + id).success(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+        function updateUser(user,id)
+        {
+            var deferred = $q.defer();
+
+            $http.put("/api/assignment/user/" + id, user).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+        }
+        */
 
     }
 })();
