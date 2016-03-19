@@ -1,6 +1,7 @@
 module.exports = function() {
     var forms= require('./form.mock.json');
     var api = {
+        FindAll: FindAll,
         addFieldForForm: addFieldForForm,
         deleteField: deleteField,
         getFormByUser: getFormByUser,
@@ -8,16 +9,37 @@ module.exports = function() {
         Delete: Delete,
         FindById: FindById,
         findFormByTitle:findFormByTitle,
-        Create: Create
-        /*
-        FindAll: FindAll,
-        addFieldForForm: addFieldForForm,
-       */
+        Create: Create,
+        UpdateFieldforForm:UpdateFieldforForm
 
     };
 
     return api;
 
+    function UpdateFieldforForm(formId,fieldId,field){
+
+        for (i = 0; i < forms.length; i++) {
+
+            if (forms[i]._id == formId) {
+                console.log("form found")
+                console.log("field ID: "+fieldId)
+                for (j = 0; j < forms[i].fields.length; j++) {
+
+                    if (forms[i].fields[j]._id == fieldId)
+                    {
+                        console.log("field found")
+                        forms[i].fields[j]=field
+                        break
+                    }
+                }
+                break
+            }
+        }
+        console.log("i="+i,"j="+j)
+        console.log(forms[i])
+        return forms[i]
+
+    }
 
     function addFieldForForm(formID, field) {
         for (i = 0; i < forms.length; i++) {
@@ -36,7 +58,7 @@ module.exports = function() {
 
     function deleteField(formID, fieldID)
     {
-        var form=null
+
         for (i = 0; i < forms.length; i++) {
 
             if (forms[i]._id == formID) {

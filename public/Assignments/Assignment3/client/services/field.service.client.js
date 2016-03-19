@@ -9,13 +9,27 @@
         var api={
             getFieldsForForm:getFieldsForForm,
             createFieldForForm:createFieldForForm,
-            deleteFieldFromForm:deleteFieldFromForm
+            deleteFieldFromForm:deleteFieldFromForm,
+            updateField:updateField
            /*
             getFieldForForm:getFieldForForm
-            updateField:updateField*/
+            */
         };
 
         return api;
+
+
+        function updateField(formId,field,fieldId)
+        {
+
+            var deferred=$q.defer();
+            $http.put("/api/assignment/form/"+formId+"/field/"+fieldId,field).success(function(response){
+                deferred.resolve(response);
+            });
+            console.log(deferred.promise)
+            return deferred.promise;
+        }
+
 
         function deleteFieldFromForm(fid,field)
         {
