@@ -25,63 +25,66 @@
         function findAllFormsForUser(user)
         {
             var userId=user._id
-
             var deferred = $q.defer();
-
-
             $http.get("/api/assignment/user/" + userId + "/form").success(function(response) {
                 deferred.resolve(response);
             });
+            return deferred.promise;
+        }
 
-            console.log(deferred.promise);
+
+        function updateFormById(id, form) {
+
+
+            var deferred = $q.defer();
+            $http.put("/api/assignment/form/" + id, form).success(function(response){
+
+                deferred.resolve(response);
+            });
             return deferred.promise;
 
         }
 
 
-        function updateFormById(formId, newForm, callback) {
-            for (i = 0; i < forms.length; i++) {
+        function deleteFormById(form)
+        {
 
-                if (forms[i]._id == formId) {
+            var deferred=$q.defer();
+            var formId=form._id
+            var userid=form.userId;
 
-                    forms[i] = {
-                        _id: newForm._id,
-                        title: newForm.title,
-                        userId: newForm.userId
-                    };
-                    callback(forms[i])
+            $http.delete("/api/assignment/user/"+userid+"/form/" + formId).success(function(response) {
+                deferred.resolve(response);
+            });
 
-                }
-            }
+            return deferred.promise;
 
         }
 
 
-        function deleteFormById(formId, callback)
-        { for (i = 0; i < forms.length; i++) {
-            if (forms[i]._id == formId) {
-                var userID = forms[i].userId;
-            }}
-            var userforms=[];
-            for (i = 0; i < forms.length; i++) {
-                if ((forms[i]._id !== formId)&&(forms[i].userId == userID) ) {
-                    userforms.push(forms[i])
-                }}
-            callback(userforms)
-        }
 
 
-
-
-        function createFormForUser(userId, form, callback)
+        function createFormForUser(userId, form)
         {
             var newform= {
                 _id: (new Date).getTime(),
                 title: form,
-                userId: userId
+                userId: userId,
+                fields:[]
             };
-            callback(newform);
+            console.log(newform)
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user/form", newform).success(function(response) {
+                deferred.resolve(response);
+            });
+            console.log(deferred.promise)
+            return deferred.promise;
         }
+
+
+
+
+
 
 
 

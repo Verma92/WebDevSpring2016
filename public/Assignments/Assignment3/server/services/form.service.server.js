@@ -10,6 +10,16 @@ module.exports = function(app, model) {
 
 
 
+    function addForm(req, res) {
+
+         var form = req.body;
+         var forms=model.Create(form)
+         res.json(forms);
+
+
+    }
+
+
     function getFormsForUser(req, res)
     {
        var id=req.params.userId
@@ -24,17 +34,28 @@ module.exports = function(app, model) {
 
     function updateForm(req,res){
 
-        /*var form = req.body;
+        var form = req.body;
         var fid = req.params.formId;
 
-
-        //console.log("sent req: "+user.username);
-        model.updateForm(fid, form).then(function(updated){
+       var updated=model.Update(fid,form)
 
             res.json(updated);
-        });*/
+
 
     }
+
+    function deleteForm(req, res) {
+           var fid = req.params["formId"];
+         var uid = req.params["userId"];
+
+       var forms= model.Delete(fid, uid)
+
+         res.json(forms);
+
+
+    }
+
+
 
     function deleteData(req, res) {
 
@@ -69,31 +90,4 @@ module.exports = function(app, model) {
 
     }
 
-    function deleteForm(req, res) {
-     /*   var fid = req.params["formId"];
-        var uid = req.params["userId"];
-
-        model
-            .deleteById(fid, uid)
-            .then(function(form) {
-                res.json(form);
-
-            })*/
-    }
-
-
-
-    function addForm(req, res) {
-
-       /* var form = req.body;
-
-        //console.log("Server32342");
-        //console.log(form);
-        model
-            .addForm(form)
-            .then(function(forms) {
-                res.json(forms);
-            });*/
-
-    }
 }
