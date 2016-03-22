@@ -14,8 +14,8 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static(__dirname + '/public'));
-app.use(session({ secret: process.env.PASSPORT_SECRET }));
-app.use(cookieParser())
+/*app.use(session({ secret: process.env.PASSPORT_SECRET }));
+app.use(cookieParser())*/
 /*require("./public/Project/server/app.js")(app);*/
 require("./public/Assignments/Assignment3/server/app.js")(app);
 

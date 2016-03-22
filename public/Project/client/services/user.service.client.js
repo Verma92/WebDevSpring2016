@@ -90,7 +90,9 @@
         function addUser(user, callback) {
             var newuser = {
                 "_id": (new Date).getTime(), "firstName": "", "lastName": "",
-                "username": user.username, "password": user.password
+                "username": user.username, "password": user.password,
+                "interested": null, "going": null,"hosted": null,
+                "tickets": null
             };
             users.push(newuser);
             callback(newuser);

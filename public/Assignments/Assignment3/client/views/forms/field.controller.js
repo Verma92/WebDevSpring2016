@@ -10,8 +10,21 @@
         vm.selectfield=selectfield;
         vm.updatefield=updatefield;
 
+
         function updatefield(field)
         {
+
+            if(field.type== "OPTIONS"||field.type== "CHECKBOXES"||field.type== "RADIOS")
+            {
+                for (i = 0; i < field.options.length ; i++) {
+                    var options=vm.options[i]
+                    field.options[i].label=options.substring(0,options.indexOf(":"));
+                    field.options[i].value=options.substring(options.indexOf(":") + 1);
+                }
+                console.log(field.options)
+
+            }
+
             FieldService.updateField(vm.formId,field,field._id)
                 .then(function(fields){
                     console.log(fields)
@@ -19,7 +32,6 @@
                 });
 
         }
-
 
 
         function init()
@@ -35,6 +47,19 @@
       function selectfield(field)
         {
            vm.field=field;
+
+            if(field.type== "OPTIONS"||field.type== "CHECKBOXES"||field.type== "RADIOS")
+           {
+               vm.options=[]
+               for (i = 0; i < field.options.length ; i++) {
+                   console.log(field.options[i])
+                   vm.options.push(field.options[i].label+  ":" +field.options[i].value )
+               }
+               console.log(vm.options)
+
+           }
+
+
 
         }
         function deleteField(field)

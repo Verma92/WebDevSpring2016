@@ -8,9 +8,9 @@
             <a href="">Fields</a></li>
     </ul>
         <div class="table-responsive table-no-border th table-no-border td">
-            <table class="table ">
-                <tbody>
-                <tr ng-repeat="field in vm.fields">
+            <table class="table " >
+                <tbody elem-sortable elem-axis="y">
+                <tr ng-repeat="field in vm.fields" >
 
                     <td>
 
@@ -134,18 +134,20 @@
                     </div>
 
 
-                    <!--OPTIONS-->
-                    <div class="form-group" ng-if="vm.field.type=='OPTIONS'">
+                    <!--OPTIONS n CHECKBOXES n RADIOS-->
+                    <div class="form-group" ng-if="vm.field.type=='OPTIONS' ||'CHECKBOXES'||'RADIOS' ">
                         <label for="LABELOPTIONS">Label:</label>
                         <input id="LABELOPTIONS" class="form-control input-sm"  type="text"
                                ng-model="vm.field.label">
 
                         <label for="SELECTIONOPTIONS">OPTIONS:</label>
-                        <textarea cols="40"  class="form-control input-sm" id="SELECTIONOPTIONS"
-                                   rows="8" >{{vm.field.options.label}}</textarea>
-
+                    <!--    <textarea id="SELECTIONOPTIONS" ng-model="vm.field.options" class="form-control input-sm"
+                                  ng-list="&#10;" ng-trim="false"></textarea>-->
+                        <textarea id="SELECTIONOPTIONS"
+                                  value="xxx"
+                                  class="form-control input-lg" ng-model="vm.options"
+                                  ng-list="&#10;" ng-trim="false"></textarea>
                     </div>
-
 
 
 

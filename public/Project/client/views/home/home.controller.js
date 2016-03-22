@@ -41,8 +41,17 @@
         init();
         function renderresults(response)
         {
+            console.log(response);
             $rootScope.loading=null;
-            $rootScope.events=response.data.events;
+            $rootScope.events=response.events;
+            var venues=[];
+            for (i = 0; i < $rootScope.events.length; i++) {
+                if ($rootScope.events[i].venue_id) {
+                    venues.push($rootScope.events[i].venue_id)
+                }
+
+            }
+            console.log(venues);
             console.log($rootScope.events);
         }
         function rendererror()

@@ -2,7 +2,7 @@
     angular.module("FinalProject")
         .factory("SearchService", SearchService);
 
-    function SearchService($http){
+    function SearchService($http,$q){
         var service= {
             searchbytitle: searchbytitle,
             defaultsearch:defaultsearch
@@ -24,19 +24,47 @@
         function  defaultsearch(lat,long)
         {
 
-                  return ( $http({
-                 method: 'GET',
-                 url: 'https://www.eventbriteapi.com/v3/events/search/',
-                 params: {
-                 'location.latitude': lat,
-                 'location.longitude':long,
-                 token:'AP4W7O3MQCLNJSL2NTHV'
-                 }
-                 }));
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: 'https://www.eventbriteapi.com/v3/events/search/',
+                params: {
+                    'location.latitude': lat,
+                    'location.longitude':long,
+                    token:'AP4W7O3MQCLNJSL2NTHV'
+                }
+            }).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+/*
+            var venues=[];
+            for (i = 0; i < events.length; i++) {
+                if (events[i].venue_id) {
+                    venues.push(events[i].venue_id)
+                }
+            }*/
+
 
             }
 
+        function  venuesearch(lat,long) {
 
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: 'https://www.eventbriteapi.com/v3/venues/:id/',
+                params: {
+                    token: 'AP4W7O3MQCLNJSL2NTHV'
+                }
+            }).success(function (response) {
+                deferred.resolve(response);
+            });
+            console.log(deferred.promise)
+            return deferred.promise
+        }
 
-    }
+        }
 })();
