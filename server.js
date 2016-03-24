@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(express.static(__dirname + '/public'));
 /*app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser())*/
-/*require("./public/Project/server/app.js")(app);*/
+require("./public/Project/server/app.js")(app);
 require("./public/Assignments/Assignment3/server/app.js")(app);
 
 app.listen(port, ipaddress);
