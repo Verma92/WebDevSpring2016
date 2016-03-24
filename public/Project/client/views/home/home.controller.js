@@ -51,8 +51,9 @@
                 }
 
             }
-            console.log(venues);
-            console.log($rootScope.events);
+
+
+
         }
         function rendererror()
         {

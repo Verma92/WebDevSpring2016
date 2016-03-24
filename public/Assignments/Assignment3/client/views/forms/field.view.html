@@ -64,8 +64,8 @@
 
                     </td>
                     <td class="text-nowrap text-right">
-                        <a class="btn btn-info btn-sm" href="" role="button" id="handle">
-                            <span class="glyphicon glyphicon-align-justify "></span></a>
+                        <a class="btn btn-info btn-sm" href="" role="button" >
+                            <span class="glyphicon glyphicon-align-justify handle"></span></a>
                         <a class="btn btn-warning btn-sm" href="" role="button" ng-click="vm.selectfield(field)"
                            data-toggle="modal" data-target="#update">
                             <span class="glyphicon glyphicon-pencil"></span></a>
@@ -135,14 +135,14 @@
 
 
                     <!--OPTIONS n CHECKBOXES n RADIOS-->
-                    <div class="form-group" ng-if="vm.field.type=='OPTIONS' ||'CHECKBOXES'||'RADIOS' ">
+                    <div class="form-group" ng-if="vm.field.type=='OPTIONS' ||vm.field.type=='CHECKBOXES'||vm.field.type=='RADIOS' ">
                         <label for="LABELOPTIONS">Label:</label>
                         <input id="LABELOPTIONS" class="form-control input-sm"  type="text"
                                ng-model="vm.field.label">
 
                         <label for="SELECTIONOPTIONS">OPTIONS:</label>
-                    <!--    <textarea id="SELECTIONOPTIONS" ng-model="vm.field.options" class="form-control input-sm"
-                                  ng-list="&#10;" ng-trim="false"></textarea>-->
+                        <!--    <textarea id="SELECTIONOPTIONS" ng-model="vm.field.options" class="form-control input-sm"
+                                      ng-list="&#10;" ng-trim="false"></textarea>-->
                         <textarea id="SELECTIONOPTIONS"
                                   value="xxx"
                                   class="form-control input-lg" ng-model="vm.options"

@@ -63,7 +63,7 @@ angular.module('ui.sortable', [])
                         ui.item.sortable._destroy();
                     }
 
-                    var opts = { handle: '#handle' };
+                    var opts = { handle: '.handle' };
 
                     // directive specific options
                     var directiveOpts = {

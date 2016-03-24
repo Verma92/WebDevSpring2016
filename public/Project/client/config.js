@@ -22,16 +22,20 @@
             })
             .when("/register",{
                 templateUrl:"views/users/register.view.html",
-                controller:"RegisterController"
+                controller:"RegisterController",
+                controllerAs:"vm"
+
             })
             .when("/profile",{
                 templateUrl:"views/users/profile.view.html",
-                controller:"ProfileController"
+                controller:"ProfileController",
+                controllerAs:"vm"
             })
 
             .when("/login",{
                 templateUrl:"views/users/login.view.html",
-                controller:"LoginController"
+                controller:"LoginController",
+                controllerAs:"vm"
             })
             .otherwise({
                 redirectTo: '/home'

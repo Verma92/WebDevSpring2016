@@ -1,13 +1,40 @@
+<div  class="profile-content">
+    <div>
+        <h2 class="page-header"> Message to TA</h2>
+        <p class="lead text-center text-muted ">
+          I have Implemented Server Side Functionality Required for the Project Prototype Assignment.
+          Functionalities Implemented for Now:
+            1. Register/Login/Update User on Server Side.<br>
+            2. Add New Event/New Invite on Srever Side.<br>
+            3. Fetch Events depending upon Array of IDs<br>
+            4. Search and Details Page of the Events from the API.<br>
+            5. View Details Page of Created Events and API Events.<br>
+            <br>
+            Note: Some Functionalities have to Implemented But the basic is done .
+            <br>
+            I have implemented basic Look and feel that will be later all converterd to
+            Google's Material Design.<br>
+            Things that will be added with time :<br>
+            1. Invite's look and feel as well as differentiate between old and new Messages.<br>
+            2. Details Page will Have Like,Going and Purchase Functionalities.<br>
+            3. Broadcast Invites on Home Page as well as Catergory Wise Events Shortcut as Images
+
+        </p>
+    </div>
+
+
+
 <div>
+    <h2 class="page-header"> Events Around Your Area</h2>
     <table class="table-responsive">
         <tbody>
-
         <tr ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}" ng-click="vm.details(event.description.html)">
             <td class="img-rounded">
                 <img ng-src="{{event.logo.url}}"></td>
-            <td>{{event.name.text}}</td>
+            <td >{{event.name.text}}</td>
 
         </tr>
     </table>
     <img ng-show="loading" class="img-responsive" src="http://sierrafire.cr.usgs.gov/images/loading.gif">
+</div>
 </div>

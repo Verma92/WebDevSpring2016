@@ -1,141 +1,242 @@
 
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="http://media.comicbook.com/files/img/default-person.png" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                          {{user.firstName}}   {{user.lastName}}
+                        </div>
+                        <div class="profile-usertitle-job">
+                            {{user.username}}
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                ng-click="vm.selection='newevent'"
+                                data-toggle="modal" data-target="#NEW">New Event</button>
+                        <button type="button" class="btn btn-info btn-sm"
+                                ng-click="vm.selection='newinvite'"
+                                data-toggle="modal" data-target="#NEW">Send Invite</button>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li ng-class="{'active': vm.selection=='events'}"
+                                ng-click="vm.selection='events'">
+                                <a href="">
+                                    <i class="glyphicon glyphicon-glass"></i>
+                                    Events </a>
+                            </li>
+                            <li ng-class="{'active': vm.selection=='settings'}"
+                                   ng-click="vm.selection='settings'">
+                                <a href="">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    Personal Settings </a>
+                            </li>
+                           <!-- <li>
+                                <a href="" target="_blank">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Tasks </a>
+                            </li>-->
+                            <li ng-class="{'active': vm.selection=='invites'}"
+                                    ng-click="vm.selection='invites'">
+                            <a href="">  <i class="glyphicon glyphicon-envelope"></i>
+                                    Invites </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <!--Modal View-->
 
-    <div class="col-sm-offset-3 main" ng-controller="ProfileController">
-        <h2 ng-hide="user">Please <a href="#/login">Login</a>/<a href="#/register">Register</a> to view profile</h2>
-        <br>
+            <div class="modal fade" id="NEW" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h7 class="modal-title" id="myModalLabel">New Event</h7>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group " >
+                                <!--NEW EVENT-->
+                                <div ng-if=" vm.selection=='newevent'">
+                                    <label for="Name">Name:</label>
+                                    <input id="Name" class="form-control input-sm"  type="text" ng-model="vm.object.name">
+                                    <label for="starttime">Start Time:</label>
+                                    <input id="starttime" class="form-control input-sm"  type="datetime"
+                                           ng-model="vm.object.start">
+                                    <label for="endtime">End Time:</label>
+                                    <input id="endtime"  class="form-control input-sm" type="datetime"
+                                           ng-model="vm.object.end">
+                                    <label for="Description">Description:</label>
+                                     <textarea id="Description"  class="form-control input-sm"
+                                               ng-model="vm.object.desc"></textarea>
+                                </div>
+                                <div ng-if=" vm.selection=='newinvite'">
+                                    <label for="PersonName">To:</label>
+                                    <input id="PersonName" class="form-control input-sm" type="text"
+                                           ng-model="vm.object.personname">
+                                    <label for="message">Message:</label>
+                                    <textarea id="message" class="form-control input-sm"
+                                              ng-model="vm.object.message"></textarea>
+                                </div>
 
-<div  ng-show="user">
-    <div class="header col-xs-offset-5 ">
-        <h3>Profile</h3>
-    </div>
-        <div class="table-responsive" ng-hide="updateprofile">
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>Personal details</th>
-                    <th> Events Interested (ID)</th>
-                    <th> Events Going (ID)</th>
-                    <th> Events Hosted (ID)</th>
-                    <th> Tickets Purchased (ID)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        firstName:  {{user.firstName}}<br>
-                        lastName: {{ user.lastName}}<br>
-                        username: {{ user.username}}<br>
-                        password: {{user.password}}<br>
-                        <a class="btn btn-default" role="button" ng-click="changeprofile()" >Update</a>
-                    </td>
+                            </div>
 
-                    <td>
-                    <input type="text" placeholder="Events Interested (ID)" ng-model="interested">
-                        <a class="btn btn-primary btn-md" ng-click="addevent(interested,'interested')" role="button">
-                        <span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="btn btn-success btn-md" ng-click="updatevent(interested,'interested')" role="button">
-                            <span class="glyphicon glyphicon-ok"></span></a>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Events Going (ID)" ng-model="going">
-                        <a class="btn btn-primary btn-md" ng-click="addevent(going,'going')" role="button">
-                            <span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="btn btn-success btn-md" ng-click="updatevent(going,'going')" role="button">
-                            <span class="glyphicon glyphicon-ok"></span></a>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Events Hosted (ID)" ng-model="hosted">
-                        <a class="btn btn-primary btn-md" ng-click="addevent(hosted,'hosted')" role="button">
-                            <span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="btn btn-success btn-md" ng-click="updatevent(hosted,'hosted')" role="button">
-                            <span class="glyphicon glyphicon-ok"></span></a>
-                    </td>
-                    <td>
-                        <input type="text" placeholder=" Tickets Purchased (ID)" ng-model="tickets">
-                        <a class="btn btn-primary btn-md" ng-click="addevent(tickets,'tickets')" role="button">
-                            <span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="btn btn-success btn-md" ng-click="updatevent(tickets,'tickets')" role="button">
-                            <span class="glyphicon glyphicon-ok"></span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                  <td>
-                      <p ng-repeat="int in user.interested">
-                      {{user.interested[$index]}}  </p>
-                      <a class="btn btn-warning btn-md" ng-click="editevent('interested')" role="button">
-                          <span class="glyphicon glyphicon-pencil"></span></a>
-                  </td>
-                    <td>
-                        <p ng-repeat="int in user.going">
-                            {{user.going[$index]}}  </p>
-                        <a class="btn btn-warning btn-md" ng-click="editevent('going')" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                    <td>
-                        <p ng-repeat="int in user.hosted">
-                            {{user.hosted[$index]}}  </p>
-                        <a class="btn btn-warning btn-md" ng-click="editevent('hosted')" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                    <td>
-                        <p ng-repeat="int in user.tickets">
-                            {{user.tickets[$index]}}  </p>
-                        <a class="btn btn-warning btn-md" ng-click="editevent('tickets')" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                </tr>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    ng-click=" vm.selection='events'">Cancel</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    ng-click="vm.addeventorinvite(vm.object)">Okay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal View-->
 
-                </tbody>
-            </table>
+
+
+
+
+            <!--Main View-->
+            <div class="col-md-9">
+                <div class="profile-content" ng-if=" vm.selection=='settings'">
+                    <div  class="well well-lg col-md-offset-1 col-md-10">
+                       <br><br>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="user1" class="col-md-3 col-sm-4 control-label">Username</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="user1" placeholder="Username" ng-model="user.username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password1" class="col-md-3 col-sm-4 control-label">Password</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="password1" placeholder="Password" ng-model="user.password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="first1" class="col-md-3 col-sm-4 control-label">First Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="first1" placeholder="First Name" ng-model="user.firstName">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="last1" class="col-md-3 col-sm-4 control-label">Last Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="last1" placeholder="Last Name" ng-model="user.lastName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-md-3 col-sm-4 control-label">Email</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-10">
+                                    <a class="btn btn-default" role="button" ng-click="vm.update(user)" >Update</a>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="profile-content" ng-if=" vm.selection=='events'">
+                   <h4 class="page-header">Interested Events</h4>
+                    <table class="table-responsive">
+                        <tbody >
+                        <tr>
+                            <td ng-repeat="event in vm.userevents">
+                              <a href=""  ng-click="vm.details(event)"
+                                 ng-if="user.interested.indexOf(event.id)!=-1">
+                          <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                              </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h4 class="page-header">Events Hosted</h4>
+                    <table class="table-responsive">
+                        <tbody >
+                        <tr>
+
+                            <td ng-repeat="event in vm.userevents">
+                                <a href=""  ng-click="vm.details(event)"
+                                   ng-if="user.hosted.indexOf(event.id)!=-1">
+                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h4 class="page-header">Going Events</h4>
+                    <table class="table-responsive">
+                        <tbody >
+                        <tr>
+                            <td ng-repeat="event in vm.userevents">
+                                <a href=""  ng-click="vm.details(event)"
+                                   ng-if="user.going.indexOf(event.id)!=-1">
+                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h4 class="page-header">tickets</h4>
+                    <table class="table-responsive">
+                        <tbody >
+                        <tr>
+                            <td ng-repeat="event in vm.userevents">
+                                <a href=""  ng-click="vm.details(event)"
+                                   ng-if="user.tickets.indexOf(event.id)!=-1">
+                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="profile-content" ng-if=" vm.selection=='invites'">
+                    <table class="table table-responsive table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th><span class="caret"></span> Sender</th>
+                                <th><span class="caret"></span> Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <tr ng-repeat="invite in user.invites" ng-class="{'selected':$index == selectedRow}">
+                            <td>{{invite.sender}}</td>
+                            <td >{{invite.message}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
         </div>
-
-        <div ng-show="updateprofile" class="well well-lg col-md-9">
-
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="user1" class="col-md-3 col-sm-4 control-label">Username</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="user1" placeholder="Username" ng-model="user.username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password1" class="col-md-3 col-sm-4 control-label">Password</label>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control" id="password1" placeholder="Password" ng-model="user.password">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="first1" class="col-md-3 col-sm-4 control-label">First Name</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="first1" placeholder="First Name" ng-model="user.firstName">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="last1" class="col-md-3 col-sm-4 control-label">Last Name</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="last1" placeholder="Last Name" ng-model="user.lastName">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-md-3 col-sm-4 control-label">Email</label>
-                    <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-10">
-                        <a class="btn btn-default" role="button" ng-click="update(user)" >Update</a>
-                    </div>
-                </div>
-
-
-            </form>
-        </div>
-</div>
     </div>
+<!--Main View-->
+
+

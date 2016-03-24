@@ -4,74 +4,60 @@
         .module("FinalProject")
         .factory("UserService", UserService);
 
-    function UserService() {
-        var users = [
-            {
-                "_id": 123, "firstName": "max", "lastName": "max", "username": "max", "password": "max",
-                "interested": [1,2,3,4,5,6,7],
-                "going": [1,2,3,4,5,6,7],
-                "hosted": [1,2,3,4,5,6,7],
-                "tickets": [1,2,3,4,5,6,7],
+    function UserService($q,$http) {
 
-
-            },
-            {
-                "_id": 523, "firstName": "jacob", "lastName": "jacob", "username": "jacob", "password": "jacob",
-                "interested": [1,2,3,4,5,6,7],
-                "going": [1,2,3,4,5,6,7],
-                "hosted": [1,2,3,4,5,6,7],
-                "tickets": [1,2,3,4,5,6,7],
-
-
-            },
-            {
-                "_id": 623, "firstName": "don", "lastName": "don", "username": "don", "password": "don",
-                "interested": [1,2,3,4,5,6,7],
-                "going": [1,2,3,4,5,6,7],
-                "hosted": [1,2,3,4,5,6,7],
-                "tickets": [1,2,3,4,5,6,7],
-
-
-            },
-            {
-                "_id": 723, "firstName": "don", "lastName": "don", "username": "don", "password": "don",
-                "interested": [1,2,3,4,5,6,7],
-                "going": [1,2,3,4,5,6,7],
-                "hosted": [1,2,3,4,5,6,7],
-                "tickets": [1,2,3,4,5,6,7],
-
-
-            },
-
-        ];
         var service = {
             findUserByCredentials: findUserByCredentials,
-            findAllUsers: findAllUsers,
-            getUserById: getUserById,
+           /* findAllUsers: findAllUsers,
+            getUserById: getUserById,*/
             addUser: addUser,
-            deleteUserById: deleteUserById,
+          /*  deleteUserById: deleteUserById,*/
             updateUser: updateUser,
             updateUserEvents:updateUserEvents,
-            addUserEvent:addUserEvent
+            addUserEventorinvite:addUserEventorinvite
         };
 
 
         return service;
 
-        function findUserByCredentials(username, password, callback) {
-            for (i = 0; i < users.length; i++) {
-                if ((users[i].username == username) && (users[i].password == password)) {
-                    v1 = (users[i]);
-                    break;
-                }
-                v1 = undefined;
 
-            }
-            callback(v1);
+        function updateUser(user,id)
+        {
+            var deferred = $q.defer();
+               console.log(user,id)
+            console.log("service")
+            $http.put("/api/project/user/" + id, user).success(function(response){
+                deferred.resolve(response);
+            });
+            console.log(deferred.promise)
+            return deferred.promise;
 
         }
 
-        function findAllUsers() {
+        function addUserEventorinvite (UID,object)
+        {
+            var deferred = $q.defer();
+            console.log(UID)
+            console.log(object)
+            $http.put("/api/project/user/"+ UID,object)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+
+        }
+        function findUserByCredentials(username,password)
+        {
+            var deferred = $q.defer();
+            $http.get("/api/project/user?username=" + username + "&password=" + password)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+
+      /*  function findAllUsers() {
             return users;
         }
 
@@ -85,18 +71,25 @@
 
             }
             callback(v1);
-        }
+        }*/
 
-        function addUser(user, callback) {
+        function addUser(user) {
             var newuser = {
                 "_id": (new Date).getTime(), "firstName": "", "lastName": "",
                 "username": user.username, "password": user.password,
                 "interested": null, "going": null,"hosted": null,
                 "tickets": null
             };
-            users.push(newuser);
-            callback(newuser);
+
+            var deferred = $q.defer();
+            $http.post("/api/project/user",newuser).success(function(response){
+                deferred.resolve(response);
+
+
+            });
+            return deferred.promise;
         }
+/*
 
         function deleteUserById(id, callback) {
             for (i = 0; i < users.length; i++) {
@@ -107,19 +100,7 @@
             callback(users);
         }
 
-        function updateUser(newuser, uid, callback) {
-            for (i = 0; i < users.length; i++) {
-                if (users[i]._id == uid) {
-                    users[i].firstName = newuser.firstName;
-                    users[i].lastName = newuser.lastName;
-                    users[i].username = newuser.username;
-                    users[i].password = newuser.password;
-                    break;
-                }
-            }
-            callback(users[i]);
-
-        }
+*/
 
         function updateUserEvents(type,UID,object)
         {
@@ -148,36 +129,84 @@
                 }
             }
         }
-        function addUserEvent (type,UID,object)
-        {
-            for (i = 0; i < users.length; i++) {
-                if (users[i]._id == UID) {
 
-                    if(type=='interested')
-                    {
-                        users[i].interested.push(object);
-                    }
-
-                    if(type=='going')
-                    {
-                        users[i].going.push(object);
-                    }
-
-                    if(type=='hosted')
-                    {
-                        users[i].hosted.push(object);
-                    }
-                    if(type=='tickets')
-                    {
-                        users[i].tickets.push(object);
-                    }
-                    break;
-                }
-            }
-        }
 
 
 
     }
 })();
+
+
+
+/*
+------------------------
+    function findUserByCredentials(username,password)
+    {
+        var deferred = $q.defer();
+        $http.get("/api/assignment/user?username=" + username + "&password=" + password)
+            .success(function(response){
+                deferred.resolve(response);
+            });
+        return deferred.promise;
+    }
+
+function findAllUsers()
+{
+    var deferred = $q.defer();
+    $http.get("/api/assignment/user").success(function(response){
+        deferred.resolve(response);
+    });
+    return deferred.promise;
+}
+function getUserById(id)
+{
+    var deferred=$q.defer();
+    $http.get("/api/assignment/user/"+id).success(function(response){
+        deferred.resolve(response);
+    });
+
+    return deferred.promise;
+}
+function addUser(user)
+{
+    var newuser ={"_id":(new Date).getTime(), "firstName":"",  "lastName":"",
+        "username":user.username,  "password":user.password};
+
+    var deferred = $q.defer();
+    $http.post("/api/assignment/user",newuser).success(function(response){
+        deferred.resolve(response);
+
+
+    });
+    return deferred.promise;
+
+ function updateUser(user,id)
+ {
+ var deferred = $q.defer();
+
+ $http.put("/api/assignment/user/" + id, user).success(function(response){
+ deferred.resolve(response);
+ });
+
+ return deferred.promise;
+
+ }
+
+
+
+ function updateUser(newuser, uid, callback) {
+ for (i = 0; i < users.length; i++) {
+ if (users[i]._id == uid) {
+ users[i].firstName = newuser.firstName;
+ users[i].lastName = newuser.lastName;
+ users[i].username = newuser.username;
+ users[i].password = newuser.password;
+ break;
+ }
+ }
+ callback(users[i]);
+
+ }
+
+ }*/
 

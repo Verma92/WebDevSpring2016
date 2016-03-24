@@ -1,19 +1,38 @@
 (function() {
     angular.module("FinalProject")
-        .factory("FormService", FormService);
+        .factory("EventService", EventService);
 
-    function FormService(){
+    function EventService($q,$http){
 
         var service={
-            findAllFormsForUser:findAllFormsForUser,
+            AllUserEvents:AllUserEvents
+          /*  findAllFormsForUser:findAllFormsForUser,
             createFormForUser:createFormForUser,
             deleteFormById:deleteFormById,
-            updateFormById:updateFormById
+            updateFormById:updateFormById*/
 
         };
 
         return service;
-        function findUserByCredentials(username,password)
+
+
+        function AllUserEvents(eventids)
+        {
+            console.log(eventids)
+            var deferred = $q.defer();
+
+            $http.put("/api/events/ids",eventids)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            console.log(deferred.promise)
+
+            return deferred.promise;
+        }
+
+
+       /* function findUserByCredentials(username,password)
         {
             var deferred = $q.defer();
             $http.get("/api/assignment/user?username=" + username + "&password=" + password)
@@ -21,7 +40,7 @@
                     deferred.resolve(response);
                 });
             return deferred.promise;
-        }
+        }*/
 
     /*    function findAllUsers()
         {

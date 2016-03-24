@@ -2,42 +2,88 @@
     angular.module("FinalProject")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope,$rootScope, $routeParams,$location,UserService) {
-
-        $scope.addevent=addevent;
-        $scope.updatevent=updatevent;
+    function ProfileController($scope,$rootScope, $routeParams,$location,UserService,$sce,EventService) {
+        var vm = this;
+        vm.update=update
+        vm.details=details
+        vm.addeventorinvite=addeventorinvite;
+       vm.updateevent=updateevent;
         $scope.editevent=editevent;
 
+
+
         function init(){
-            $scope.updateprofile=null;
+            if($rootScope.user==undefined)
+            {
+                $location.path("/home");
+            }
+            else{
+
+            }
+            var eventIds=[]
+            eventIds.push( $rootScope.user.interested,$rootScope.user.going,
+                $rootScope.user.hosted ,$rootScope.user.tickets)
+            console.log(eventIds)
+            EventService.AllUserEvents(eventIds).then(function(events)
+            {
+               vm.userevents=events
+                console.log(events)
+            })
+            vm.selection='events'
         }init();
+
+
+        function addeventorinvite(obj)
+        {
+            console.log(obj)
+            obj.type=vm.selection
+            console.log(obj)
+            UserService.addUserEventorinvite($rootScope.user._id,obj).then(function(user)
+            {
+                $rootScope.user=user;
+                console.log(user)
+                vm.selection='events'
+                vm.object=null
+                init();
+            })
+
+        }
 
         $scope.changeprofile= function () {
             $scope.updateprofile=1;
         };
 
-        $scope.update = function (newuser) {
-            UserService.updateUser(newuser, $rootScope.user._id,function(cbuser)
-            {
-                $rootScope.user=cbuser;
+        function update(newuser) {
+            UserService.updateUser(newuser, $rootScope.user._id).then(
+                function(newuser)
+                {
+                    console.log(newuser)
+                    $rootScope.user=newuser;
                     alert("Profile Fields Updated")
-                $scope.updateprofile=null;
-            })
+                })
+
 
 
         }
 
-        function addevent(obj,type)
+        function details(event)
         {
-            UserService.addUserEvent(type, $rootScope.user._id,obj)
-            $scope.interested=null
-            $scope.going=null
-            $scope.hosted=null
-            $scope.tickets=null
+            var desc=event.description.html
+            console.log(desc)
 
+            if(desc==undefined)
+            {
+                $rootScope.description=undefined
+                $rootScope.detailevent=event
+            }
+            else{
+                $rootScope.description=$sce.trustAsHtml(desc);
+            }
 
+            $location.path("/details");
         }
-        function updatevent(obj,type)
+
+        function updateevent(obj,type)
         {
             UserService.updateUserEvents(type, $rootScope.user._id,obj)
             $scope.interested=null

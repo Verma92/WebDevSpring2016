@@ -1,3 +1,16 @@
-<div class="table-responsive">
+<div class="table-responsive profile-content">
+
 <div ng-bind-html="description"></div>
+
+    <div ng-if="description==undefined">
+<h3 class="page-header">Name:{{detailevent.name}}</h3>
+<h6 class="header col-xs-6">Start Time:{{detailevent.start}}</h6>
+<h6 class="header col-xs-6">End Time:{{detailevent.end}}</h6>
+        <br><br><br><br>
+<p>
+    <h3 class="header">Description:</h3>
+    <br><br>
+    {{detailevent.description}}</p>
+</div>
+
 </div>
