@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("FormBuilderApp", ["ngRoute","elemSortable"]);
+        .module("FormBuilderApp", ["ngRoute","ui.sortable"]);
 })();

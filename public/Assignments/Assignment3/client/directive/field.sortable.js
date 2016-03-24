@@ -2,10 +2,14 @@
     angular.module("elemSortable", [])
         .directive("elemSortable", elemSortable);
 
-    function elemSortable() {
+    function elemSortable($rootScope) {
+
         var start = null;
         var end = null;
         function link(scope, element, attributes) {
+
+
+
             var elemAxis = attributes.elemAxis;
             $(element).sortable({
                 axis: elemAxis,
@@ -14,9 +18,9 @@
                 },
                 stop: function(event, ui) {
                     end = ui.item.index();
-                    var temp = scope.users[start];
-                    scope.users[start] = scope.users[end];
-                    scope.users[end] = temp;
+                    var temp = scope.fields[start];
+                    scope.fields[start] = scope.fields[end];
+                    scope.fields[end] = temp;
                     scope.$apply();
                 }
             });

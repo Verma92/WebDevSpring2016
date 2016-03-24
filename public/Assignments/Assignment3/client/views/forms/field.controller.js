@@ -11,6 +11,7 @@
         vm.updatefield=updatefield;
 
 
+
         function updatefield(field)
         {
 
@@ -41,6 +42,8 @@
                     console.log(fields)
                     vm.fields=fields
                 });
+
+
         }
         init();
 
