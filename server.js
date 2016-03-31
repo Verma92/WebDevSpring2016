@@ -7,9 +7,8 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/Form');
+//mongoose.connect('mongodb://localhost/Form');
 
-console.log(mongoose)
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
