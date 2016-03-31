@@ -7,7 +7,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose = require('mongoose');
 
-var connectionString = 'mongodb://127.0.0.1:27017/Form';
+//var connectionString = 'mongodb://127.0.0.1:27017/Form';
 
 // use remote connection string
 // if running in remote server
@@ -27,7 +27,7 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 
 
 // connect to the database
-var db = mongoose.connect(connectionString);
+//var db = mongoose.connect(connectionString);
 
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
