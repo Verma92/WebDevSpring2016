@@ -76,8 +76,6 @@
 
         function addField(field){
 
-            field._id=null;
-
             if(field.type=== "TEXT")
             {
                 field.label="New Text Field";

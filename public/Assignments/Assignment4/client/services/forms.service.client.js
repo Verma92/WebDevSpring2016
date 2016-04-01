@@ -15,9 +15,11 @@
         {
             var userId=user._id
             var deferred = $q.defer();
+            console.log(user)
             $http.get("/api/assignment/user/" + userId + "/form").success(function(response) {
                 deferred.resolve(response);
             });
+            console.log(deferred.promise)
             return deferred.promise;
         }
 
@@ -44,17 +46,14 @@
 
         function createFormForUser(userId, form) {
             var newform= {
-                _id: (new Date).getTime(),
                 title: form,
                 userId: userId,
                 fields:[]
             };
-            console.log(newform)
             var deferred = $q.defer();
             $http.post("/api/assignment/user/form", newform).success(function(response) {
                 deferred.resolve(response);
             });
-            console.log(deferred.promise)
             return deferred.promise;
         }
     }

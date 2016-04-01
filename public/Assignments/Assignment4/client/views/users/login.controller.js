@@ -7,9 +7,8 @@
         $scope.login = function (username, password) {
             UserService.findUserByCredentials(username, password)
                 .then(function (user) {
-                    console.log(user)
 
-                    if(user!='undefined')
+                    if(user.length!=0)
                     {
 
                     $rootScope.user =user;

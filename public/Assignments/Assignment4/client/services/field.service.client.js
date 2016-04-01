@@ -11,9 +11,6 @@
             createFieldForForm:createFieldForForm,
             deleteFieldFromForm:deleteFieldFromForm,
             updateField:updateField
-           /*
-            getFieldForForm:getFieldForForm
-            */
         };
 
         return api;

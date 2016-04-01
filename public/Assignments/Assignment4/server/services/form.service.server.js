@@ -13,8 +13,9 @@ module.exports = function(app, model) {
     function addForm(req, res) {
 
          var form = req.body;
-         var forms=model.Create(form)
-         res.json(forms);
+         model.Create(form)
+             .then(function(forms){
+                 res.json(forms)});
 
 
     }
@@ -22,13 +23,10 @@ module.exports = function(app, model) {
 
     function getFormsForUser(req, res)
     {
-       var id=req.params.userId
-
           var userId = req.params["userId"];
-
-        var form= model.getFormByUser(userId)
-
-         res.json(form);
+        console.log(userId)
+        model.getFormByUser(userId).then(function(form){
+            res.json(form)});
 
     }
 
@@ -37,9 +35,9 @@ module.exports = function(app, model) {
         var form = req.body;
         var fid = req.params.formId;
 
-       var updated=model.Update(fid,form)
-
-            res.json(updated);
+      model.Update(fid,form).then(function(form){
+          console.log("updatedform:"+form)
+          res.json(form)});
 
 
     }
@@ -48,45 +46,44 @@ module.exports = function(app, model) {
            var fid = req.params["formId"];
          var uid = req.params["userId"];
 
-       var forms= model.Delete(fid, uid)
-
-         res.json(forms);
+       model.Delete(fid, uid).then(function(forms){
+           console.log(forms)
+           res.json(forms)});
 
 
     }
 
 
-
     function deleteData(req, res) {
 
-       /* var fid = req.params["formId"];
-        model
-            .del(fid)
-            .then(function(form) {
-                res.json(form);
+        /* var fid = req.params["formId"];
+         model
+         .del(fid)
+         .then(function(form) {
+         res.json(form);
 
-            })*/
+         })*/
 
     }
 
 
 
     function get(req, res) {
-      /*  var fid = req.params["formId"];
-        model
-            .get(fid)
-            .then(function(form) {
-                res.json(form);
+        /*  var fid = req.params["formId"];
+         model
+         .get(fid)
+         .then(function(form) {
+         res.json(form);
 
-            })*/
+         })*/
     }
 
     function getAllForms(req, res) {
-      /*  model
-            .findAllForms()
-            .then(function(form) {
-                res.json(form);
-            })*/
+        /*  model
+         .findAllForms()
+         .then(function(form) {
+         res.json(form);
+         })*/
 
     }
 

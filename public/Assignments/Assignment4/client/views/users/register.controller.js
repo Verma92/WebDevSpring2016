@@ -3,16 +3,20 @@
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, $location, $rootScope, UserService) {
-            $scope.register = adduser;
+        var vm = this;
+            vm.register = adduser;
 
         function adduser(user) {
+            console.log(user)
             if (user.username !== undefined && user.password !== undefined
                 && user.verifypassword !== undefined && user.password == user.verifypassword
-                && user.email !== undefined)
+                && user.emails !== undefined)
             {
                 UserService.addUser(user)
                     .then(function (users) {
-                        $rootScope.user = users[users.length-1];
+                        console.log(users)
+                        console.log(users.length)
+                        $rootScope.user =users
                         console.log($rootScope.user)
                         $location.path("/profile");
 

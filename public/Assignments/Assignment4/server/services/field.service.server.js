@@ -10,33 +10,50 @@ module.exports = function(app, model) {
         var formId=req.params["formId"];
         var fieldId=req.params["fieldId"];
         var field=req.body;
-        var form= model.UpdateFieldforForm(formId,fieldId,field)
-        var fields=form.fields
-        res.json(fields);
+
+        model.UpdateFieldforForm(formId,fieldId,field)
+            .then(function(form){
+            var fields=form.fields
+            console.log(form)
+            console.log("fields:"+fields)
+            res.json(fields)
+        });
     }
 
     function getAllFieldsForForm(req, res) {
         var formId = req.params["formId"];
-        var form= model.FindById(formId)
-        var fields=form.fields
-        res.json(fields);
+        model.FindById(formId)
+            .then(function(form){
+                var fields=form.fields
+                res.json(fields)
+            });
+
     }
 
     function deleteField(req,res){
         var formId=req.params["formId"];
         var fieldId=req.params["fieldId"];
-        var form=model.deleteField(formId,fieldId)
-        var fields=form.fields
-        res.json(fields);
+       model.deleteField(formId,fieldId)
+           .then(function(form){
+               var fields=form.fields
+               console.log(form)
+               console.log("fields:"+fields)
+
+        res.json(fields)
+           });
 
     }
 
     function addFieldForForm(req,res){
         var formId=req.params["formId"];
         var field=req.body;
-        var form=model.addFieldForForm(formId,field)
-        var fields=form.fields
-        res.json(fields);
+       model.addFieldForForm(formId,field)
+           .then(function(form){
+               var fields=form.fields
+               console.log(form)
+               console.log("fields:"+fields)
+               res.json(fields)
+           });
 
     }
 

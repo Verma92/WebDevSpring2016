@@ -1,6 +1,4 @@
-
-
-    <div class="col-sm-offset-3 main" ng-controller="ProfileController">
+<div class="col-sm-offset-3 main">
         <br>
         <div class="well well-lg col-md-9">
             <div class="header col-xs-offset-5 ">
@@ -38,15 +36,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-md-3 col-sm-4 control-label">Email</label>
+                    <label for="inputEmail3" class="col-md-3 col-sm-4 control-label">Emails</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input  type="text"  class="form-control" id="inputEmail3" placeholder="Emails" ng-model="vm.emails">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
-                        <a class="btn btn-default" role="button" ng-click="update(user)" >Update</a>
+                        <a class="btn btn-default" role="button" ng-click="vm.update(user)" >Update</a>
                     </div>
                 </div>
 
