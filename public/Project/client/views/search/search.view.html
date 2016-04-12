@@ -4,8 +4,41 @@
 
 
     <div ng-show="events && !noresult">
+        <div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}" class="home">
 
-        <table class="table table-hover" >
+            <div class="mdl-card mdl-cell mdl-shadow--8dp mdl-cell--12-col-desktop mdl-cell--12-col-tablet">
+              <!--  <div class="event-card-media mdl-card__media">
+                    <img  class="img-responsive" ng-src="{{event.logo.url}}">
+                </div>-->
+                <div class="mdl-card__supporting-text">
+               <div class="container-fluid">
+
+                   <div class="table-responsive">
+                       <table class="table">
+                           <tr> <td><img classs="thumbnail" ng-src="{{event.logo.url}}"></td>
+                               <td class="">{{event.name.text}}</td>
+                               <td class="hidden-xs"> {{event.organizer_id}}</td>
+                               <td class="hidden-xs">{{event.start.local|date}}</td>
+                               <td class="hidden-xs">{{event.venue_id}}</td> </tr>
+                       </table>
+                   </div>
+               </div>
+                </div>
+
+                <div class="mdl-card__actions">
+                    <button class="mdl-button mdl-js-button mdl-button--raised ">
+                    <a ng-click="vm.details(event.description.html)">Details</a>
+                </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised ">
+                        <a href="{{event.url}}">Link</a>
+                    </button>
+                </div>
+
+            </div>
+            <br><br>
+        </div>
+
+   <!--     <table class="table table-hover" >
             <caption>Search Results</caption>
             <thead>
             <tr>
@@ -28,9 +61,10 @@
                 <td>{{event.venue_id}}</td>
                 <td><a href="{{event.url}}">LINK</a></td>
             </tr>
-        </table>
+        </table>-->
     </div>
 
-    <img ng-show="loading" class="img-responsive" src="http://sierrafire.cr.usgs.gov/images/loading.gif">
+    <img ng-show="loading" class="img-responsive centered" src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif">
+
 </div>
 

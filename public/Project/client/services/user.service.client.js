@@ -81,6 +81,10 @@
                 "tickets": null
             };
 
+          /*  var newuser = {
+                "username": user.username, "password": user.password
+            };*/
+
             var deferred = $q.defer();
             $http.post("/api/project/user",newuser).success(function(response){
                 deferred.resolve(response);
