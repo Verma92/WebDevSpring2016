@@ -11,7 +11,7 @@
 
                     <span class="glyphicon glyphicon-option-horizontal" ></span>
                 </button>
-                <a class="navbar-brand" href="#">TaFree</a>
+                <a class="navbar-brand" href="">TaFree</a>
             </div>
             <div class="collapse navbar-collapse" id="DATA">
                 <form class="navbar-form navbar-left" role="search">
@@ -21,8 +21,11 @@
                                    aria-describedby="search">
                                    <span class="glyphicon glyphicon-search input-group-addon" id="search"
                                          ng-click="model.search(model.value)"></span>
+
                         </div>
-                        </div>
+
+
+                    </div>
 
                 </form>
                 <ul class="nav navbar-nav navbar-right" ng-hide="user">
@@ -36,10 +39,6 @@
                     <li>
                         <a href="#/home" ng-click="logout()">Logout</a>
                     </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right visible-xs">
-                    <li  ng-class="{'active': $location.url().indexOf('home')!=-1}"><a href="#/home">Home </a></li>
-                    <li  ng-class="{'active': $location.url().indexOf('profile')!=-1}"><a href="#/profile">Profile</a></li>
                 </ul>
             </div>
         </div>

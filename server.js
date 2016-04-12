@@ -46,8 +46,7 @@ app.use(passport.session());
 
 
 
-require("./public/Project/server/app.js")(app);
+require("./public/Project/server/app.js")(app,mongoose,db);
 
-require("./public/Assignments/Assignment4/server/app.js")(app,mongoose,db);
+require("./public/Assignments/Assignment5/server/app.js")(app,mongoose,db);
 app.listen(port, ipaddress);
-//console.log('This processor architecture is ' + process.env);

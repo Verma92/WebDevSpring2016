@@ -36,8 +36,19 @@
             }).success(function(response){
                 deferred.resolve(response);
             });
-
             return deferred.promise;
+
+         /*   $http({
+                method: 'GET',
+                url: 'https://www.eventbriteapi.com/v3/events/'+'18719654992'+'/',
+                params: {
+                    token:'AP4W7O3MQCLNJSL2NTHV'
+                }
+            }).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;*/
 
 /*
             var venues=[];

@@ -1,0 +1,43 @@
+
+        <div class="col-sm-offset-3 main">
+            <br>
+            <br>
+            <br>
+            <div class="well well-lg col-md-9">
+                <div class="header col-xs-offset-5 ">
+                    <h3>Login</h3>
+                </div>
+                <br>
+                <form class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="user1" class="col-md-3 col-sm-4 control-label">Username</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="user1" ng-model="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password1" class="col-md-3 col-sm-4 control-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="password1" ng-model="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <a class="btn btn-default" role="button" ng-click="login(username,password)">   Login</a>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>

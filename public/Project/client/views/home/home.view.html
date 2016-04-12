@@ -1,41 +1,35 @@
-<div  class="profile-content">
-    <div>
-        <h2 class="page-header"> Message to TA</h2>
-        <p class="lead text-center text-muted ">
-          I have Implemented Server Side Functionality Required for the Project Prototype Assignment.
-          Functionalities Implemented for Now:
-            1. Register/Login/Update User on Server Side.<br>
-            2. Add New Event/New Invite on Srever Side.<br>
-            3. Fetch Events depending upon Array of IDs<br>
-            4. Search and Details Page of the Events from the API.<br>
-            5. View Details Page of Created Events and API Events.<br>
-            <br>
-            Note: Some Functionalities have to Implemented But the basic is done .
-            <br>
-            I have implemented basic Look and feel that will be later all converterd to
-            Google's Material Design.<br>
-            Things that will be added with time :<br>
-            1. Invite's look and feel as well as differentiate between old and new Messages.<br>
-            2. Details Page will Have Like,Going and Purchase Functionalities.<br>
-            3. Broadcast Invites on Home Page as well as Catergory Wise Events Shortcut as Images
+<div class="home col-xs-12">
+<h2 class="page-header"> Events Around Your Area</h2>
+<div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
 
-        </p>
+    <div class="mdl-card mdl-cell mdl-shadow--8dp col-lg-4 col-xs-12 col-sm-12 col-md-12">
+        <div class="event-card-media mdl-card__media">
+            <img  class="img-responsive" ng-src="{{event.logo.url}}">
+        </div>
+        <div class="event-card-supporting-text mdl-card__supporting-text">
+          <!--  <img class=" img-thumbnail img-rounded " width="750" height="100"
+                 border="0" alt="" ng-src="{{event.logo.url}}">-->
+            <h7 class="text-muted"> {{event.name.text}} </h7>
+        </div>
+       <!-- <div class="mdl-card__supporting-text">
+            <p class="event-para">
+                {{event.description.text}}
+
+            </p>
+        </div>-->
+        <div class="mdl-card__actions">
+
+            <button class="mdl-button mdl-js-button mdl-button--raised ">
+                <a ng-click="vm.details(event.description.html)">Details</a>
+            </button>
+
+        </div>
+    </div>
     </div>
 
 
-
-<div>
-    <h2 class="page-header"> Events Around Your Area</h2>
-    <table class="table-responsive">
-        <tbody>
-        <tr ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}" ng-click="vm.details(event.description.html)">
-            <td class="img-rounded">
-                <img ng-src="{{event.logo.url}}"></td>
-            <td >{{event.name.text}}</td>
-
-        </tr>
-    </table>
-    <img ng-show="loading" class="img-responsive" src="http://sierrafire.cr.usgs.gov/images/loading.gif">
+    <!-- MDL Spinner Component -->
+    <div  ng-show="loading">
+        <img class="centered" src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif">
 </div>
 </div>
-
