@@ -3,8 +3,6 @@ var q = require("q");
 
 // Require the bcrypt package
 var bcrypt = require('bcrypt-nodejs');
-// Create a password salt
-var salt = bcrypt.genSaltSync(10);
 
 module.exports = function(mongoose, db) {
 
