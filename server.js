@@ -46,7 +46,7 @@ app.use(passport.session());
 
 
 
-require("./public/Project/server/app.js")(app,mongoose,db);
+/*require("./public/Project/server/app.js")(app,mongoose,db);*/
 
 require("./public/Assignments/Assignment5/server/app.js")(app,mongoose,db);
 app.listen(port, ipaddress);
