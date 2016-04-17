@@ -1,8 +1,8 @@
 module.exports = function(mongoose, db) {
 
- /*   var UserSchema = require("./user.schema.server.js")(mongoose);
+    var ProjectUserSchema = require("./user.schema.server.js")(mongoose);
 
-    var UserModel = mongoose.model("ProjectUserModel", UserSchema);*/
+    var ProjectUserModel = mongoose.model("ProjectUserModel", ProjectUserSchema);
     var users=require('./user.mock.json');
 
    var api = {
