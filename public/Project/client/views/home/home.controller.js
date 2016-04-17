@@ -9,9 +9,14 @@
         $scope.$location = $location;
         vm.details=details;
 
-        function details(desc)
+        function details(desc,event)
         {
-            console.log(desc)
+            console.log(event)
+
+            vm.newevent={"imageurl":event.logo.url,"eventid":event.id}
+            console.log(vm.newevent.imageurl)
+            $rootScope.event=vm.newevent
+            console.log($rootScope.event)
             $rootScope.description=$sce.trustAsHtml(desc);
             $location.path("/details");
         }

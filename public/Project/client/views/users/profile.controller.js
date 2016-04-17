@@ -2,7 +2,7 @@
     angular.module("FinalProject")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope,$rootScope, $routeParams,$location,UserService,$sce,EventService) {
+    function ProfileController($scope,$rootScope, $routeParams,$location,UserService,$sce,EventService,SearchService) {
         var vm = this;
         vm.update=update
         vm.details=details
@@ -13,7 +13,7 @@
 
 
         function init(){
-            if($rootScope.user==undefined)
+          /*  if($rootScope.user==undefined)
             {
                 $location.path("/home");
             }
@@ -28,7 +28,7 @@
             {
                vm.userevents=events
                 console.log(events)
-            })
+            })*/
             vm.selection='events'
         }init();
 
@@ -68,19 +68,23 @@
 
         function details(event)
         {
-            var desc=event.description.html
-            console.log(desc)
 
-            if(desc==undefined)
-            {
-                $rootScope.description=undefined
-                $rootScope.detailevent=event
-            }
-            else{
-                $rootScope.description=$sce.trustAsHtml(desc);
-            }
+            console.log(event)
 
-            $location.path("/details");
+            vm.newevent={"imageurl":event.imageurl,"eventid":event.eventid}
+
+            $rootScope.event=vm.newevent
+
+
+            SearchService.searchbyid(event.eventid).then(
+                function (event) {
+                   var desc=event.description.html
+                    $rootScope.description=$sce.trustAsHtml(desc);
+                    $location.path("/details");
+
+                }
+            )
+
         }
 
         function updateevent(obj,type)

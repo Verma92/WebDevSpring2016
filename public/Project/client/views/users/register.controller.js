@@ -17,8 +17,8 @@
                         console.log("newuser:"+newuser)
                         if(newuser!=null)
                         {
-                        $rootScope.user = newuser
-                        console.log($rootScope.user)
+                       /* $rootScope.user = newuser
+                        console.log($rootScope.user)*/
                         $location.path("/profile");}
                         else
                         {

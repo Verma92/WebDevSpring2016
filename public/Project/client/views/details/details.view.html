@@ -1,16 +1,31 @@
-<div class="table-responsive profile-content">
 
-<div ng-bind-html="description"></div>
+<div class="col-xs-12 details-background">
 
-    <div ng-if="description==undefined">
-<h3 class="page-header">Name:{{detailevent.name}}</h3>
-<h6 class="header col-xs-6">Start Time:{{detailevent.start}}</h6>
-<h6 class="header col-xs-6">End Time:{{detailevent.end}}</h6>
-        <br><br><br><br>
-<p>
-    <h3 class="header">Description:</h3>
-    <br><br>
-    {{detailevent.description}}</p>
-</div>
+
+    <div class="text-nowrap almost-centered ">
+
+    <button type="button" class="btn-lg btn-success mdl-shadow--8dp" ng-click="vm.selection('like')">
+        <span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span>
+        Like
+        <span class="badge">{{vm.likes}}</span>
+    </button>
+    <button type="button" class="btn-lg btn-danger mdl-shadow--8dp" ng-click="vm.selection('dislike')">
+        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        Dislike
+        <span class="badge">{{vm.dislikes}}</span>
+    </button>
+    <button type="button" class="btn-lg btn-primary mdl-shadow--8dp" ng-click="vm.selection('going')">
+        <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+        Going
+        <span class="badge">{{vm.going}}</span>
+    </button>
+        </div>
+
+
+
+    <div ng-bind-html="description"></div>
+
+
+
 
 </div>

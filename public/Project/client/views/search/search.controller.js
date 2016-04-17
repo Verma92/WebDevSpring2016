@@ -37,8 +37,12 @@
         }
 
 
-        function details(desc)
+        function details(desc,event)
         {
+            $rootScope.event={
+                imageurl:event.logo.url,
+                eventid:event.id
+            }
            console.log(desc)
             $rootScope.description=$sce.trustAsHtml(desc);
             $location.path("/details");

@@ -4,6 +4,13 @@
     left: 50%;
 }
 
+.almost-centered{
+    position: relative;
+    top: 80%;
+    left: 35%;
+
+    background-color: #ff6c5c;
+}
 .event-img
 {
     width: 600px;
@@ -16,6 +23,24 @@
     height: 200px;!important;
 }
 
+
+.details-background
+{
+    background-color: #ff6c5c;
+    color: #ffffff;
+   /* height: 50px;*/
+
+
+}
+
+.details-header
+{
+    background-color: #fef8ff;
+    color: #ffffff;
+     height: 50px;
+
+
+}
 
 .event-card-media.mdl-card__title {
     height: 100px;
@@ -52,11 +77,11 @@
 }
 
 .home {
-    background-color: #b0b3b4;!important;
-    color: #fffcfb;!important;
+    background-color: #f3f6f7;!important;
+    color: #190011;!important;
 }
 
 
 .mdl-card:hover {
-    background-color: #ffc7b9;
+    background-color: #ff0710;
 }

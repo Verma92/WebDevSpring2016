@@ -1,7 +1,15 @@
-module.exports = function() {
+var q = require("q");
+module.exports = function(mongoose,db) {
     var events= require('./event.mock.json');
+
+    var EventSchema = require("./event.stats.schema.server.js")(mongoose);
+
+    var EventModel = mongoose.model("EventModel", EventSchema);
+
     var api = {
         Create: Create,
+        addorupdateevent:addorupdateevent,
+        geteventstats:geteventstats,
         AllUserEvents:AllUserEvents,
         /*FindAll: FindAll,
         addFieldForForm: addFieldForForm,
@@ -18,7 +26,63 @@ module.exports = function() {
     return api;
 
 
-    function AllUserEvents(eventIds) {
+
+    function geteventstats(id){
+
+
+        var deferred = q.defer();
+
+        EventModel.findOne({eventid:id}, function (err, event) {
+                console.log("after finding event" + event)
+                        deferred.resolve(event);
+
+                });
+        return deferred.promise;
+    }
+
+    function addorupdateevent(id,type) {
+
+        var deferred = q.defer();
+
+        EventModel.findOne({eventid:id}, function (err, event) {
+
+
+            if (event==null) {
+                console.log("new addition")
+                EventModel.create({eventid:id,stats:[type]},function (err, event) {
+                    if (err) {
+                        console.log("not added")
+                    }
+                    else{
+
+                        console.log("after creating event" + event)
+                        deferred.resolve(event);
+                    }
+                 });
+            }
+            else
+            {
+                event.stats.push(type)
+                event.save(function (err, event) {
+                    if (err) {
+                        console.log("Exits but error while saving")
+                        deferred.reject(err);
+                    }
+                    else {
+                        console.log("after saving existing event" + event)
+                        deferred.resolve(event);
+                    }
+                });
+
+            }
+
+        });
+
+        return deferred.promise;
+
+    }
+
+        function AllUserEvents(eventIds) {
         var userevents=[]
         for (i = 0; i < eventIds.length; i++) {
             console.log("outside:"+i)

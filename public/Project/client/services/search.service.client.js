@@ -5,7 +5,9 @@
     function SearchService($http,$q){
         var service= {
             searchbytitle: searchbytitle,
-            defaultsearch:defaultsearch
+            defaultsearch:defaultsearch,
+            searchbyid:searchbyid
+
         }
         return service;
 
@@ -20,6 +22,23 @@
                     token:'AP4W7O3MQCLNJSL2NTHV'
                 }
             }));
+        }
+
+        function  searchbyid(id)
+        {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: 'https://www.eventbriteapi.com/v3/events/'+id +'/',
+                params: {
+                    token:'AP4W7O3MQCLNJSL2NTHV'
+                }
+            }).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
         function  defaultsearch(lat,long)
         {

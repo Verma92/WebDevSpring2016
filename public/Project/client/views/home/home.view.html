@@ -1,5 +1,5 @@
 <div class="home col-xs-12">
-<h2 class="page-header"> Events Around Your Area</h2>
+<h2 class="text-center  mdl-shadow--8dp"> Events Around Your Area</h2>
 <div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
 
     <div class="mdl-card mdl-cell mdl-shadow--8dp col-lg-4 col-xs-12 col-sm-12 col-md-12">
@@ -9,7 +9,7 @@
         <div class="event-card-supporting-text mdl-card__supporting-text">
           <!--  <img class=" img-thumbnail img-rounded " width="750" height="100"
                  border="0" alt="" ng-src="{{event.logo.url}}">-->
-            <h7 class="text-muted"> {{event.name.text}} </h7>
+            <h7 class="page-header"> {{event.name.text}} </h7>
         </div>
        <!-- <div class="mdl-card__supporting-text">
             <p class="event-para">
@@ -20,7 +20,7 @@
         <div class="mdl-card__actions">
 
             <button class="mdl-button mdl-js-button mdl-button--raised ">
-                <a ng-click="vm.details(event.description.html)">Details</a>
+                <a ng-click="vm.details(event.description.html,event)">Details</a>
             </button>
 
         </div>

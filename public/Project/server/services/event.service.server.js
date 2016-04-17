@@ -1,6 +1,11 @@
 module.exports = function(app, model) {
 
-    app.put("/api/events/ids",AllUserEvents);
+
+    /*app.put('/api/project/event/:id',addorupdateevent)*/
+
+    app.put("/api/project/event/:eventid", addorupdateevent)
+
+    app.get("/api/project/event/:eventid",geteventstats)
    /* app.get("/api/assignment/user/:userId/form", getFormsForUser);
     app.get("/api/assignment/form/:formId", get);
     app.get("/api/assignment/form", getAllForms);
@@ -9,15 +14,32 @@ module.exports = function(app, model) {
     app.delete("/api/assignment/form/:formId", deleteData);
     app.put("/api/assignment/form/:formId",updateForm);
 */
-    function AllUserEvents(req, res)
+
+    function geteventstats(req, res){
+
+        var eventid = req.params.eventid;
+
+
+        console.log("geteventstats:"+eventid)
+        model
+            .geteventstats(eventid)
+            .then(function(event){
+                console.log("event in server service geteventstats:"+event)
+                res.json(event)});
+
+
+    }
+    function addorupdateevent(req, res)
     {
-        var eventIds = req.body;
-        console.log("recieved event IDs:"+eventIds)
+        var eventid = req.params.eventid;
+        var type = req.body.type;
 
-        var events= model.AllUserEvents(eventIds)
-
-        console.log("recieved events:"+events)
-        res.json(events);
+        console.log("addorupdateevent:"+eventid+type)
+        model
+            .addorupdateevent(eventid,type)
+            .then(function(event){
+                console.log("event in server service:"+event)
+                res.json(event)});
 
     }
 

@@ -35,12 +35,12 @@ module.exports = function(app, model,otherusermodel) {
 //--------------------------------------------------------
 
 
-    passport.use('assignment',new LocalStrategy(localStrategy));
+    passport.use('assignment',new LocalStrategy(localassignmentstrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
 
-    function localStrategy(username, password, done) {
+    function localassignmentstrategy(username, password, done) {
 
         var credentials = {
             username: username,

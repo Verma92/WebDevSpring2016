@@ -7,7 +7,7 @@ module.exports=function(mongoose){
         firstName: String,
         lastName: String,
         email: String,
-        events:[{type:String,details:EventSchema}]
+        events:[EventSchema]
 
     }, {
         collection: "Project.User",

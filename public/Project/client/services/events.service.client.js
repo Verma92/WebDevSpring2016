@@ -5,15 +5,59 @@
     function EventService($q,$http){
 
         var service={
-            AllUserEvents:AllUserEvents
+            AllUserEvents:AllUserEvents,
           /*  findAllFormsForUser:findAllFormsForUser,
             createFormForUser:createFormForUser,
             deleteFormById:deleteFormById,
             updateFormById:updateFormById*/
+            updateoraddevent:updateoraddevent,
+            geteventstats:geteventstats
 
         };
 
         return service;
+
+
+
+        function geteventstats(eventid)
+        {
+
+            console.log(eventid)
+            var deferred = $q.defer();
+
+
+            $http.get('/api/project/event/' + eventid)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+
+            console.log(deferred.promise)
+
+            return deferred.promise;
+
+        }
+        function updateoraddevent(eventid,type)
+        {
+
+            console.log(eventid+type)
+                var deferred = $q.defer();
+
+
+            $http.put('/api/project/event/' + eventid,{"type":type})
+             .success(function(response){
+                    deferred.resolve(response);
+                });
+
+
+            console.log(deferred.promise)
+
+            return deferred.promise;
+
+
+
+        }
+
 
 
         function AllUserEvents(eventids)

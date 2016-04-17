@@ -14,12 +14,24 @@
           /*  deleteUserById: deleteUserById,*/
             updateUser: updateUser,
             updateUserEvents:updateUserEvents,
-            addUserEventorinvite:addUserEventorinvite
+            addUserEventorinvite:addUserEventorinvite,
+            updateuserevent:updateuserevent,
+            logout:logout
         };
 
 
         return service;
 
+
+        function logout() {
+
+            var deferred = $q.defer();
+            $http.post("/api/project/logout").success(function(response){
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+
+        }
 
         function updateUser(user,id)
         {
@@ -33,6 +45,20 @@
             return deferred.promise;
 
         }
+
+        function updateuserevent(id,event)
+        {
+            var deferred = $q.defer();
+
+            $http.put("/api/project/user/event/" + id, event).success(function(response){
+                deferred.resolve(response);
+            });
+            console.log(deferred.promise)
+            return deferred.promise;
+
+        }
+
+
 
         function addUserEventorinvite (UID,object)
         {
@@ -49,10 +75,13 @@
         function findUserByCredentials(username,password)
         {
             var deferred = $q.defer();
-            $http.get("/api/project/user?username=" + username + "&password=" + password)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
+            var user={username:username,
+                password:password }
+            console.log(user)
+
+            $http.post("/api/project/login", user) .success(function(response){
+                deferred.resolve(response);
+            });
             return deferred.promise;
         }
 

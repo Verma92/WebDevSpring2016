@@ -38,7 +38,6 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         UserModel.findOne({
             username: newuser.username
-           /* ,password:user.password*/
         }, function(err, founduser) {
 
             if(err) {

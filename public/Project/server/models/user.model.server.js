@@ -27,23 +27,23 @@ module.exports = function(mongoose, db) {
 
     return api;
 
-function check(ign)
+function check(ignore)
 {
     return "sexy"
 }
     function Create(user) {
 
         var deferred = q.defer();
-        console.log("user in model"+ user)
+
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
 
         ProjectUserModel.create(user, function(err,newuser) {
             if(err) {
-                console.log("fassgaye")
+
                 deferred.reject(err);
             }
             else{
-                console.log(newuser)
+
                 deferred.resolve(newuser);
 
             }
@@ -57,11 +57,11 @@ function check(ign)
 
     function findUserByUsername(username) {
         var deferred = q.defer();
-        console.log("by user"+username)
+
         ProjectUserModel.findOne({username: username}, function(err, user) {
 
             if(err) {
-                console.log("its an error")
+
                 deferred.reject(err);
             }
             else{
@@ -72,26 +72,34 @@ function check(ign)
         return deferred.promise;
     }
 
-    function UpdateUserEvent(uid,eventid) {
+    function UpdateUserEvent(id,event) {
 
+        var deferred = q.defer();
+        ProjectUserModel.findById(id, function(err, user) {
 
-        for (i = 0; i < users.length; i++) {
-            if (users[i]._id == uid)
+            user.events.push(event)
+            user.save(function(err, user)
             {
-                console.log("user found for event")
-                users[i].hosted.push(eventid)
-                break;
-            }
-        }
-        console.log("returning User:"+users[i])
-        return users[i];
+                if(err) {
+                    console.log("in error")
+                    deferred.reject(err);
+                }
+                else{
+                    console.log("after saving user"+user)
+                    deferred.resolve(user);
+                }
+            });
+        });
+
+        return deferred.promise;
+
+
     }
 
 
     function UpdateUserInvite(uid,invite) {
 
-
-        for (i = 0; i < users.length; i++) {
+      /*  for (i = 0; i < users.length; i++) {
             if (users[i]._id == uid)
             {
                 var sender=users[i].username
@@ -119,23 +127,34 @@ function check(ign)
         }
         console.log("returning User:"+users[i])
 
-        return users[i];
+        return users[i];*/
     }
 
 
     function findUserByCredentials(user) {
 
-        for (i = 0; i < users.length; i++) {
-            if ((users[i].username == user.username) && (users[i].password == user.password))
-            {
-                v1=(users[i]);
-                break;
+        var newuser=user
+        var deferred = q.defer();
+        ProjectUserModel.findOne({
+            username: newuser.username
+        }, function(err, founduser) {
+
+            if(founduser==null) {
+                deferred.reject(err);
+                console.log("error")
             }
-            v1=null;
+            else{
+                console.log("checking")
+                if (bcrypt.compareSync(newuser.password, founduser.password))
+                {
+                    deferred.resolve(founduser);
 
-        }
-
-   return v1
+                }
+                else
+                    deferred.reject(err);
+            }
+        });
+        return deferred.promise;
     }
 
 
@@ -145,30 +164,65 @@ function check(ign)
     }
 
 
+
     function FindById(userId) {
-        for (i = 0; i < users.length; i++) {
-            if (users[i]._id == userId)
-            {
-                v1=(users[i]);
-                break;
+        var deferred = q.defer();
+
+        ProjectUserModel.findById({
+            _id: userId
+        }, function(err, user) {
+
+            if(err) {
+
+                deferred.reject(err);
             }
-            v1=undefined;
-        }
-        return v1
+            else{
+
+                deferred.resolve(user);
+            }
+        });
+
+        return deferred.promise;
+
     }
 
-    function Update(id, user) {
-        for (i = 0; i < users.length; i++) {
-            if (users[i]._id == id)
+    function Update(id, newuser) {
+
+        var deferred = q.defer();
+        var uname = newuser.username;
+        var pass = bcrypt.hashSync(newuser.password, bcrypt.genSaltSync(10), null);
+        var fname = newuser.firstName;
+        var lname = newuser.lastName;
+        var email = newuser.email;
+
+        ProjectUserModel.findById(id, function(err, user) {
+
+            user.username = uname;
+            console.log(uname)
+            user.password = pass;
+            console.log(pass)
+            user.firstName = fname;
+            console.log(fname)
+            user.lastName = lname;
+            console.log(lname)
+            user.email =email;
+            console.log(email)
+            console.log("user in server nodel"+user)
+            user.save(function(err, user)
             {
-                users[i].firstName=user.firstName;
-                users[i].lastName=user.lastName;
-                users[i].username=user.username;
-                users[i].password=user.password;
-                break;
-            }
-        }
-       return users[i];
+                if(err) {
+                    console.log("in error")
+                    deferred.reject(err);
+                }
+                else{
+                    console.log("after saving user"+user)
+                    deferred.resolve(user);
+                }
+            });
+        });
+
+        return deferred.promise;
+
     }
 
 

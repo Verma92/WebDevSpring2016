@@ -164,41 +164,41 @@
 
 
                 <div class="profile-content" ng-if=" vm.selection=='events'">
-                   <h4 class="page-header">Interested Events</h4>
+                   <h4 class="page-header">Events Liked</h4>
                     <table class="table-responsive">
                         <tbody >
                         <tr>
-                            <td ng-repeat="event in vm.userevents">
+                            <td ng-repeat="event in user.events">
                               <a href=""  ng-click="vm.details(event)"
-                                 ng-if="user.interested.indexOf(event.id)!=-1">
-                          <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                 ng-if="event.type=='like'">
+                          <img ng-src="{{event.imageurl}}" ng-if="event.type=='like'" class="img-responsive circle-event">
                               </a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <h4 class="page-header">Events Hosted</h4>
+                    <h4 class="page-header">Events Going</h4>
                     <table class="table-responsive">
                         <tbody >
                         <tr>
 
-                            <td ng-repeat="event in vm.userevents">
+                            <td ng-repeat="event in user.events">
                                 <a href=""  ng-click="vm.details(event)"
-                                   ng-if="user.hosted.indexOf(event.id)!=-1">
-                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                   ng-if="event.type=='going'">
+                                    <img ng-src="{{event.imageurl}}" ng-if="event.type=='going'" class="img-responsive circle-event">
                                 </a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <h4 class="page-header">Going Events</h4>
+                    <h4 class="page-header">Events Disliked</h4>
                     <table class="table-responsive">
                         <tbody >
                         <tr>
-                            <td ng-repeat="event in vm.userevents">
+                            <td ng-repeat="event in user.events">
                                 <a href=""  ng-click="vm.details(event)"
-                                   ng-if="user.going.indexOf(event.id)!=-1">
-                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
+                                   ng-if="event.type=='dislike'">
+                                    <img ng-src="{{event.imageurl}}"  ng-if="event.type=='dislike'" class="img-responsive circle-event">
                                 </a>
                             </td>
                         </tr>

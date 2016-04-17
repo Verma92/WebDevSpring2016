@@ -1,6 +1,4 @@
-module.exports = function(app,mongoose,db) {
-
-    var otherusermodel=require('./../../../Project/server/models/user.model.server.js')(mongoose,db);
+module.exports = function(app,mongoose,db,otherusermodel) {
 
     var modeluser = require("./models/user.model.js")(mongoose, db);
     require("./services/user.service.server.js")(app, modeluser,otherusermodel);
