@@ -1,4 +1,9 @@
-module.exports = function(app, model) {
+module.exports = function(app, model,otherusermodel) {
+
+    //--------------problem resolver----------
+
+
+
     //----------------------------- NEW CODE -------------------------
     var passport         = require('passport');
     var LocalStrategy    = require('passport-local').Strategy;
@@ -16,7 +21,7 @@ module.exports = function(app, model) {
 //----------------------------- NEW CODE -------------------------
 
 
-    app.post  ('/api/assignment/login', passport.authenticate('local'), login);
+    app.post  ('/api/assignment/login', passport.authenticate('assignment'), login);
     app.post  ('/api/assignment/logout',         logout);
     app.post  ('/api/assignment/register',       register);
     app.get   ('/api/assignment/loggedin',       loggedin);
@@ -30,7 +35,7 @@ module.exports = function(app, model) {
 //--------------------------------------------------------
 
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('assignment',new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -46,32 +51,52 @@ module.exports = function(app, model) {
             .findUserByCredentials(credentials)
             .then(
                 function(user) {
-                    if (!user) { return done(null, false); }
+                    if (!user) { return done(null, false);
+                    console.log(" user not found at local")
+                    }
+                    console.log(" user found at local"+user+user._id)
                     return done(null, user);
                 },
                 function(err) {
+                    console.log("error at local")
                     if (err) { return done(err); }
                 }
             );
     }
 
     function serializeUser(user, done) {
+        console.log("in serialize")
         done(null, user);
     }
 
     function deserializeUser(user, done) {
-       console.log("problem"+user)
-        user_model.FindById(user._id)
-            .then(
-                function(user){
-                    done(null, user);
-                },
-                function(err){
-                    done(err, null);
-                }
-            );
-    }
+       console.log("problem"+otherusermodel.check(0))
+        if(user.emails!=undefined)
+        {
+            user_model.FindById(user._id)
+                .then(
+                    function(user){
+                        done(null, user);
+                    },
+                    function(err){
+                        done(err, null);
+                    }
+                );
+        }
+        else
+        {
+            otherusermodel.FindById(user._id)
+                .then(
+                    function(user){
+                        done(null, user);
+                    },
+                    function(err){
+                        done(err, null);
+                    }
+                );
+        }
 
+    }
     function authorized (req, res, next) {
         if (!req.isAuthenticated()) {
             res.send(401);
@@ -126,6 +151,7 @@ module.exports = function(app, model) {
     }
     function login(req, res) {
         console.log("h")
+        console.log("login user"+req.user.username+req.user._id)
         var user = req.user;
         res.json(user);
     }

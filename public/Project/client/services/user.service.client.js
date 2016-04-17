@@ -74,16 +74,15 @@
         }*/
 
         function addUser(user) {
-            var newuser = {
+            /*var newuser = {
                 "_id": (new Date).getTime(), "firstName": "", "lastName": "",
                 "username": user.username, "password": user.password,
                 "interested": null, "going": null,"hosted": null,
                 "tickets": null
-            };
-
-          /*  var newuser = {
-                "username": user.username, "password": user.password
             };*/
+
+            var newuser = { "username": user.username, "password": user.password,"email":user.email};
+
 
             var deferred = $q.defer();
             $http.post("/api/project/user",newuser).success(function(response){

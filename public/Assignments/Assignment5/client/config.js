@@ -19,7 +19,8 @@
             .when("/profile",{
                 templateUrl:"views/users/profile.view.html",
                 controller:"ProfileController",
-                controllerAs:"vm",
+                controllerAs:"vm"
+                ,
                 resolve: {
                     loggedin: checkLoggedin
                 }

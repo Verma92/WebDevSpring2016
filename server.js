@@ -8,9 +8,7 @@ var session       = require('express-session');
 var mongoose      = require('mongoose');
 var passport      = require('passport');
 
-
-
-var connectionString = 'mongodb://127.0.0.1:27017/Form';
+var connectionString = 'mongodb://127.0.0.1:27017/cs5610';
 
 
 // if running in remote server
@@ -47,7 +45,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-require("./public/Project/server/app.js")(app,mongoose,db);
+
+/*require("./public/Project/server/app.js")(app,mongoose,db);*/
 
 require("./public/Assignments/Assignment5/server/app.js")(app,mongoose,db);
 app.listen(port, ipaddress);

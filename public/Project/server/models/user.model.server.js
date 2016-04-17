@@ -1,3 +1,9 @@
+var q = require("q");
+
+
+// Require the bcrypt package
+var bcrypt = require('bcrypt-nodejs');
+
 module.exports = function(mongoose, db) {
 
     var ProjectUserSchema = require("./user.schema.server.js")(mongoose);
@@ -15,11 +21,56 @@ module.exports = function(mongoose, db) {
        FindById: FindById,
        FindAll: FindAll,
        Create: Create,
-       findUserByCredentials: findUserByCredentials
+       findUserByCredentials: findUserByCredentials,
+       check:check
     };
 
     return api;
 
+function check(ign)
+{
+    return "sexy"
+}
+    function Create(user) {
+
+        var deferred = q.defer();
+        console.log("user in model"+ user)
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+
+        ProjectUserModel.create(user, function(err,newuser) {
+            if(err) {
+                console.log("fassgaye")
+                deferred.reject(err);
+            }
+            else{
+                console.log(newuser)
+                deferred.resolve(newuser);
+
+            }
+        });
+        return deferred.promise;
+
+    }
+
+
+
+
+    function findUserByUsername(username) {
+        var deferred = q.defer();
+        console.log("by user"+username)
+        ProjectUserModel.findOne({username: username}, function(err, user) {
+
+            if(err) {
+                console.log("its an error")
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(user);
+            }
+        })
+
+        return deferred.promise;
+    }
 
     function UpdateUserEvent(uid,eventid) {
 
@@ -88,12 +139,6 @@ module.exports = function(mongoose, db) {
     }
 
 
-    function Create(user) {
-        users.push(user);
-        console.log(users)
-        return users
-    }
-
 
     function FindAll() {
        return users
@@ -103,18 +148,6 @@ module.exports = function(mongoose, db) {
     function FindById(userId) {
         for (i = 0; i < users.length; i++) {
             if (users[i]._id == userId)
-            {
-                v1=(users[i]);
-                break;
-            }
-            v1=undefined;
-        }
-        return v1
-    }
-
-    function findUserByUsername(name) {
-        for (i = 0; i < users.length; i++) {
-            if (users[i].username == name)
             {
                 v1=(users[i]);
                 break;

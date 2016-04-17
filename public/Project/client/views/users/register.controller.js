@@ -13,10 +13,17 @@
                 && user.email !== undefined)
             {
                 UserService.addUser(user)
-                    .then(function (users) {
-                        $rootScope.user = users[users.length-1];
+                    .then(function (newuser) {
+                        console.log("newuser:"+newuser)
+                        if(newuser!=null)
+                        {
+                        $rootScope.user = newuser
                         console.log($rootScope.user)
-                        $location.path("/profile");
+                        $location.path("/profile");}
+                        else
+                        {
+                            alert("User Exists")
+                        }
 
                     } )
             }

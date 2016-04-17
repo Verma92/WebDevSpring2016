@@ -1,7 +1,8 @@
 module.exports = function(app, user_model,event_model) {
 
+
     app.get('/api/project/user',checkquery)
-    app.post('/api/project/user',adduser)
+    app.post('/api/project/user',register)
     app.get('/api/project/user/:id',GetUserById)
     app.put('/api/project/user/:id',updateuser)
     app.delete('/api/project/user/:id',deleteUserById)
@@ -47,13 +48,46 @@ module.exports = function(app, user_model,event_model) {
 
     }
 
-    function adduser(req, res)
+    function register(req, res)
      {
-        var user = req.body;
-       var users=user_model.Create(user);
-          console.log(users)
-         res.json(users);
-
+         var newUser = req.body;
+         console.log("newUser"+newUser)
+         user_model.findUserByUsername(newUser.username)
+             .then(
+                 function(user){
+                     if(user) {
+                         console.log("a")
+                         res.json(null);
+                     } else {
+                         console.log("b")
+                         return user_model.Create(newUser);
+                     }
+                 },
+                 function(err){
+                     console.log("c")
+                     res.status(400).send(err);
+                 }
+             )
+             .then(
+                 function(user){
+                     if(user){
+                         console.log("d")
+                        /* req.login(user, function(err) {
+                             if(err) {
+                                 console.log("e")
+                                 res.status(400).send(err);
+                             } else {
+                                 console.log("f")
+                                 res.json(user);
+                             }
+                         });*/
+                         res.json(user);
+                     }
+                 },
+                 function(err){
+                     console.log("g")
+                     res.status(400).send(err);
+                 })
     }
 
         function checkquery(req,res)

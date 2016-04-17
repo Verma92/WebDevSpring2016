@@ -3,6 +3,8 @@ var q = require("q");
 
 // Require the bcrypt package
 var bcrypt = require('bcrypt-nodejs');
+// Create a password salt
+var salt = bcrypt.genSaltSync(10);
 
 module.exports = function(mongoose, db) {
 
@@ -37,14 +39,18 @@ module.exports = function(mongoose, db) {
         UserModel.findOne({
             username: newuser.username
            /* ,password:user.password*/
-        }, function(err, user) {
+        }, function(err, founduser) {
 
             if(err) {
                 deferred.reject(err);
             }
             else{
-                if (bcrypt.compareSync(newuser.password, user.password))
-                deferred.resolve(user);
+                console.log("found user"+founduser)
+                if (bcrypt.compareSync(newuser.password, founduser.password))
+                {
+                deferred.resolve(founduser);
+                    console.log("password match")
+                }
                 else
                     deferred.reject(err);
             }
@@ -59,11 +65,7 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         console.log("user in model"+ user)
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-/*
-        bcrypt.hash(user.password, 10, function(err, hash) {
-            // Store hash in your password DB.
-            user.password= hash
-        });*/
+
         UserModel.create(user, function(err,newuser) {
             if(err) {
                 console.log("fassgaye")
@@ -100,14 +102,17 @@ module.exports = function(mongoose, db) {
 
     function FindById(userId) {
         var deferred = q.defer();
+        console.log("userid in model findbyid:"+userId)
         UserModel.findById({
             _id: userId
         }, function(err, user) {
 
             if(err) {
+                console.log("kuch na labya")
                 deferred.reject(err);
             }
             else{
+                console.log("labgaya")
                 deferred.resolve(user);
             }
         });
