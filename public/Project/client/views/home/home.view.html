@@ -1,31 +1,202 @@
-<div class="home col-xs-12">
-<h2 class="text-center  mdl-shadow--8dp"> Events Around Your Area</h2>
+<div class="">
+<h2 class="font-semibold page-header text-center  text-capitalize new-font"> <strong>Events Around Your Area</strong></h2>
+
+
+<!--
 <div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
 
-    <div class="mdl-card mdl-cell mdl-shadow--8dp col-lg-4 col-xs-12 col-sm-12 col-md-12">
+    <div class="mdl-card mdl-cell mdl-shadow&#45;&#45;8dp &#45;&#45;12">
         <div class="event-card-media mdl-card__media">
             <img  class="img-responsive" ng-src="{{event.logo.url}}">
         </div>
         <div class="event-card-supporting-text mdl-card__supporting-text">
-          <!--  <img class=" img-thumbnail img-rounded " width="750" height="100"
-                 border="0" alt="" ng-src="{{event.logo.url}}">-->
+          &lt;!&ndash;  <img class=" img-thumbnail img-rounded " width="750" height="100"
+                 border="0" alt="" ng-src="{{event.logo.url}}">&ndash;&gt;
             <h7 class="page-header"> {{event.name.text}} </h7>
         </div>
-       <!-- <div class="mdl-card__supporting-text">
+       &lt;!&ndash; <div class="mdl-card__supporting-text">
             <p class="event-para">
                 {{event.description.text}}
 
             </p>
-        </div>-->
+        </div>&ndash;&gt;
         <div class="mdl-card__actions">
 
-            <button class="mdl-button mdl-js-button mdl-button--raised ">
+            <button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised ">
                 <a ng-click="vm.details(event.description.html,event)">Details</a>
             </button>
 
         </div>
     </div>
     </div>
+-->
+<!--
+
+
+    <div class="hidden-xs col-sm-3" ng-show="events">
+        <img src="sky.jpg" class="img-responsive img-rounded" height="150" width="300" alt=""> <br>
+        <img src="sky.jpg" class="img-responsive img-rounded" height="150" width="300"alt=""> <br>
+
+       </div>
+
+ &lt;!&ndash;   class=" col-sm-offset-3 col-sm-6 "&ndash;&gt;
+
+    <div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
+        <div ng-class="{'col-sm-offset-3 col-sm-6': $index>0 , 'col-sm-6': $index==0 }" >
+            <div class="thumbnail" >
+                <img ng-src="{{event.logo.url}}" class="img-responsive img-rounded"  height="700" width="500" alt="">
+                <div class="caption">
+                    <h4>{{event.name.text}} </h4>
+                    <p class="text-nowrap">
+                        <a ng-click="vm.details(event.description.html,event)">
+                        <button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised ">
+                            Details
+                        </button></a>
+                        <a href="{{event.url}}">
+                        <button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised ">
+                            Link
+                        </button></a>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-3" ng-show="$index==0">
+            <img src="sky.jpg" class="img-responsive img-rounded" alt=""> <br>
+            <img src="sky.jpg" class="img-responsive img-rounded" alt=""> <br>
+
+        </div>
+    </div>
+
+-->
+
+    <div class="hidden-xs col-sm-3" ng-show="events">
+        <a href="" ng-click="vm.searchbycat('music')">
+            <div class="tooltip-wrap">
+                <img src="../../../../images/music_event.jpg"  class="img-responsive img-rounded"
+                     alt="" height="150" width="300"/>
+                <div class="tooltip-content">
+                    <p class="text-center tex">Click to Search<br>
+                      Music Events around you </p>
+                </div>
+            </div>
+        </a>
+
+        <br><br>
+        <a href="" ng-click="vm.searchbycat('networking')">
+            <div class="tooltip-wrap">
+                <img src="../../../../images/networking_event.jpg"  class="img-responsive img-rounded"
+                     alt="" height="150" width="300"/>
+                <div class="tooltip-content">
+                    <p class="text-center tex">Click to Search<br>
+                        Networking Events around you </p>
+                </div>
+            </div>
+        </a>
+        <br>
+    </div>
+
+        <div class="col-sm-6 " ng-show="events">
+            <div class="thumbnail " >
+               <!-- <img ng-src="{{event.logo.url}}"
+                     class="img-responsive img-rounded img-thumbnail"  height="400" width="500" alt="">-->
+<!--
+
+                <img ng-src="{{event.logo.url}}"
+                     class="img-responsive img-rounded img-thumbnail"  height="400" width="500" alt="">
+
+-->
+
+                <a class="image_container" href="">
+                    <img ng-src="{{event.logo.url}}" class="img-responsive img-rounded img-thumbnail" alt="" />
+                </a>
+
+                <div class="caption">
+                    <h4>{{event.name.text}} </h4>
+                    <p class="text-nowrap">
+                        <a ng-click="vm.details(event.description.html,event)">
+                            <button class="mdl-button mdl-js-button mdl-button--raised ">
+                                Details
+                            </button></a>
+                        <a href="{{event.url}}">
+                            <button class="mdl-button mdl-js-button mdl-button--raised ">
+                                Link
+                            </button></a>
+
+                    </p>
+                </div>
+            </div>
+
+            <nav class="almost-centered-home" ng-show="events">
+                <ul class="pagination">
+                    <li>
+                        <a href="" aria-label="Previous" ng-click="vm.eventdecr((count+1),vm.bottom)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li ng-class="{'active': (count+1)==(vm.bottom) }"
+                    ng-click="vm.eventchange(vm.bottom )"><a href=""> {{vm.bottom}} </a></li>
+
+                    <li ng-class="{'active': (count+1)==(vm.bottom + 1) }"
+                        ng-click="vm.eventchange((vm.bottom + 1))">
+                        <a href=""> {{vm.bottom + 1}} </a></li>
+
+                    <li ng-class="{'active': (count+1)==(vm.bottom + 2) }"
+                        ng-click="vm.eventchange((vm.bottom + 2))">
+                        <a href=""> {{vm.bottom + 2}} </a></li>
+
+
+                    <li ng-class="{'active': (count+1)==(vm.bottom + 3) }"
+                        ng-click="vm.eventchange((vm.bottom + 3))">
+                        <a href=""> {{vm.bottom + 3}} </a></li>
+
+
+                    <li ng-class="{'active': (count+1)==(vm.bottom + 4) }"
+                        ng-click="vm.eventchange((vm.bottom + 4))">
+                        <a href=""> {{vm.bottom + 4}} </a></li>
+
+
+                    <li>
+                        <a href="" aria-label="Next"  ng-click="vm.eventincr((count+1),(vm.bottom + 4))">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="hidden-xs col-sm-3"  ng-show="events">
+
+
+
+            <a href="" ng-click="vm.searchbycat('food')">
+                <div class="tooltip-wrap">
+                    <img src="../../../../images/FoodDrink_event.jpg"  class="img-responsive img-rounded"
+                         alt="" height="150" width="300"/>
+                    <div class="tooltip-content">
+                        <p class="text-center tex">Click to Search<br>
+                           Food and Drink around you </p>
+                    </div>
+                </div>
+            </a>
+            <br><br>
+          <!--  <img src="sky.jpg" class="img-responsive img-rounded" alt=""> <br>-->
+          <!-- <img src="sky.jpg" class="img-responsive img-rounded" alt="">-->
+
+            <a href="" ng-click="vm.searchbycat('sports')">
+                <div class="tooltip-wrap">
+                    <img src="../../../../images/sports_event.jpg"  class="img-responsive img-rounded"
+                         alt="" height="150" width="300"/>
+                    <div class="tooltip-content">
+                        <p class="text-center tex">Click to Search<br>
+                            Sports and Wellness around you </p>
+                    </div>
+                </div>
+            </a>
+
+            <br>
+        </div>
+
 
 
     <!-- MDL Spinner Component -->

@@ -11,11 +11,25 @@
 
         function init()
         {
-            if($routeParams.title) {
-                console.log("params there")
-                $rootScope.loading = 1;
-                SearchService.searchbytitle($routeParams.title).then(renderresults, rendererror);
+            if($routeParams.title)
+         {
+
+            if (navigator.geolocation)
+            {
+
+                navigator.geolocation.getCurrentPosition(function (position)
+                {
+                    console.log(position.coords.latitude)
+                    console.log(position.coords.longitude)
+                    lat=position.coords.latitude
+                    long=position.coords.longitude
+                    console.log("params there")
+                    $rootScope.loading = 1;
+                    SearchService.searchbytitle($routeParams.title,lat,long).then(renderresults,rendererror);
+
+                });
             }
+        }
 
         }init();
 

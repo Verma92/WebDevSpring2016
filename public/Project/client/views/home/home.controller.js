@@ -8,6 +8,78 @@
         var vm=this;
         $scope.$location = $location;
         vm.details=details;
+        vm.eventchange=eventchange
+        vm.eventincr=eventincr
+        vm.eventdecr=eventdecr
+        vm.checknoimage=checknoimage
+        vm.searchbycat=searchbycat
+
+
+
+        function searchbycat(cat){
+
+
+                $rootScope.events=null
+                $location.path("/search/"+cat);
+
+
+        }
+
+        function eventincr(curr,max)
+        {
+            if(curr<50)
+            { console.log("in eventincr"+curr+max)
+            if((curr+1)>max)
+            {
+                vm.bottom=vm.bottom+1
+            }
+            $rootScope.count=curr
+
+
+            $scope.event =$rootScope.events[$rootScope.count]
+
+                vm.checknoimage($scope.event)
+
+            }
+        }
+        function checknoimage(event){
+
+            if(event.logo==null)
+            {
+                console.log( "NULL IMAGE")
+                event.logo={}
+                event.logo.url="http://www.sitra.fi/sites/default/files/styles/wide_third/public/" +
+                               "default_images/event-default.jpg?itok=IPu5UrvW"
+            }
+
+
+
+
+        }
+        function eventdecr(curr,min)
+        {
+            if(curr>1)
+            { console.log("in eventdecr"+curr+min)
+                if((curr-1)<min)
+                {
+                    vm.bottom=vm.bottom-1
+                }
+                $rootScope.count=(curr-2)
+
+
+                $scope.event =$rootScope.events[$rootScope.count]
+                vm.checknoimage($scope.event)
+            }
+        }
+
+
+
+        function eventchange( value){
+            console.log("in")
+            $rootScope.count=value-1
+            $scope.event =$rootScope.events[$rootScope.count]
+            vm.checknoimage($scope.event)
+        }
 
         function details(desc,event)
         {
@@ -24,6 +96,12 @@
 
         function init()
         {
+            if($rootScope.count==null)
+                $rootScope.count=0
+
+            $rootScope.events=null
+            vm.bottom=$rootScope.count+1
+
              var lat,long;
             if (navigator.geolocation) {
 
@@ -32,6 +110,8 @@
                     console.log(position.coords.longitude)
                     lat=position.coords.latitude
                     long=position.coords.longitude
+                    vm.lat=lat
+                    vm.long=long
                     $rootScope.loading=1;
                     SearchService.defaultsearch(lat,long).then(renderresults,rendererror);
                 })
@@ -75,7 +155,9 @@
 
             }
 
+          $scope.event =events[$rootScope.count]
 
+            vm.checknoimage($scope.event)
 
         }
         function rendererror()

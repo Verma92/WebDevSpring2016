@@ -17,27 +17,69 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-
+    <link href="css/custom.css" rel="stylesheet">
 
 
 </head>
 
 <body>
 
+<a class="image_container" href="">
+    <img src="sky.jpg" class="img-responsive img-rounded img-thumbnail" alt="" />
+</a>
 
-<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
- Expandable Textfield
- <form action="#">
-     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-         <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-             <i class="material-icons">search</i>
-         </label>
-         <div class="mdl-textfield__expandable-holder">
-             <input class="mdl-textfield__input" type="text" id="sample6">
-             <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-         </div>
-     </div>
- </form>
+
+
+<!--
+<div class="image-container">
+    <img class="image-image " src="sky.jpg" />
+    <p class="image-text"  style="left: 50px;
+       top: 50px;">
+        Hello World!
+    </p>
+</div>-->
+<!--
+
+<div class="hidden-xs col-sm-3" ng-show="events">
+    <img src="sky.jpg" class="img-responsive img-rounded" height="150" width="300" alt=""> <br>
+    <img src="sky.jpg" class="img-responsive img-rounded" height="150" width="300"alt=""> <br>
+
+</div>
+-->
+
+<!--
+
+<div ng-repeat="event in events" ng-class="{'selected':$index == selectedRow}">
+    <div class="col-sm-3 col-xs-6">
+        <div class="thumbnail ">
+            <img ng-src="{{event.logo.url}}" class="img-responsive" height="250" width=250   alt="">
+            <div class="caption">
+                <h4>{{event.name.text}} </h4>
+                <p class="text-nowrap">
+                    <button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised ">
+                        <a ng-click="vm.details(event.description.html,event)">Details</a>
+                    </button>
+
+                    <button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised ">
+                        <a href="{{event.url}}">Link</a>
+                    </button>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+
+
+
+
+
+
+
+
+
 
 <!--<div class="mdl-grid">
     <div class="mdl-cell mdl-cell&#45;&#45;4-col">4</div>

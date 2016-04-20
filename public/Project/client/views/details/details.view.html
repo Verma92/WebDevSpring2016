@@ -2,18 +2,20 @@
 <div class="col-xs-12 details-background">
 
 
-    <div class="text-nowrap almost-centered ">
+    <div class=" btn-group almost-centered">
 
-    <button type="button" class="btn-lg btn-success mdl-shadow--8dp" ng-click="vm.selection('like')">
+    <button type="button" class="btn-lg btn-success  mdl-shadow--8dp" ng-click="vm.selection('like')">
         <span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span>
         Like
         <span class="badge">{{vm.likes}}</span>
     </button>
+        <div class="visible-xs"><br></div>
     <button type="button" class="btn-lg btn-danger mdl-shadow--8dp" ng-click="vm.selection('dislike')">
         <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
         Dislike
         <span class="badge">{{vm.dislikes}}</span>
     </button>
+        <div class="visible-xs"><br></div>
     <button type="button" class="btn-lg btn-primary mdl-shadow--8dp" ng-click="vm.selection('going')">
         <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
         Going
