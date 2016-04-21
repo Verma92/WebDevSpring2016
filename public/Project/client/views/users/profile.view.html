@@ -1,5 +1,5 @@
 
-    <div class="container profile-body">
+    <div class="container profile-body home">
         <div class="row profile">
             <div class="col-md-3">
                 <div class="profile-sidebar">
@@ -21,10 +21,10 @@
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
                         <button type="button" class="btn btn-primary btn-sm"
-                                ng-click="vm.selection='newevent'"
-                                data-toggle="modal" data-target="#NEW">New Event</button>
+                                ng-click="vm.selection='newevent'; vm.object.username=00 "
+                                data-toggle="modal" data-target="#NEW">New Broadcast</button>
                         <button type="button" class="btn btn-info btn-sm"
-                                ng-click="vm.selection='newinvite'"
+                                ng-click="vm.getuserslist()"
                                 data-toggle="modal" data-target="#NEW">Send Invite</button>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
@@ -43,11 +43,7 @@
                                     <i class="glyphicon glyphicon-user"></i>
                                     Personal Settings </a>
                             </li>
-                           <!-- <li>
-                                <a href="" target="_blank">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                    Tasks </a>
-                            </li>-->
+
                             <li ng-class="{'active': vm.selection=='invites'}"
                                     ng-click="vm.selection='invites'">
                             <a href="">  <i class="glyphicon glyphicon-envelope"></i>
@@ -69,37 +65,35 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group " >
-                                <!--NEW EVENT-->
-                                <div ng-if=" vm.selection=='newevent'">
-                                    <label for="Name">Name:</label>
-                                    <input id="Name" class="form-control input-sm"  type="text" ng-model="vm.object.name">
-                                    <label for="starttime">Start Time:</label>
-                                      <input id="starttime" class="form-control input-sm"  type="date"
-                                           ng-model="vm.object.start">
-                                    <label for="endtime">End Time:</label>
-                                    <input id="endtime"  class="form-control input-sm" type="date"
-                                           ng-model="vm.object.end">
-                                    <label for="Description">Description:</label>
-                                     <textarea id="Description"  class="form-control input-sm"
-                                               ng-model="vm.object.desc"></textarea>
+                                <!--NEW BROADCAST-->
+
+
+                                <div ng-if=" vm.selection=='newevent'"  >
+                                    <label for="message1">Message:</label>
+                                    <textarea id="message1" class="form-control input-sm"
+                                              ng-model="vm.object.message"></textarea>
+
+
                                 </div>
                                 <div ng-if=" vm.selection=='newinvite'">
-                                    <label for="PersonName">To:</label>
-                                    <input id="PersonName" class="form-control input-sm" type="text"
-                                           ng-model="vm.object.personname">
+
+                                    <label for="DROPDOWN">To: </label>
+                                    <div class="form-group" id="DROPDOWN"   >
+                                        <select class="form-control" ng-model="vm.object.username">
+                                            <option ng-repeat="name in vm.names">{{name}}</option>
+                                        </select>
+                                    </div>
                                     <label for="message">Message:</label>
                                     <textarea id="message" class="form-control input-sm"
                                               ng-model="vm.object.message"></textarea>
-                                </div>
-
+                                       </div>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
                                     ng-click=" vm.selection='events'">Cancel</button>
                             <button type="button" class="btn btn-success" data-dismiss="modal"
-                                    ng-click="vm.addeventorinvite(vm.object)">Okay</button>
+                                    ng-click="vm.sendinvite(vm.object)">Okay</button>
                         </div>
                     </div>
                 </div>
@@ -112,7 +106,7 @@
 
             <!--Main View-->
             <div class="col-md-9">
-                <div class="profile-content" ng-if=" vm.selection=='settings'">
+                <div class="profile-content " ng-if=" vm.selection=='settings'">
                     <div  class="well well-lg col-md-offset-1 col-md-10">
                        <br><br>
                         <form class="form-horizontal">
@@ -204,19 +198,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <h4 class="page-header">tickets</h4>
-                    <table class="table-responsive">
-                        <tbody >
-                        <tr>
-                            <td ng-repeat="event in vm.userevents">
-                                <a href=""  ng-click="vm.details(event)"
-                                   ng-if="user.tickets.indexOf(event.id)!=-1">
-                                    <img ng-src="{{event.logo.url}}" class="img-responsive circle-event">
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+
                 </div>
                 <div class="profile-content" ng-if=" vm.selection=='invites'">
                     <table class="table table-responsive table-bordered table-hover">

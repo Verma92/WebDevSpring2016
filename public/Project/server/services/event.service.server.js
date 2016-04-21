@@ -1,11 +1,11 @@
 module.exports = function(app, model) {
 
-
+    app.post('/api/project/brodcast/',addbroadcast)
     /*app.put('/api/project/event/:id',addorupdateevent)*/
-
     app.put("/api/project/event/:eventid", addorupdateevent)
-
     app.get("/api/project/event/:eventid",geteventstats)
+
+    app.get('/api/project/brodcasts/', allbroadcasts)
    /* app.get("/api/assignment/user/:userId/form", getFormsForUser);
     app.get("/api/assignment/form/:formId", get);
     app.get("/api/assignment/form", getAllForms);
@@ -14,6 +14,28 @@ module.exports = function(app, model) {
     app.delete("/api/assignment/form/:formId", deleteData);
     app.put("/api/assignment/form/:formId",updateForm);
 */
+
+
+    function addbroadcast(req,res){
+
+        var message=req.body
+        model
+            .addbroadcast(message)
+            .then(function(message){
+                console.log("event in server service addbroadcast:"+message)
+                res.json(message)});
+    }
+    function allbroadcasts(req,res){
+
+        model
+            .getallbroadcasts()
+            .then(function(broadcasts){
+                console.log("all broadcasts:"+broadcasts)
+                res.json(broadcasts)});
+
+
+    }
+
 
     function geteventstats(req, res){
 

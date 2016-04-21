@@ -8,29 +8,53 @@
         vm.details=details
         vm.addeventorinvite=addeventorinvite;
        vm.updateevent=updateevent;
+        vm.getuserslist=getuserslist;
+        vm.sendinvite=sendinvite
         $scope.editevent=editevent;
 
+        function sendinvite(obj){
+            if(obj.username!=00){
+              var invite={sender:$rootScope.user.username,
+                          message:{ text:obj.message,
+                                    Date:new Date()}  }
+                console.log(invite,obj.username)
 
+                UserService.sendinvite(obj.username,invite).then(function(user){
+                    console.log(user)
+                })
 
-        function init(){
-          /*  if($rootScope.user==undefined)
-            {
-                $location.path("/home");
+                vm.object=null
             }
             else{
+                var message={ sender:$rootScope.user.username,
+                              text:obj.message,
+                              Date:new Date()}
 
+                EventService.addbroadcast(message).then(function(broadcast){
+                    console.log(broadcast)
+                })
+                console.log( obj.username)
+                vm.object=null
             }
-            var eventIds=[]
-            eventIds.push( $rootScope.user.interested,$rootScope.user.going,
-                $rootScope.user.hosted ,$rootScope.user.tickets)
-            console.log(eventIds)
-            EventService.AllUserEvents(eventIds).then(function(events)
-            {
-               vm.userevents=events
-                console.log(events)
-            })*/
+        }
+
+        function init(){
             vm.selection='events'
         }init();
+
+
+        function getuserslist(){
+            vm.selection='newinvite'
+            console.log("inside getuser controller")
+            UserService.getuserslist().then(function(names){
+                console.log(names)
+                vm.names=names
+
+            })
+
+
+        }
+
 
 
         function addeventorinvite(obj)

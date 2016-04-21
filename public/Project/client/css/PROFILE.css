@@ -5,7 +5,7 @@ Licensed under MIT
 ***/
 
 .profile-body {
-    background: #737470;
+    background: #6b706b;!important;
 }
 
 .circle-event {
@@ -34,7 +34,7 @@ Licensed under MIT
 /* Profile sidebar */
 .profile-sidebar {
     padding: 20px 0 10px 0;
-    background: #fff;
+    background-color: #fafdff;
 }
 
 .profile-userpic img {
@@ -61,7 +61,7 @@ Licensed under MIT
 
 .profile-usertitle-job {
     text-transform: uppercase;
-    color: #5b9bd1;
+    color: #b2eb27;
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 15px;
@@ -108,8 +108,8 @@ Licensed under MIT
 }
 
 .profile-usermenu ul li a:hover {
-    background-color: #fafcfd;
-    color: #5b9bd1;
+    background-color: #fafdff;
+    color: #b2eb27;
 }
 
 .profile-usermenu ul li.active {
@@ -117,16 +117,16 @@ Licensed under MIT
 }
 
 .profile-usermenu ul li.active a {
-    color: #5b9bd1;
-    background-color: #f6f9fb;
-    border-left: 2px solid #5b9bd1;
+    color: #b2eb27;
+    background-color: #fafdff;
+    border-left: 2px solid #b2eb27;
     margin-left: -2px;
 }
 
 /* Profile Content */
 .profile-content {
     padding: 20px;
-    background: #fff;
+    background-color: #fafdff;
     min-height: 460px;
 }
 

@@ -13,16 +13,45 @@
             addUser: addUser,
           /*  deleteUserById: deleteUserById,*/
             updateUser: updateUser,
+            getuserslist:getuserslist,
             updateUserEvents:updateUserEvents,
             addUserEventorinvite:addUserEventorinvite,
             updateuserevent:updateuserevent,
-            logout:logout
+            logout:logout,
+            sendinvite:sendinvite
         };
 
 
         return service;
 
 
+        function sendinvite(username,invite){
+
+            console.log("In sendinvite :"+invite.message.text,invite.message.Date)
+            var deferred = $q.defer();
+            $http.put("/api/project/user/name/"+username,invite).success(function(response){
+                deferred.resolve(response);
+            });
+
+            console.log(deferred.promise)
+            return deferred.promise;
+
+
+
+        }
+
+
+        function getuserslist(){
+
+            var deferred = $q.defer();
+            $http.get("/api/project/users/names").success(function(response){
+                deferred.resolve(response);
+            });
+
+            console.log(deferred.promise)
+            return deferred.promise;
+
+        }
         function logout() {
 
             var deferred = $q.defer();

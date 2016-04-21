@@ -6,11 +6,18 @@ module.exports = function(mongoose,db) {
 
     var EventModel = mongoose.model("EventModel", EventSchema);
 
+    var BroadcastSchema = require("./broadcast.schema.server.js")(mongoose);
+
+    var BroadcastModel = mongoose.model("BroadcastModel", BroadcastSchema);
+
+
     var api = {
         Create: Create,
         addorupdateevent:addorupdateevent,
         geteventstats:geteventstats,
         AllUserEvents:AllUserEvents,
+        addbroadcast:addbroadcast,
+        getallbroadcasts:getallbroadcasts
         /*FindAll: FindAll,
         addFieldForForm: addFieldForForm,
         deleteField: deleteField,
@@ -25,6 +32,39 @@ module.exports = function(mongoose,db) {
 
     return api;
 
+     function addbroadcast(message){
+
+        var deferred = q.defer();
+        BroadcastModel.create(message,function (err, broadcast) {
+            if (err) {
+                console.log("not added broadcast")
+            }
+            else{
+
+                console.log("after creating broadcast" + broadcast)
+                deferred.resolve(broadcast);
+            }
+        });
+        return deferred.promise;
+
+    }
+
+
+    function getallbroadcasts(){
+
+        var deferred = q.defer();
+        BroadcastModel.find(function (err, broadcasts) {
+            if (err) {
+                console.log("error in broadcasts finding")
+            }
+            else{
+                console.log("all broacasts" + broadcasts)
+                deferred.resolve(broadcasts);
+            }
+        });
+        return deferred.promise;
+
+    }
 
 
     function geteventstats(id){

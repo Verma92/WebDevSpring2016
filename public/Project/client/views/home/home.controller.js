@@ -3,7 +3,7 @@
     angular.module("FinalProject")
         .controller("HomeControler",HomeControler);
 
-    function HomeControler($scope, $rootScope, $location,SearchService,$sce) {
+    function HomeControler($scope, $rootScope, $location,SearchService,$sce,EventService) {
 
         var vm=this;
         $scope.$location = $location;
@@ -101,6 +101,16 @@
 
             $rootScope.events=null
             vm.bottom=$rootScope.count+1
+
+
+            EventService
+                .allbroadcasts()
+                .then(function(brodcasts){
+                    $rootScope.brodcasts=brodcasts
+                    console.log($rootScope.brodcasts)
+                })
+
+
 
              var lat,long;
             if (navigator.geolocation) {

@@ -15,13 +15,39 @@ module.exports = function(app, user_model,event_model) {
     app.put('/api/project/user/event/:id',auth,updateuserevent)
     app.delete('/api/project/user/:id',deleteUserById)
     app.post  ('/api/project/logout',         logout);
-
-
+    app.put("/api/project/user/name/:username",auth,updateuserinvites)
+    app.get('/api/project/users/names',auth,usernames);
 
     passport.use('project',new LocalStrategy(localprojectstrategy));
    /* passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);*/
 
+
+
+    function updateuserinvites(req,res){
+
+
+
+        var invite = req.body;
+        var username = req.params.username;
+
+
+        console.log("in server service :"+invite.message.text,invite.message.Date)
+        user_model
+            .updateuserinvite(username,invite)
+            .then(function(user){
+            console.log("user after invite update:"+user)
+            res.json(user)});
+
+    }
+    function  usernames(req,res){
+
+        user_model
+            .allusersnames()
+            .then(function(names){
+                console.log("Names:"+names)
+                res.json(names)});
+    }
 
     function localprojectstrategy(username, password, done) {
 

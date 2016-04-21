@@ -60,9 +60,9 @@ a.image_container img {
 
 
 .almost-centered-home{
-    position: absolute;
+    position: relative;
     top: 100%;
-    left: 32%;
+    left: 30%;
 
 }
 
@@ -94,7 +94,7 @@ a.image_container img {
 
 .details-background
 {
-    background-color:  #326532;!important;
+    background-color: #6b706b;!important;
     color: #ffffff;
    /* height: 50px;*/
 
@@ -151,11 +151,31 @@ a.image_container img {
 }
 
 .home {
-    background-color: #646365;!important;
-    color: #1aa808;!important;
+    background-color: #6b706b;!important;
+    color: #accf38;!important;
 }
 
 
 .mdl-card:hover {
-    background-color: #ff0710;
+    background-color: #326532;!important;
+}
+
+
+.mygrid-wrapper-div {
+    border: solid #2bc61c 0px;
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+}
+
+.new-body {
+    background-color: #6b706b;!important;
+    color: #accf38;!important;
+    height:400px;
+}
+
+.loading-center{
+    width:50%;
+    height:120%;
+
 }

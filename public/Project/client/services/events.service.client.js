@@ -11,13 +11,34 @@
             deleteFormById:deleteFormById,
             updateFormById:updateFormById*/
             updateoraddevent:updateoraddevent,
-            geteventstats:geteventstats
-
+            geteventstats:geteventstats,
+            addbroadcast:addbroadcast,
+            allbroadcasts:allbroadcasts
         };
 
         return service;
 
 
+
+        function allbroadcasts(){
+            var deferred = $q.defer();
+            $http.get('/api/project/brodcasts/')
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+            console.log(deferred.promise)
+            return deferred.promise;
+        }
+
+function addbroadcast(message){
+    var deferred = $q.defer();
+    $http.post('/api/project/brodcast/',message)
+        .success(function(response){
+            deferred.resolve(response);
+        });
+    console.log(deferred.promise)
+    return deferred.promise;
+}
 
         function geteventstats(eventid)
         {

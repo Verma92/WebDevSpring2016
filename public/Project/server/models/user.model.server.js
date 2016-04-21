@@ -20,12 +20,111 @@ module.exports = function(mongoose, db) {
        findUserByUsername: findUserByUsername,
        FindById: FindById,
        FindAll: FindAll,
+       allusersnames:allusersnames,
        Create: Create,
        findUserByCredentials: findUserByCredentials,
-       check:check
+       check:check,
+       updateuserinvite:updateuserinvite
     };
 
     return api;
+
+
+    function updateuserinvite(username,invite){
+
+        var deferred = q.defer();
+        console.log("in server Model :"+username,invite.message.text,invite.message.Date,invite.sender)
+
+        ProjectUserModel.findOne({username: username}, function(err,user) {
+            if(err) {
+
+                deferred.reject(err);
+                console.log("rejected")
+            }
+            else {
+                console.log("invite details"+invite.sender+invite.messsage)
+                console.log("found user")
+                      var found=0
+
+
+
+                console.log(user.invites.length)
+                console.log(user.invites)
+                for(var i=0;i<user.invites.length;i++) {
+                    console.log("user sender details"+user.invites[i].sender)
+
+                   if(user.invites[i].sender==invite.sender){
+                       found=1
+                       console.log("found sender")
+
+
+                       user.invites[i].message.push({ text:invite.message.text,
+                           Date:invite.message.Date})
+                       console.log("added message"+user.invites[i] )
+                       break;
+                   }
+                    else{
+                       found=0
+                   }
+
+                }
+                if(found==0){
+                    console.log(" sender not found")
+
+                    var temp=[]
+                    temp.push({ text:invite.message.text,
+                                Date:invite.message.Date})
+                    var tempinvite={sender:invite.sender,message:temp}
+                    user.invites.push(tempinvite)
+                }
+
+                user.save(function(err, user)
+                {
+                    if(err) {
+                        console.log("in error")
+                        deferred.reject(err);
+                    }
+                    else{
+                        console.log("after saving user"+user)
+                        deferred.resolve(user);
+                    }
+                });
+
+                deferred.resolve(user);
+
+            }
+            });
+        return deferred.promise;
+    }
+
+
+
+    function allusersnames(){
+
+        var deferred = q.defer();
+
+        ProjectUserModel.find(users, function(err,users) {
+            if(err) {
+
+                deferred.reject(err);
+            }
+            else{
+               console.log("users in model users"+users)
+                var names=[]
+                for(var i=0;i<users.length;i++)
+                {
+                    console.log("in loop"+i)
+                    names.push(users[i].username)
+                    console.log("in loop output"+users[i].username)
+
+                }
+                console.log("users in model names:"+names)
+                deferred.resolve(names);
+
+            }
+        });
+        return deferred.promise;
+    }
 
 function check(ignore)
 {
