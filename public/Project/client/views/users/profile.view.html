@@ -31,7 +31,7 @@
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu">
                         <ul class="nav">
-                            <li ng-class="{'active': vm.selection=='events'}"
+                            <li ng-class="{'active': vm.selection=='events' }"
                                 ng-click="vm.selection='events'">
                                 <a href="">
                                     <i class="glyphicon glyphicon-glass"></i>
@@ -44,7 +44,7 @@
                                     Personal Settings </a>
                             </li>
 
-                            <li ng-class="{'active': vm.selection=='invites'}"
+                            <li ng-class="{'active': vm.selection=='invites'|| vm.selection=='invite.details'}"
                                     ng-click="vm.selection='invites'">
                             <a href="">  <i class="glyphicon glyphicon-envelope"></i>
                                     Invites </a>
@@ -201,20 +201,45 @@
 
                 </div>
                 <div class="profile-content" ng-if=" vm.selection=='invites'">
-                    <table class="table table-responsive table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th><span class="caret"></span> Sender</th>
-                                <th><span class="caret"></span> Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                         <tr ng-repeat="invite in user.invites" ng-class="{'selected':$index == selectedRow}">
-                            <td>{{invite.sender}}</td>
-                            <td >{{invite.message}}</td>
-                        </tr>
-                    </table>
+                       <div class="mygrid-wrapper-div">
+                                        <ul class="demo-list-two mdl-list" ng-repeat="invite in user.invites">
+
+                                          <a href="" ng-click="vm.selection='invite.details'
+                                          ;vm.invitesetter(invite.message)">
+                                              <li class="mdl-list__item mdl-list__item--two-line">
+                        <span class="mdl-list__item-primary-content">
+                          <i class="material-icons mdl-list__item-avatar">person</i>
+                          <span>{{invite.sender}}</span>
+                          <span class="mdl-list__item-sub-title">{{invite.message.length}} Messages</span>
+                        </span>
+                        <!--<span class="mdl-list__item-secondary-content">-->
+                          <!--<span class="mdl-list__item-secondary-info">Actor</span>-->
+                          <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
+                        <!--</span>--></li></a>
+                    </ul>
+                       </div>
                 </div>
+
+                <div class="profile-content" ng-if="vm.selection=='invite.details'">
+                    <div class="mygrid-wrapper-div">
+                    <ul class="demo-list-two mdl-list" ng-repeat="message in vm.messages">
+                        <li class="mdl-list__item mdl-list__item--two-line">
+                        <span class="mdl-list__item-primary-content">
+                          <span>{{message.text}}</span>
+                      <!--    <span class="mdl-list__item-sub-title">{{message.text}}</span>-->
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                        <span class="mdl-list__item-secondary-info"><small>{{message.Date}}</small></span>
+                          <!--  <small>{{message.Date}}</small>-->
+                         </span></li>
+                        <hr>
+                    </ul></div>
+                </div>
+
+
+
+
+
 
             </div>
         </div>

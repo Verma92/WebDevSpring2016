@@ -160,9 +160,11 @@ a.image_container img {
     background-color: #326532;!important;
 }
 
+.demo-list-two{
 
+
+}
 .mygrid-wrapper-div {
-    border: solid #2bc61c 0px;
     overflow: scroll;
     height: 100%;
     width: 100%;
@@ -179,3 +181,4 @@ a.image_container img {
     height:120%;
 
 }
+

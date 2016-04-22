@@ -11,7 +11,39 @@
         vm.getuserslist=getuserslist;
         vm.sendinvite=sendinvite
         $scope.editevent=editevent;
+        vm.invitesetter=invitesetter
 
+
+
+        function invitesetter(temp){
+
+            console.log( vm.selection)
+
+
+            var messages=temp
+
+          /*
+            console.log(messages[0].Date instanceof Date && !isNaN(messages[0].Date.valueOf()));
+
+            */
+
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            for(var i=0;i<messages.length;i++){
+                var n =new Date(messages[i].Date)
+
+                if(!isNaN(n)){
+                var value=monthNames[n.getMonth()]+' '+ n.getDate()+', '+n.getFullYear()+
+                    ' at '+ n.getHours()+':'+n.getMinutes()
+                messages[i].Date=value
+                }
+            }
+            messages=messages.reverse()
+            vm.messages=messages
+            console.log(messages)
+
+        }
         function sendinvite(obj){
             if(obj.username!=00){
               var invite={sender:$rootScope.user.username,
