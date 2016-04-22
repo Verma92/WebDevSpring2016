@@ -157,9 +157,14 @@ a.image_container img {
 
 
 .mdl-card:hover {
-    background-color: #326532;!important;
+    background-color: #37651a;!important;
 }
+.mdl-button {}
 
+.mdl-button:hover
+{
+    background-color: #eef8db;!important;
+}
 .demo-list-two{
 
 

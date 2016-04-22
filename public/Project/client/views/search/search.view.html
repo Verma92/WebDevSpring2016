@@ -13,25 +13,25 @@
                 <div class="mdl-card__supporting-text">
                <div class="container-fluid">
 
-                   <div class="table-responsive">
+                   <div class="">
                        <table class="table">
-                           <tr> <td><img classs="thumbnail" ng-src="{{event.logo.url}}"></td>
+                           <tr> <td><img class="img-responsive thumbnail" ng-src="{{event.logo.url}}"></td>
                                <td class="">{{event.name.text}}</td>
-                               <td class="hidden-xs"> {{event.organizer_id}}</td>
-                               <td class="hidden-xs">{{event.start.local|date}}</td>
-                               <td class="hidden-xs">{{event.venue_id}}</td> </tr>
+                              <!-- <td class="hidden-xs"> {{event.organizer_id}}</td>-->
+                               <td>{{event.start.local|date}}</td>
+                              <!-- <td class="hidden-xs">{{event.venue_id}}</td> </tr>-->
                        </table>
                    </div>
                </div>
                 </div>
 
                 <div class="mdl-card__actions">
-                    <button class="mdl-button mdl-js-button mdl-button--raised ">
-                    <a ng-click="vm.details(event.description.html,event)">Details</a>
-                </button>
-                    <button class="mdl-button mdl-js-button mdl-button--raised ">
-                        <a href="{{event.url}}">Link</a>
-                    </button>
+                    <a ng-click="vm.details(event.description.html,event)"> <button class="mdl-button mdl-button mdl-js-button mdl-button--raised ">
+                  Details
+                </button></a>
+                    <a href="{{event.url}}">  <button class="mdl-button mdl-button mdl-js-button mdl-button--raised ">
+                       Link
+                    </button></a>
                 </div>
 
             </div>
