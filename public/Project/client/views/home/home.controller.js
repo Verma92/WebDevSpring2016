@@ -14,6 +14,18 @@
         vm.checknoimage=checknoimage
         vm.searchbycat=searchbycat
 
+        vm.getdate=getdate
+
+
+
+
+        function getdate(Date)
+        {
+
+
+            return "BAIBAI"
+        }
+
 
 
         function searchbycat(cat){
@@ -105,9 +117,26 @@
 
             EventService
                 .allbroadcasts()
-                .then(function(brodcasts){
-                    $rootScope.brodcasts=brodcasts
-                    console.log($rootScope.brodcasts)
+                .then(function(broadcasts){
+
+                    var monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
+
+
+                  for(var i=0;i<broadcasts.length;i++){
+                      var n =new Date(broadcasts[i].Date)
+                      var value=monthNames[n.getMonth()]+' '+ n.getDate()+', '+n.getFullYear()+
+                                ' at '+ n.getHours()+':'+n.getMinutes()
+                      broadcasts[i].Date=value
+                  }
+
+
+
+                    broadcasts=broadcasts.reverse()
+
+                    $rootScope.broadcasts=broadcasts
+                    console.log($rootScope.broadcasts)
                 })
 
 

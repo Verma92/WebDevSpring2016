@@ -98,10 +98,25 @@
     <h4 class="hidden-xs font-semibold page-header text-center  text-capitalize new-font"> <strong>New Broadcasts</strong></h4>
     <div class="mygrid-wrapper-div table-responsive">
 
-        <div ng-show="'broadcasts==null'">
+        <div ng-hide="broadcasts">
             <h5 class="hidden-xs font-semibold header text-center  text-capitalize  ">
                 <strong>No New Broadcasts</strong></h5>
         </div>
+
+        <div class="media " ng-show="broadcasts" ng-repeat="broadcast in broadcasts">
+            <a class="pull-left" href="">
+                 <img src="http://simpleicon.com/wp-content/uploads/account-64x64.png" alt="">
+            </a>
+            <div class="media-body">
+                <h5 class="media-heading">{{broadcast.sender}}</h5>
+                <small>{{broadcast.Date}}</small>
+                <p> {{broadcast.text}}</p>
+            </div>
+        </div>
+
+
+
+
 
     </div>
 </div>
