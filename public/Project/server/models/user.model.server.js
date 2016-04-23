@@ -24,12 +24,46 @@ module.exports = function(mongoose, db) {
        Create: Create,
        findUserByCredentials: findUserByCredentials,
        check:check,
-       updateuserinvite:updateuserinvite
+       updateuserinvite:updateuserinvite,
+       deleteevent:deleteevent
     };
 
     return api;
 
+    function deleteevent(id,eventid){
+        var deferred = q.defer();
 
+        ProjectUserModel.findById(id,function(err,user) {
+                if (err) {
+
+                    deferred.reject(err);
+                    console.log("rejected")
+                }
+                else {
+                for (var i=0;i<user.events.length;i++){
+
+                    if(user.events[i]._id==eventid)
+                    {user.events.splice(i,1)
+                        console.log("event found and deleted")
+                        user.save(function(err, user)
+                        {
+                            if(err) {
+                                console.log("in error")
+                                deferred.reject(err);
+                            }
+                            else{
+                                console.log("after saving user"+user)
+                                deferred.resolve(user);
+                            }
+                        });
+
+                    }
+                }
+                }
+            });
+
+        return deferred.promise;
+    }
     function updateuserinvite(username,invite){
 
         var deferred = q.defer();

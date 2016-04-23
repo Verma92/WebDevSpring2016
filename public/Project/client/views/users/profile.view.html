@@ -162,11 +162,16 @@
                     <table class="table-responsive">
                         <tbody >
                         <tr>
+
                             <td ng-repeat="event in user.events">
-                              <a href=""  ng-click="vm.details(event)"
-                                 ng-if="event.type=='like'">
-                          <img ng-src="{{event.imageurl}}" ng-if="event.type=='like'" class="img-responsive circle-event">
+
+                                <div ng-if="event.type=='like'">
+                              <a href=""  ng-click="vm.details(event)">
+                            <img ng-src="{{event.imageurl}}" class="img-responsive circle-event">
                               </a>
+                        <span class=" glyphicon glyphicon-remove" ng-click="vm.eventremove(event)"
+                              aria-hidden="true" style="color: #da0000"></span>
+                            </div>
                             </td>
                         </tr>
                         </tbody>
@@ -175,13 +180,13 @@
                     <table class="table-responsive">
                         <tbody >
                         <tr>
-
                             <td ng-repeat="event in user.events">
-                                <a href=""  ng-click="vm.details(event)"
-                                   ng-if="event.type=='going'">
-                                    <img ng-src="{{event.imageurl}}" ng-if="event.type=='going'" class="img-responsive circle-event">
+                                <div ng-if="event.type=='going'">
+                                <a href=""  ng-click="vm.details(event)">
+                                    <img ng-src="{{event.imageurl}}" class="img-responsive circle-event">
                                 </a>
-                            </td>
+                                    <span class=" glyphicon glyphicon-remove" ng-click="vm.eventremove(event)" aria-hidden="true" style="color: #da0000"></span>
+                            </div></td>
                         </tr>
                         </tbody>
                     </table>
@@ -190,10 +195,13 @@
                         <tbody >
                         <tr>
                             <td ng-repeat="event in user.events">
-                                <a href=""  ng-click="vm.details(event)"
-                                   ng-if="event.type=='dislike'">
-                                    <img ng-src="{{event.imageurl}}"  ng-if="event.type=='dislike'" class="img-responsive circle-event">
+                                <div ng-if="event.type=='dislike'">
+                                <a href="" ng-click="vm.details(event)">
+                                    <img ng-src="{{event.imageurl}}" class="img-responsive circle-event">
                                 </a>
+
+                                    <span class=" glyphicon glyphicon-remove" ng-click="vm.eventremove(event)" aria-hidden="true" style="color: #da0000"></span>
+                                </div>
                             </td>
                         </tr>
                         </tbody>

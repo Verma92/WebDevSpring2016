@@ -11,22 +11,23 @@
         vm.getuserslist=getuserslist;
         vm.sendinvite=sendinvite
         $scope.editevent=editevent;
-        vm.invitesetter=invitesetter
+        vm.invitesetter=invitesetter;
+        vm.eventremove=eventremove
 
-
+        function eventremove(event){
+            console.log(event,event.eventid,event.type)
+                    EventService.removestat(event.eventid,event.type).then(function(event){
+                console.log(event)
+            })
+            UserService.deletevent($rootScope.user._id,{eventid:event._id}).then(function(user){
+                $rootScope.user=user;
+                console.log("Profile Fields Updated")
+            })
+        }
 
         function invitesetter(temp){
-
             console.log( vm.selection)
-
-
             var messages=temp
-
-          /*
-            console.log(messages[0].Date instanceof Date && !isNaN(messages[0].Date.valueOf()));
-
-            */
-
             var monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];

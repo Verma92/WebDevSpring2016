@@ -17,7 +17,8 @@ module.exports = function(mongoose,db) {
         geteventstats:geteventstats,
         AllUserEvents:AllUserEvents,
         addbroadcast:addbroadcast,
-        getallbroadcasts:getallbroadcasts
+        getallbroadcasts:getallbroadcasts,
+        deletestat:deletestat
         /*FindAll: FindAll,
         addFieldForForm: addFieldForForm,
         deleteField: deleteField,
@@ -31,6 +32,45 @@ module.exports = function(mongoose,db) {
     };
 
     return api;
+
+
+
+    function deletestat(eventid,type){
+        var deferred = q.defer();
+
+
+        EventModel.findOne({eventid:eventid}, function (err, event) {
+
+            if(err){
+                deferred.reject(err);
+                console.log("rejected")
+            }
+            else{
+                for (var i=0;i<event.stats.length;i++) {
+
+                    if (event.stats[i] == type)
+                    {
+                        event.stats.splice(i, 1)
+                        console.log("event stat found and deleted")
+                        event.save(function (err, event) {
+
+                            if (err) {
+                                console.log("in error")
+                                deferred.reject(err);
+                            }
+                            else {
+                                console.log("after saving user" + event)
+                                deferred.resolve(event);
+                            }
+                        });
+                    break
+                    }
+                }
+                }
+        });
+        return deferred.promise;
+
+    }
 
      function addbroadcast(message){
 

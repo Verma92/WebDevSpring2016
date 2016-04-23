@@ -17,13 +17,25 @@ module.exports = function(app, user_model,event_model) {
     app.post  ('/api/project/logout',         logout);
     app.put("/api/project/user/name/:username",auth,updateuserinvites)
     app.get('/api/project/users/names',auth,usernames);
+    app.put("/api/project/user/event/delete/:id",auth,deleteevent)
 
     passport.use('project',new LocalStrategy(localprojectstrategy));
    /* passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);*/
 
 
+    function deleteevent(req,res){
 
+        var eventid = req.body.eventid;
+        var id = req.params.id;
+
+           user_model
+            .deleteevent(id,eventid)
+            .then(function(user){
+                console.log("user after deleteevent:"+user)
+                res.json(user)});
+
+    }
     function updateuserinvites(req,res){
 
 

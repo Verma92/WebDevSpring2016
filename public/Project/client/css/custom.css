@@ -167,7 +167,10 @@ a.image_container img {
 }
 .demo-list-two{
 
-
+.red-color{
+  background-color: #ff0717;
+    color: #ff0717;
+}
 }
 .mygrid-wrapper-div {
     overflow: scroll;

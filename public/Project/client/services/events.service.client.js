@@ -13,13 +13,26 @@
             updateoraddevent:updateoraddevent,
             geteventstats:geteventstats,
             addbroadcast:addbroadcast,
-            allbroadcasts:allbroadcasts
+            allbroadcasts:allbroadcasts,
+            removestat:removestat
+
+
         };
 
         return service;
 
 
+        function removestat(id,type){
 
+            var deferred = $q.defer();
+            $http.put('/api/project/event/stat/delete/'+id,{type:type})
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+            console.log(deferred.promise)
+            return deferred.promise;
+
+        }
         function allbroadcasts(){
             var deferred = $q.defer();
             $http.get('/api/project/brodcasts/')

@@ -18,13 +18,23 @@
             addUserEventorinvite:addUserEventorinvite,
             updateuserevent:updateuserevent,
             logout:logout,
-            sendinvite:sendinvite
+            sendinvite:sendinvite,
+            deletevent:deletevent
         };
 
 
         return service;
 
+        function deletevent(id,eventid)
+        {
+            var deferred = $q.defer();
+            $http.put("/api/project/user/event/delete/"+id,eventid).success(function(response){
+                deferred.resolve(response);
+            });
 
+            console.log(deferred.promise)
+            return deferred.promise;
+        }
         function sendinvite(username,invite){
 
             console.log("In sendinvite :"+invite.message.text,invite.message.Date)
