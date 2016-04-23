@@ -9,16 +9,34 @@
             vm.edituser=edituser;
             vm.deleteuser=deleteuser;
             vm.updateuser=updateuser;
+            vm.sortsetter=sortsetter;
 
                 function init()
                 {
-                      UserService.findAllUsers()
+                     if(vm.sort==null)
+                     {
+                         console.log("sort in null")
+                       vm.sort={by:'username',order:1}
+
+                     }
+
+                      UserService.findAllUsers(vm.sort)
                      .then(handleSuccess, handleError);
                 }init();
 
             function edituser(user)
             {
                 vm.newuser =user
+            }
+
+
+            function sortsetter(by,order)
+            {
+
+                console.log("sort setter pre"+by +order)
+                vm.sort={by:by,order:order}
+                console.log("sort setter post"+ vm.sort.by,vm.sort.order)
+                init();
             }
 
             function adduser(user) {

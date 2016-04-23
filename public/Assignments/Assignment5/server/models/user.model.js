@@ -81,21 +81,66 @@ module.exports = function(mongoose, db) {
     }
 
 
-    function FindAll() {
+    function FindAll(sort) {
+
+
+        var by=sort.by
+        var order=sort.order
+
+        console.log("in findall in model",by,order)
         var deferred = q.defer();
-        UserModel.find( function(err, users) {
+
+        if(by=='username'){
+        UserModel.find().sort({ username: order }).exec(function(err, users){
 
             if(err) {
+                console.log("its ans error")
                 deferred.reject(err);
             }
+
             else{
+                console.log("not an error")
+                console.log(users)
                 deferred.resolve(users);
             }
-        });
+
+        });}
+        if(by=='firstName'){
+            UserModel.find().sort({ firstName: order }).exec(function(err, users){
+
+                if(err) {
+                    console.log("its ans error")
+                    deferred.reject(err);
+                }
+
+                else{
+                    console.log("not an error")
+                    console.log(users)
+                    deferred.resolve(users);
+                }
+
+            });}
+        if(by=='lastName'){
+            UserModel.find().sort({ lastName: order }).exec(function(err, users){
+
+                if(err) {
+                    console.log("its ans error")
+                    deferred.reject(err);
+                }
+
+                else{
+                    console.log("not an error")
+                    console.log(users)
+                    deferred.resolve(users);
+                }
+
+            });}
+
+
+
 
         return deferred.promise;
-        //OLD CODE
-      /* return users*/
+
     }
 
 

@@ -14,13 +14,43 @@ module.exports = function(mongoose, db) {
         FindById: FindById,
         findFormByTitle:findFormByTitle,
         Create: Create,
-        UpdateFieldforForm:UpdateFieldforForm
+        UpdateFieldforForm:UpdateFieldforForm,
+        changeFieldposnforForm:changeFieldposnforForm
 
     };
 
     return api;
 
+    function changeFieldposnforForm(formId,start,end){
 
+        var deferred = q.defer();
+        FormModel.findById(formId,function(err, form) {
+
+
+            if(err)
+            {
+                console.log("err")
+                return deferred.reject(err);
+            }
+            else{
+
+                form.fields.splice(end, 0,form.fields.splice(start, 1)[0]);
+
+                                     // notify mongoose 'pages' field changed
+                form.markModified("fields");
+
+                form.save();
+                deferred.resolve(form);
+            }
+
+
+
+
+        });
+
+        return deferred.promise;
+
+    }
     function UpdateFieldforForm(formId,fieldId,field){
         var deferred = q.defer();
         FormModel.findById(formId, function(err, form) {

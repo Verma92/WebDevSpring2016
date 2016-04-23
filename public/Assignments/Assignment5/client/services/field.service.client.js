@@ -10,11 +10,26 @@
             getFieldsForForm:getFieldsForForm,
             createFieldForForm:createFieldForForm,
             deleteFieldFromForm:deleteFieldFromForm,
-            updateField:updateField
+            updateField:updateField,
+            changefieldposition:changefieldposition
         };
 
         return api;
 
+
+        function changefieldposition(formId,start,end){
+            var deferred=$q.defer();
+           /* var response=null;*/
+            console.log("in service with fields and formid:"+formId,start,end)
+            $http.put("/api/assignment/form/changsposn/"+formId,{start:start,end:end}).success(function(response){
+                deferred.resolve(response);
+            });
+
+             console.log(deferred.promise)
+              return deferred.promise;
+
+
+        }
 
         function updateField(formId,field,fieldId)
         {

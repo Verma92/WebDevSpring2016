@@ -29,7 +29,7 @@ module.exports = function(app, model,otherusermodel) {
 
     app.post  ('/api/assignment/admin/user',     auth, adduser);
     app.get('/api/assignment/admin/user/:id', auth, GetUserById);
-    app.get   ('/api/assignment/admin/user',     auth, findAllUsers);
+    app.put   ('/api/assignment/admin/user',     auth, findAllUsers);
     app.put   ('/api/assignment/admin/user/:id', auth, updateUserByAdmin);
     app.delete('/api/assignment/admin/user/:id', auth, deleteUserById);
 //--------------------------------------------------------
@@ -275,7 +275,9 @@ module.exports = function(app, model,otherusermodel) {
     {
         console.log(req.user)
         if(isAdmin(req.user)) {
-            user_model.FindAll()
+            var sort=req.body
+            console.log("sort in user service:",sort)
+            user_model.FindAll(sort)
                 .then(function (users) {
                     res.json(users)
                 });

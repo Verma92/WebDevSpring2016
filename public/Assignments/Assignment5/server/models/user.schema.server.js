@@ -10,7 +10,7 @@ module.exports=function(mongoose){
         roles:[String]
 
     }, {
-        collection: "FormMaker.User",
+        collection: "Form.User",
 
     });
 

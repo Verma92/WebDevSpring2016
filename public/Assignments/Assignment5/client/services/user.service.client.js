@@ -76,11 +76,12 @@
                return deferred.promise;
         }
 
-        function findAllUsers()
+        function findAllUsers(sort)
         {
-            console.log("inside find all")
+           /* var sort={by:'username',order:1}*/
+            console.log("inside find all",sort.by,sort.order)
             var deferred = $q.defer();
-            $http.get("/api/assignment/admin/user").success(function(response){
+            $http.put("/api/assignment/admin/user",sort).success(function(response){
                 deferred.resolve(response);
             });
             return deferred.promise;

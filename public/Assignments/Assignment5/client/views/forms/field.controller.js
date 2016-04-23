@@ -9,6 +9,25 @@
         vm.deleteField=deleteField;
         vm.selectfield=selectfield;
         vm.updatefield=updatefield;
+        vm.checker=checker;
+
+        function checker (start,end){
+
+
+            console.log(start,end)
+     if((start!=end)&&(start>=0)&&(end>=0))
+     {FieldService.changefieldposition(vm.formId,start,end)
+                .then(function(fields){
+                    console.log(fields)
+                    vm.fields=fields
+                });
+
+
+        }
+
+
+        }
+
 
 
 

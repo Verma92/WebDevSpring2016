@@ -9,11 +9,9 @@
     </ul>
         <div class="table-responsive table-no-border th table-no-border td">
             <table class="table " >
-                <tbody ui-sortable ng-model="vm.fields">
+                <tbody ui-sortable ui-sortable-callback="vm.checker">
                 <tr ng-repeat="field in vm.fields" >
-
                     <td>
-
                         <!--TEXT-->
                         <div class="form-group" ng-if="field.type=='TEXT'">
                             <label for="TEXT">{{field.label}}:</label>
