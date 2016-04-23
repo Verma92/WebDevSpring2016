@@ -166,12 +166,12 @@ a.image_container img {
     background-color: #eef8db;!important;
 }
 .demo-list-two{
-
+}
 .red-color{
   background-color: #ff0717;
     color: #ff0717;
 }
-}
+
 .mygrid-wrapper-div {
     overflow: scroll;
     height: 100%;
@@ -183,7 +183,7 @@ a.image_container img {
 .new-body {
     background-color: #6b706b;!important;
     color: #accf38;!important;
-    height:600px;
+    height:500px;
 }
 
 .loading-center{
