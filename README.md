@@ -1,3 +1,5 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+## Events Website build on MEAN Stack
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+- Designed and Developed Website on MEAN Stack about Events which are happening around using Eventbrite’s API
+     and Geolocation APIs
+ - Implemented in MVC design, making use of AngularJS Routing and directives and added functionalities for security and session maintenance
